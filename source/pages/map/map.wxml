@@ -1,0 +1,8 @@
+<!--pages/map/map.wxml-->
+<view style='width:calc(100%);height:400px'>
+
+<map id="map4select"
+ scale="20" 
+ style="width:calc(100%);height:calc(100%)">
+</map>
+</view>

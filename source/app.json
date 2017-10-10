@@ -1,12 +1,48 @@
 {
-  "pages":[
-    "pages/index/index",
+  "pages": [
+    "pages/map/map",
+    "pages/nearby/nearby",
+    "pages/mine/mine",
+    "pages/favorite/favorite",
+    "pages/main/main",
     "pages/logs/logs"
   ],
-  "window":{
-    "backgroundTextStyle":"light",
+  "window": {
+    "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle":"black"
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#ccc",
+    "selectedColor": "#35495e",
+    "borderStyle": "white",
+    "backgroundColor": "#f9f9f9",
+    "list": [
+      {
+        "text": "地图",
+        "pagePath": "pages/map/map",
+        "iconPath": "images/icon/marker.png",
+        "selectedIconPath": "images/icon/marker_fill.png"
+      },
+      {
+        "text": "附近",
+        "pagePath": "pages/nearby/nearby",
+        "iconPath": "images/icon/list.png",
+        "selectedIconPath": "images/icon/list_fill.png"
+      },
+      {
+        "text": "我的",
+        "pagePath": "pages/mine/mine",
+        "iconPath": "images/icon/share.png",
+        "selectedIconPath": "images/icon/share_fill.png"
+      },
+      {
+        "text": "收藏",
+        "pagePath": "pages/favorite/favorite",
+        "iconPath": "images/icon/favorite.png",
+        "selectedIconPath": "images/icon/favorite_fill.png"
+      }
+    ]
   }
 }
