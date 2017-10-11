@@ -1,4 +1,4 @@
-// pages/nearby/nearby.js
+// pages/latest/latest.js
 Page({
 
   /**

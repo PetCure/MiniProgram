@@ -1,7 +1,7 @@
 {
   "pages": [
     "pages/map/map",
-    "pages/nearby/nearby",
+    "pages/latest/latest",
     "pages/mine/mine",
     "pages/favorite/favorite",
     "pages/main/main",
@@ -10,7 +10,7 @@
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
+    "navigationBarTitleText": "随手救救它",
     "navigationBarTextStyle": "black"
   },
   "tabBar": {
@@ -26,8 +26,8 @@
         "selectedIconPath": "images/icon/marker_fill.png"
       },
       {
-        "text": "附近",
-        "pagePath": "pages/nearby/nearby",
+        "text": "最新",
+        "pagePath": "pages/latest/latest",
         "iconPath": "images/icon/list.png",
         "selectedIconPath": "images/icon/list_fill.png"
       },
