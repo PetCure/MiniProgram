@@ -1,6 +1,5 @@
 // pages/map/map.js
-var QQMapWX = require('../../libs/qqmap/qqmap-wx-jssdk.js');
-var qqmapsdk;
+
 Page({
   mapCtx:null,
   /**
@@ -64,9 +63,6 @@ Page({
         that.setData({log:JSON.stringify(res)});
         console.log(res);
       }
-    });
-    qqmapsdk = new QQMapWX({
-      key: 'IDVBZ-TSAKD-TXG43-H442I-74KVK-6LFF5'
     });
     this.mapCtx = wx.createMapContext("map4select");
     wx.getLocation({
@@ -216,5 +212,8 @@ Page({
   },
   gotoHelpDetail(markerId){
     console.log(markerId);
+    wx.navigateTo({
+      url: '../help/help?markerid='+markerId
+    });
   }
 })

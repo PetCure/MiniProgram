@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/help/help",
     "pages/map/map",
     "pages/latest/latest",
     "pages/mine/mine",
