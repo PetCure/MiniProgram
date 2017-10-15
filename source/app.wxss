@@ -30,6 +30,9 @@ page{
   background-color: #f8f8f8;
 }
 
+.page__hd{
+  padding:10px;
+}
 
 .weui-agree{
     display: block;

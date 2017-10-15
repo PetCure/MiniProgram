@@ -1,0 +1,11 @@
+/* pages/help/help.wxss */
+.page-container{
+  margin:20px;
+}
+.title {
+  font-size: 150%;
+}
+.item{
+  margin-top:20px;
+  margin-bottom:20px;
+}

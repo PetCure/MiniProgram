@@ -1,24 +1,55 @@
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">{{title}}</view>
-        <view class="weui-media-box__desc" >{{description}}</view>
-        <view class="weui-media-box__desc" style='text-align:right;margin-top:15px;'>发布时间：{{published_date}}</view>
+        <view class="page__title">
+        <text bindtap="backstep" >返回</text>
+        <text class='weui-form-preview__btn_primary' style='float:right'  wx:if="{{step!=4}}"  bindtap="nextstep" >下一步</text>
+        <text class='weui-form-preview__btn_primary' style='float:right'  wx:if="{{step==4}}" bindtap="nextstep" >提交</text>
+        </view>
     </view>
     <view class="page__bd">
-        <view class="weui-panel weui-panel_access">
-            <view class="weui-panel__hd">位置信息</view>
-            <view class="weui-panel__bd">
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">导航地址</view>
-                    <view class="weui-media-box__desc">{{address}}</view>
-                </view>
-                <view class="weui-media-box weui-media-box_text">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">补充信息</view>
-                    <view class="weui-media-box__desc">{{address_comment}}</view>
+        <view class="weui-toptips weui-toptips_warn" wx:if="{{showTopTips!=''}}">{{showTopTips}}</view>
+
+        <div  wx:if="{{step==1}}">
+        <view class="weui-cells__title">标题</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="一句话描述救助内容" bindinput="changetitle"  />
                 </view>
             </view>
         </view>
-        
+        <view class="weui-cells__title">详细描述</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="详细补充你的救助内容" style="height: 3.3em"  bindinput="changedescription" />
+                    <view class="weui-textarea-counter">{{description.length}}/200</view>
+                </view>
+            </view>
+        </view>
+        </div>
+
+
+        <div  wx:if="{{step==2}}">
+        <view class="weui-cells__title">导航地址</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input class="weui-input" placeholder="输入获取导航地址" bindtap="tapaddress" value='{{address}}' />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__title">补充信息</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell">
+                <view class="weui-cell__bd">
+                    <textarea class="weui-textarea" placeholder="补充详细的位置信息以便获得救助" style="height: 3.3em"  bindtap="tapaddress_comment" />
+                    <view class="weui-textarea-counter">{{address_comment.length}}/200</view>
+                </view>
+            </view>
+        </view>
+        </div>
+
         <view class="weui-cells">
             <view class="weui-cell">
                 <view class="weui-cell__bd">

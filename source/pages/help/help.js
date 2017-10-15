@@ -5,7 +5,17 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    title: "",
+    description: "",
+    published_date: "",
+    address: "",
+    address_comment: "",
+    photos: [],
+    display: "",
+    mobile: "",
+    weixin: "",
+    qq: "",
+    othercontact: "",
   },
 
   /**
