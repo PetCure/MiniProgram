@@ -10,5 +10,7 @@ markers='{{markers}}'
  bindcallouttap='callouttap'
  bindtap='maptap'
  show-location="true"
+  controls="{{controls}}"
+  bindcontroltap="controltap" 
  >
 </map>

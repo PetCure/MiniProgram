@@ -11,8 +11,39 @@ Page({
     lat: 22.531585,
     lng: 114.055939,
     scale:19,
-    markers:[]
-  }, 
+    markers:[],
+    controls: [{
+      id: "add_help",
+      iconPath: '/images/icon/add.png',
+      position: {
+        left: 10,
+        top: 10,
+        width: 50,
+        height: 50
+      },
+      clickable: true
+    }, {
+        id: "refresh_help",
+      iconPath: '/images/icon/refresh.png',
+      position: {
+        left: 10,
+        top: 70,
+        width: 50,
+        height: 50
+      },
+      clickable: true
+    }]
+  },
+  controltap(e) {
+    if (e.controlId=="add_help"){
+      wx.navigateTo({
+        url: '../helpcreate/helpcreate'
+      });
+    }
+    if (e.controlId == "refresh_help") {
+      //todo
+    }
+  },
   latestMarkerId:"",
   markertap(e){
     //console.log(this.latestMarkerId +"=="+ e.markerId);

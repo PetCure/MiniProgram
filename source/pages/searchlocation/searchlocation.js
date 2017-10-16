@@ -1,4 +1,5 @@
 // pages/searchlocation/searchlocation.js
+const app = getApp()
 Page({
 
   /**
@@ -6,7 +7,10 @@ Page({
    */
   data: {
     inputShowed: false,
-    inputVal: ""
+    inputVal: "",
+    items:[],
+    lat:0,
+    lng:0
   },
   showInput: function () {
     this.setData({
@@ -16,25 +20,74 @@ Page({
   hideInput: function () {
     this.setData({
       inputVal: "",
-      inputShowed: false
+      inputShowed: false,
+      items: []
     });
   },
   clearInput: function () {
     this.setData({
-      inputVal: ""
+      inputVal: "",
+      items: []
     });
   },
   inputTyping: function (e) {
+    var that=this;
     this.setData({
       inputVal: e.detail.value
     });
+    app.qqmapsdk.search({
+      keyword: e.detail.value,
+      address_format:"short",
+      location: {
+        latitude: this.data.lat,
+        longitude: this.data.lng},
+      success: function (res) {
+        console.log(res.data);
+        that.setData({
+          items: res.data
+        });
+      },
+      fail: function (res) {
+        console.log(res.status, res.message);
+      },
+      complete: function (res) {
+        console.log(res.status, res.message);
+      }
+    });
   },
-
+  addresstap(e){
+    var id=e.currentTarget.id;
+    var items=this.data.items;
+    for(var i=0;i<items.length;i++){
+      if(id==items[i].id){
+        var pages = getCurrentPages();
+        var currPage = pages[pages.length - 1];  //当前页面
+        var prevPage = pages[pages.length - 2]; //上一个页面
+        prevPage.setData({
+          address: items[i].address,
+          lat: items[i].latitude,
+          lng: items[i].longitude, 
+          tipsid: 0, showTopTips: ""
+        });
+        wx.navigateBack();
+      }
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-  
+    var that=this;
+    wx.getLocation({
+      success: function (res) {
+        console.log(res);
+        that.setData({
+          lat: res.latitude,
+          lng: res.longitude
+        });     
+      }
+      });
+
   },
 
   /**

@@ -1,9 +1,9 @@
 {
   "pages": [
-    "pages/searchlocation/searchlocation",
-    "pages/helpcreate/helpcreate",
-    "pages/help/help",
     "pages/map/map",
+    "pages/helpcreate/helpcreate",
+    "pages/searchlocation/searchlocation",
+    "pages/help/help",
     "pages/latest/latest",
     "pages/mine/mine",
     "pages/favorite/favorite",

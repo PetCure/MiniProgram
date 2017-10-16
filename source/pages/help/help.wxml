@@ -30,8 +30,8 @@
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for-items="{{photos}}" wx:key="{{index}}">
-                                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item.id}}">
-                                        <image class="weui-uploader__img" src="{{item.src}}" mode="aspectFill" />
+                                    <view class="weui-uploader__file" bindtap="previewImage" >
+                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" />
                                     </view>
                                 </block>
                             </view>

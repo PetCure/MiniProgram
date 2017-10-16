@@ -14,7 +14,7 @@
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
-                    <text  class="weui-input" placeholder="一句话描述救助内容" bindinput="changetitle" bindtap='findLocation'  />
+                    <input  class="weui-input" placeholder="一句话描述救助内容" bindinput="changetitle"  value='{{title}}'  />
                 </view>
             </view>
         </view>
@@ -43,53 +43,73 @@
         <view class="weui-cells weui-cells_after-title">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="补充详细的位置信息以便获得救助" style="height: 3.3em"  bindtap="tapaddress_comment" />
+                    <textarea class="weui-textarea" placeholder="补充详细的位置信息以便获得救助" style="height: 3.3em"  bindinput="tapaddress_comment" />
                     <view class="weui-textarea-counter">{{address_comment.length}}/200</view>
                 </view>
             </view>
         </view>
         </div>
-
+        
+        <div  wx:if="{{step==3}}">
         <view class="weui-cells">
             <view class="weui-cell">
                 <view class="weui-cell__bd">
                     <view class="weui-uploader">
                         <view class="weui-uploader__hd">
                             <view class="weui-uploader__title">图片信息</view>
-                            <view class="weui-uploader__info">{{photos.length}}</view>
+                            <view class="weui-uploader__info">{{photos.length}}/8</view>
                         </view>
                         <view class="weui-uploader__bd">
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for-items="{{photos}}" wx:key="{{index}}">
-                                    <view class="weui-uploader__file" bindtap="previewImage" id="{{item.id}}">
-                                        <image class="weui-uploader__img" src="{{item.src}}" mode="aspectFill" />
+                                    <view class="weui-uploader__file" bindtap="deleteImage" id="photo_{{item}}">
+                                        <image class="weui-uploader__img" src="https://cmsdev.app-link.org/alucard263096/motto/upload/test/{{item}}" mode="aspectFill" />
                                     </view>
                                 </block>
+                            </view>
+                            <view class="weui-uploader__input-box" wx:if="{{photos.length<8}}">
+                                <view class="weui-uploader__input" bindtap="chooseImage"></view>
                             </view>
                         </view>
                     </view>
                 </view>
             </view>
         </view>
-        <view class="weui-panel weui-panel_access" wx:if="{{display=='Y'}}">
-            <view class="weui-panel__hd">联系方式</view>
-            <view class="weui-panel__bd">
-                <view class="weui-media-box weui-media-box_text"  wx:if="{{mobile!=''}}">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">电话</view>
-                    <view class="weui-media-box__desc">13751082562</view>
-                </view>
-                <view class="weui-media-box weui-media-box_text"  wx:if="{{weixin!=''}}">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">微信</view>
-                    <view class="weui-media-box__desc">359304951</view>
-                </view>
-                <view class="weui-media-box weui-media-box_text"   wx:if="{{qq!=''}}">
-                    <view class="weui-media-box__title weui-media-box__title_in-text">QQ</view>
-                    <view class="weui-media-box__desc">359304951</view>
-                </view>
-                <view class="weui-media-box weui-media-box_text"  wx:if="{{othercontact!=''}}" >
-                    <view class="weui-media-box__desc">写信给我吧</view>
+        <view style='float:right;margin-right:20px;margin-top:20px;'  wx:if="{{photos.length>0}}" bindtap="previewImage">
+            预览
+        </view>
+        </div>
+
+        <div  wx:if="{{step==4}}">
+        <view class="weui-cells__title">联系方式</view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input  class="weui-input" placeholder="手机号码" bindinput="changemobile"  value='{{mobile}}'  />
                 </view>
             </view>
         </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input  class="weui-input" placeholder="微信号码" bindinput="changeweixin"  value='{{weixin}}'  />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input  class="weui-input" placeholder="QQ" bindinput="changeqq"  value='{{qq}}'  />
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells weui-cells_after-title">
+            <view class="weui-cell weui-cell_input">
+                <view class="weui-cell__bd">
+                    <input  class="weui-input" placeholder="其它联系方式" bindinput="changeothercontact"  value='{{othercontact}}'  />
+                </view>
+            </view>
+        </view>
+        </div>
     </view>
 </view>
