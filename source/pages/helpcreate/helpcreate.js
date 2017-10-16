@@ -45,6 +45,9 @@ Page({
     }
     this.setData({ step: ++step, showTopTips:"" });
   },
+  findLocation(){
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
