@@ -11,6 +11,9 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    var APIConfig = require('ApiConfig.js');
+    this.apiconfig = new APIConfig();
+    
     // 登录
     wx.login({
       success: res => {
@@ -41,5 +44,6 @@ App({
   globalData: {
     userInfo: null
   },
-  qqmapsdk:null
+  qqmapsdk: null,
+  apiconfig: null
 })

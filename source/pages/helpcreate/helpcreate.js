@@ -1,5 +1,6 @@
 // pages/help/help.js
-const app = getApp()
+
+const app = getApp();
 Page({
 
   /**
@@ -8,20 +9,19 @@ Page({
   data: {
     tipsid:0,
     showTopTips:"",
-    step:4,
+    step:1,
     title: "",
     description: "",
     address: "",
     lat: 0,
     lng: 0,
     address_comment: "",
-    lat:0,
-    lng:0,
     photos: [],
     mobile: "",
     weixin: "",
     qq: "",
     othercontact: "",
+    UploadFolderUrl:""
   },
   changetitle(e){
     this.setData({ title: e.detail.value});
@@ -104,7 +104,18 @@ Page({
         return;
       }else{
         //提交创建
-        wx.navigateBack();
+        var HelpApi=require('../../apis/help.js');
+        var helpApi=new HelpApi();
+        helpApi.update(this.data,function(res){
+          console.log(res);
+          if(res.code==0){
+            wx.navigateBack();
+          }else{
+            wx.showToast({
+              title: res.return,
+            })
+          }
+        });
         return;
       }
     }
@@ -129,11 +140,11 @@ Page({
         //});
         var tempFilePaths = res.tempFilePaths
         wx.uploadFile({
-          url: 'https://cmsdev.app-link.org/alucard263096/motto/fileupload', //仅为示例，非真实的接口地址
+          url: app.apiconfig.FileUploadUrl, //仅为示例，非真实的接口地址
           filePath: tempFilePaths[0],
           name: 'file',
           formData: {
-            'module': 'test',
+            'module': 'help',
             "field":"file"
           },
           success: function (res) {
@@ -173,7 +184,7 @@ Page({
     var photos = this.data.photos;
     var newphotos = [];
     for (var i = 0; i < photos.length; i++) {
-      newphotos.push('https://cmsdev.app-link.org/alucard263096/motto/upload/test/' + photos[i]);
+      newphotos.push(app.apiconfig.UploadFolderUrl + photos[i]);
     }
     console.log(newphotos);
     wx.previewImage({
@@ -186,6 +197,8 @@ Page({
   onLoad: function (options) {
     var that=this;
     console.log(options.markerid);
+    console.log(app.apiconfig.UploadFolderUrl);
+    this.setData({ UploadFolderUrl: app.apiconfig.UploadFolderUrl});
     wx.getLocation({
       success:function(res){
         console.log(JSON.stringify(res));

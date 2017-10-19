@@ -63,7 +63,7 @@
                             <view class="weui-uploader__files" id="uploaderFiles">
                                 <block wx:for-items="{{photos}}" wx:key="{{index}}">
                                     <view class="weui-uploader__file" bindtap="deleteImage" id="photo_{{item}}">
-                                        <image class="weui-uploader__img" src="https://cmsdev.app-link.org/alucard263096/motto/upload/test/{{item}}" mode="aspectFill" />
+                                        <image class="weui-uploader__img" src="{{UploadFolderUrl}}/help/{{item}}" mode="aspectFill" />
                                     </view>
                                 </block>
                             </view>
