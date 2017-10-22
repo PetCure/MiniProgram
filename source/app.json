@@ -1,10 +1,10 @@
 {
   "pages": [
+    "pages/latest/latest",
     "pages/map/map",
     "pages/helpcreate/helpcreate",
     "pages/searchlocation/searchlocation",
     "pages/help/help",
-    "pages/latest/latest",
     "pages/mine/mine",
     "pages/favorite/favorite",
     "pages/main/main",

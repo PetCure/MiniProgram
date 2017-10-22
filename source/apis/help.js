@@ -73,6 +73,27 @@ class HelpApi
                   })
                 };
 
+   //
+                latest(request_json,callback){
+                  wx.request({
+                    url: apiconfig.ServerUrl+'/help/latest', 
+                    data:request_json,
+                    method:'POST',
+                    dataType:'json',
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (res) {
+                      if(callback!=null){
+                        callback(res.data);
+                      }
+                    },
+                    fail:function(res){
+                      console.log(res);
+                      callback(false);
+                    }
+                  })
+                };
 
 }
 module.exports = HelpApi;

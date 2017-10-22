@@ -79,6 +79,7 @@ Page({
   onLoad: function (options) {
     var that=this;
     wx.getLocation({
+      "type": "gcj02",
       success: function (res) {
         console.log(res);
         that.setData({

@@ -16,6 +16,7 @@ Page({
     lat: 0,
     lng: 0,
     address_comment: "",
+    photo:"",
     photos: [],
     mobile: "",
     weixin: "",
@@ -106,9 +107,18 @@ Page({
         //提交创建
         var HelpApi=require('../../apis/help.js');
         var helpApi=new HelpApi();
+        this.setData({photo:this.data.photos[0]});
         helpApi.update(this.data,function(res){
           console.log(res);
           if(res.code==0){
+            var pages = getCurrentPages();
+            if (pages.length > 1) {
+              //上一个页面实例对象
+              var prePage = pages[pages.length - 2];
+              //关键在这里
+              prePage.loadMarkersFromCenter();
+            }
+
             wx.navigateBack();
           }else{
             wx.showToast({
@@ -200,6 +210,7 @@ Page({
     console.log(app.apiconfig.UploadFolderUrl);
     this.setData({ UploadFolderUrl: app.apiconfig.UploadFolderUrl});
     wx.getLocation({
+      "type": "gcj02",
       success:function(res){
         console.log(JSON.stringify(res));
         that.setData({

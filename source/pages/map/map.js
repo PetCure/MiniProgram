@@ -1,5 +1,8 @@
 // pages/map/map.js
+var HelpApi = require('../../apis/help.js');
+var helpApi = new HelpApi();
 
+var app=getApp();
 Page({
   mapCtx:null,
   /**
@@ -42,6 +45,7 @@ Page({
     }
     if (e.controlId == "refresh_help") {
       //todo
+      this.initLocation();
     }
   },
   latestMarkerId:"",
@@ -75,10 +79,10 @@ Page({
     this.mapCtx.getCenterLocation({
       success: function (res) {
         //console.log(JSON.stringify(res));
-        that.setData({ lat: res.latitude, lng: res.longitude});
+        //that.setData({ lat: res.latitude, lng: res.longitude});
         //console.log(that.data.lat);
         //console.log(that.data.lng);
-        that.loadMarkersFromCenter();
+        //that.loadMarkersFromCenter();
         //that.mapCtx.moveToLocation();
       }
     });
@@ -95,23 +99,8 @@ Page({
         console.log(res);
       }
     });
-    this.mapCtx = wx.createMapContext("map4select");
-    wx.getLocation({
-      success:function(res){
-        //console.log(JSON.stringify(res));
-        that.setData({
-          lat: res.latitude,
-          lng: res.longitude
-        });
-        //that.setData({
-        //  mylat: res.latitude,
-        //  mylng: res.longitude
-        //});
-        that.mapCtx.moveToLocation();
-        that.loadMarkersFromCenter();
-      }
-    });
     
+    this.initLocation();
   },
 
   /**
@@ -162,44 +151,73 @@ Page({
   onShareAppMessage: function () {
   
   },
+  initLocation(){
+    this.mapCtx = wx.createMapContext("map4select");
+    var that=this;
+    wx.getLocation({
+      "type": "gcj02",
+      success: function (res) {
+        console.log(JSON.stringify(res));
+        that.setData({
+          lat: res.latitude,
+          lng: res.longitude
+        });
+        //that.setData({
+        //  mylat: res.latitude,
+        //  mylng: res.longitude
+        //});
+        that.mapCtx.moveToLocation();
+        that.loadMarkersFromCenter();
+      }
+    });
+  },
   setMarker(marker){
     this.data.markers.push(marker);
   },
   loadMarkersFromCenter(){
     this.loadMarkers(this.data.lat,this.data.lng);
   },
-  markerid:0,
   loadMarkers(center_lat,center_lng){
     //this.removeMarkers();
+    var that=this;
 
-    var markers=[];
-    var count = (Math.random()*10);
-    for (var i = 0; i < count; i++) {
-      var lat = (((Math.random() * 50) % 2 > 1 ? 1 : -1) * Math.random() / 1000).toFixed(6);
-      var lng = (((Math.random() * 50) % 2 > 1 ? 1 : -1) * Math.random() / 1000).toFixed(6);
-      //lat=0;
-      //lng=0;
-      var marker = {
-        id: "mk_" + this.markerid++,
-        latitude: Number(center_lat) + Number(lat),
-        longitude: Number(center_lng) + Number(lng),
-        width:25,
-        height: 25,
-        iconPath: "/images/icon/sos.png",
-        title:"title"+this.markerid.toString(),
-        callout:{
-          content: "有一只小狗受伤了，赶紧来帮忙",
-          borderRadius:20,
-          padding:5
+    helpApi.list({lat:this.data.lat,lng:this.data.lng},function(data){
+      console.log(data);
+      var markers = that.data.markers;
+      for (var i = 0; i < data.length; i++) {
+        var mk=data[i];
+        if (that.data.markers[mk.id] !== "undefined") {
+          //console.log(that.data.markers[mk.id]);
+          var photo = "/images/icon/sos.png";
+          if(mk.photo!=null){
+            photo = "/images/icon/sos.png";//app.apiconfig.UploadFolderUrl +"/help/"+mk.photo;
+            console.log(photo);
+          }
+          var marker = {
+            id: mk.id,
+            latitude: mk.lat,
+            longitude: mk.lng,
+            width: 25,
+            height: 25,
+            iconPath: photo,
+            title: mk.title,
+            callout: {
+              content: mk.description,
+              borderRadius: 20,
+              padding: 5
+            }
+          }
+          markers.push(marker);
         }
       }
-      //console.log(JSON.stringify(marker));
-      markers.push(marker);
-    }
+      that.setData({
+        markers: markers
+      });
 
-    this.setData({
-      markers: markers
     });
+
+
+    
     //this.resizeMarkers();
   },
   removeMarkers(){

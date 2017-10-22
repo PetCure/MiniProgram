@@ -89,21 +89,21 @@
                 </view>
             </view>
         </view>
-        <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cells ">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
                     <input  class="weui-input" placeholder="微信号码" bindinput="changeweixin"  value='{{weixin}}'  />
                 </view>
             </view>
         </view>
-        <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cells ">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
                     <input  class="weui-input" placeholder="QQ" bindinput="changeqq"  value='{{qq}}'  />
                 </view>
             </view>
         </view>
-        <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cells ">
             <view class="weui-cell weui-cell_input">
                 <view class="weui-cell__bd">
                     <input  class="weui-input" placeholder="其它联系方式" bindinput="changeothercontact"  value='{{othercontact}}'  />
