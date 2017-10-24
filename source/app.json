@@ -8,8 +8,9 @@
     "pages/mine/mine",
     "pages/favorite/favorite",
     "pages/main/main",
-    "pages/logs/logs",
-    "pages/index/index"
+    "pages/index/index",
+    "pages/logs/logs"
+    
   ],
   "window": {
     "backgroundTextStyle": "light",

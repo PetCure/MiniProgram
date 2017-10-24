@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+var WechatApi=require('../../apis/wechat.js');
+var wechatApi=new WechatApi();
 const app = getApp()
 
 Page({
@@ -46,16 +48,42 @@ Page({
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo;
-    
+    var that=this;
     if (e.detail.errMsg !="getUserInfo:fail auth deny"){
+      wx.login({
+        success: function (res) {
+          console.log(res);
+          if (res.code) {
+            //发起网络请求
+            wechatApi.decryptuserinfo({ code: res.code, 
+                                        encryptedData: e.detail.encryptedData,
+                                        iv:e.detail.iv},function(data){
+            //console.log(data);
+            var userInfo=e.detail.userInfo;
+            userInfo.openid = data.openid;
+              that.setData({
+                  userInfo: userInfo,
+                 hasUserInfo: true
+                });
+              wx.navigateBack({
+                
+              });
+            });
+          } else {
+            console.log('获取用户登录态失败！' + res.errMsg);
+            wx.showToast({
+              title: '获取用户信息失败',
+            })
+          }
+        }
+      });
 
-      this.setData({
-        userInfo: e.detail.userInfo,
-        hasUserInfo: true
-      });
-      wx.navigateBack({
-        
-      });
+
+
+      
     }
+  },
+  login:function(){
+    
   }
 })

@@ -1,2 +1,17 @@
-<!--pages/mine/mine.wxml-->
-<text>pages/mine/mine.wxml</text>
+<!--pages/latest/latest.wxml-->
+<view class="page">
+  <view class="page__bd">
+    <block wx:for-items="{{helps}}" wx:key="{{index}}">
+      <text>{{item.title}}</text>
+      <view  bindtap="gotoHelp" id="helpid_{{item.id}}" style='width:100%;height:40vh;background:url({{item.photo}}) no-repeat center center;margin-bottom:20px;' >
+        <view style='color:white;font-size:80%;padding-top:30vh;padding-right:10px;'>
+          <view style='text-align:right' decode="{{true}}" space="{{true}}"><text>　{{item.description}}</text></view>
+          <view style='text-align:right'><text >{{item.published_date}}</text></view>
+        </view>
+      </view>
+    </block>
+    <view style='color:#ccc;text-align:center;font-size:60%;margin-bottom:20px;' wx:if="{{nomoredata==true}}">
+      嗯嗯，已经没有了~~~
+    </view>
+  </view>
+</view>

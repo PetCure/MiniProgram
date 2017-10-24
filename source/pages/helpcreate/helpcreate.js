@@ -114,7 +114,17 @@ Page({
         var HelpApi=require('../../apis/help.js');
         var helpApi=new HelpApi();
         this.setData({photo:this.data.photos[0]});
-        helpApi.update(this.data,function(res){
+
+        var json=this.data;
+        json.openid = app.globalData.userInfo.openid;
+        json.nickName = app.globalData.userInfo.nickName;
+        json.avatarUrl = app.globalData.userInfo.avatarUrl;
+        json.gender = app.globalData.userInfo.gender;
+        json.province = app.globalData.userInfo.province;
+        json.city = app.globalData.userInfo.city;
+        json.country = app.globalData.userInfo.country;
+        
+        helpApi.update(json,function(res){
           console.log(res);
           if(res.code==0){
             var pages = getCurrentPages();
