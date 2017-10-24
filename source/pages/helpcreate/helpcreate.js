@@ -74,6 +74,12 @@ Page({
   nextstep(){
     var step = this.data.step;
     if(step==1){
+      if (app.globalData.userInfo == null) {
+        wx.navigateTo({
+          url: '../index/index'
+        });
+        return;
+      }
       if(this.data.title.trim()==""){
         this.setData({ tipsid:1, showTopTips: "标题不能为空" });
         return;
@@ -206,6 +212,7 @@ Page({
    */
   onLoad: function (options) {
     var that=this;
+
     console.log(options.markerid);
     console.log(app.apiconfig.UploadFolderUrl);
     this.setData({ UploadFolderUrl: app.apiconfig.UploadFolderUrl});
@@ -242,6 +249,9 @@ Page({
         });
       }
     });
+
+   
+
   },
 
   /**

@@ -1,14 +1,15 @@
 {
   "pages": [
-    "pages/latest/latest",
     "pages/map/map",
+    "pages/latest/latest",
     "pages/helpcreate/helpcreate",
     "pages/searchlocation/searchlocation",
     "pages/help/help",
     "pages/mine/mine",
     "pages/favorite/favorite",
     "pages/main/main",
-    "pages/logs/logs"
+    "pages/logs/logs",
+    "pages/index/index"
   ],
   "window": {
     "backgroundTextStyle": "light",

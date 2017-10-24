@@ -45,10 +45,17 @@ Page({
   },
   getUserInfo: function(e) {
     console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
-    })
+    app.globalData.userInfo = e.detail.userInfo;
+    
+    if (e.detail.errMsg !="getUserInfo:fail auth deny"){
+
+      this.setData({
+        userInfo: e.detail.userInfo,
+        hasUserInfo: true
+      });
+      wx.navigateBack({
+        
+      });
+    }
   }
 })
