@@ -3,6 +3,8 @@ var HelpApi = require('../../apis/help.js');
 var helpApi = new HelpApi();
 var HelpphotoApi = require('../../apis/helpphoto.js');
 var helpphotoApi = new HelpphotoApi();
+var HelpupApi = require('../../apis/helpup.js');
+var helpupApi=new HelpupApi();
 var app = getApp();
 
 Page({
@@ -23,7 +25,9 @@ Page({
     weixin: "",
     qq: "",
     othercontact: "",
-    uploadurl:""
+    uploadurl:"",
+    upcount:"",
+    upmember:[]
   },
 
   /**
@@ -34,11 +38,11 @@ Page({
     console.log(options.markerid);
     var markerid = options.markerid;
     var that=this;
-    this.setData({ uploadurl: app.apiconfig.UploadFolderUrl});
+    this.setData({ marker_id: markerid, uploadurl: app.apiconfig.UploadFolderUrl});
     helpApi.get(markerid,function(data){
       console.log(data);
       that.setData({
-        marker_id: markerid,
+        marker_id: data.id,
         title: data.title,
         description: data.description,
         published_date: data.published_date,
@@ -49,6 +53,7 @@ Page({
         weixin: data.weixin,
         qq: data.qq,
         othercontact: data.othercontact,
+        upcount: (data.upcount!=null&&data.upcount>0?"("+data.upcount+")":""),
       });
     });
     helpphotoApi.list({help_id:markerid},function(data){
@@ -57,8 +62,17 @@ Page({
         photos.push(app.apiconfig.UploadFolderUrl+"/help/"+data[i].photo);
       }
       that.setData({ photos: photos});
-    });
+    }); 
+    this.loadUpall();
   }, 
+  loadUpall() {
+    var that = this;
+    console.log(that.data.marker_id);
+    helpApi.allup({ help_id: that.data.marker_id }, function (data) {
+      console.log(data);
+      that.setData({ upmember: data });
+    });
+  },
   previewImage: function (e) {
     var photos = this.data.photos;
     
@@ -66,7 +80,48 @@ Page({
       urls: photos // 需要预览的图片http链接列表
     })
   },
+  tapUpHelp(){
+    if (app.globalData.userInfo.openid == undefined) {
+      wx.navigateTo({
+        url: '../index/index'
+      });
+      return;
+    }
+    this.uphelp();
+  },
+  navigatecallback(){
+    if (app.globalData.userInfo.openid == undefined){
+      return;
+    }else{
+      this.uphelp();
+    }
+  },
+  uphelp(){
+    console.log(app.globalData.userInfo);
+    var json = { openid: app.globalData.userInfo.openid,
+      help_id: this.data.marker_id
+    };
+    json.nickName = app.globalData.userInfo.nickName;
+    json.avatarUrl = app.globalData.userInfo.avatarUrl;
+    json.gender = app.globalData.userInfo.gender;
+    json.province = app.globalData.userInfo.province;
+    json.city = app.globalData.userInfo.city;
+    json.country = app.globalData.userInfo.country;
 
+    var that=this;
+    helpupApi.update(json,function(data){
+      console.log(data);
+        if(data.code==-302){
+          wx.showToast({
+            title: '1个小时内只能点赞一次',
+          });
+        }
+        if(data.code==0){
+          that.setData({ upcount: (data.return != null && data.return > 0 ? "(" + data.return + ")" : "")});
+          that.loadUpall();
+        }
+    });
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

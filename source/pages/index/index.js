@@ -58,13 +58,24 @@ Page({
             wechatApi.decryptuserinfo({ code: res.code, 
                                         encryptedData: e.detail.encryptedData,
                                         iv:e.detail.iv},function(data){
-            //console.log(data);
+            var data=JSON.parse(data);
             var userInfo=e.detail.userInfo;
             userInfo.openid = data.openid;
+            console.log(data);
+            app.globalData.userInfo = userInfo;
+            console.log(app.globalData.userInfo);
               that.setData({
-                  userInfo: userInfo,
+                 userInfo: userInfo,
                  hasUserInfo: true
                 });
+              var pages = getCurrentPages();
+              if (pages.length > 1) {
+                //上一个页面实例对象
+                var prePage = pages[pages.length - 2];
+                //关键在这里
+                if(prePage.navigatecallback!=undefined)
+                prePage.navigatecallback();
+              }
               wx.navigateBack({
                 
               });

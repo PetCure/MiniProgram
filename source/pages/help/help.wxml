@@ -1,10 +1,26 @@
 <view class="page">
     <view class="page__hd">
-        <view class="page__title">{{title}}</view>
-        <view class="weui-media-box__desc" >{{description}}</view>
-        <view class="weui-media-box__desc" style='text-align:right;margin-top:15px;'>发布时间：{{published_date}}</view>
+        <view class="page__title">
+        <text style='word-break:break-all'>{{title}}</text>
+        <i bindtap="tapUpHelp" style="font-size:150%;float:right;color:#1296DB" class="fa fa-thumbs-up" >{{upcount}}</i>
+        </view>
+        <view class="weui-media-box__desc"  style='word-break:break-all' >{{description}}</view>
+        <view class="weui-media-box__desc" style='margin-top:15px;'>
+        <text>发布时间：{{published_date}}</text>
+        </view>
     </view>
     <view class="page__bd">
+        <view class="weui-panel weui-panel_access" wx:if="{{upmember.length>0}}" >
+            <view class="weui-panel__bd">
+                <view class="weui-media-box weui-media-box_text" >
+                    <block wx:for-items="{{upmember}}" wx:key="{{index}}">
+                        <image style='border-radius:8.5px;height:17px;width:17px;' src="{{item.avatarUrl}}"  />
+                        <text  class="weui-media-box__desc" style='display:inline;margin-right:10px;'>{{item.nickName}}</text>
+                    </block>
+                </view>
+            </view>
+        </view>
+
         <view class="weui-panel weui-panel_access">
             <view class="weui-panel__hd">位置信息</view>
             <view class="weui-panel__bd">

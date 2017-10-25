@@ -71,10 +71,13 @@ Page({
       this.setData({ step: --step});
     }
   },
+  navigatecallback(){
+    this.nextstep();
+  },
   nextstep(){
     var step = this.data.step;
     if(step==1){
-      if (app.globalData.userInfo == null) {
+      if (app.globalData.userInfo.openid == null) {
         wx.navigateTo({
           url: '../index/index'
         });

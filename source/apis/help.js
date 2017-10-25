@@ -115,5 +115,45 @@ class HelpApi
                     }
                   })
                 };
+                myup(request_json, callback) {
+                  wx.request({
+                    url: apiconfig.ServerUrl + '/help/myup',
+                    data: request_json,
+                    method: 'POST',
+                    dataType: 'json',
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (res) {
+                      if (callback != null) {
+                        callback(res.data);
+                      }
+                    },
+                    fail: function (res) {
+                      console.log(res);
+                      callback(false);
+                    }
+                  })
+                };
+                allup(request_json, callback) {
+                  wx.request({
+                    url: apiconfig.ServerUrl + '/help/allup',
+                    data: request_json,
+                    method: 'POST',
+                    dataType: 'json',
+                    header: {
+                      'content-type': 'application/x-www-form-urlencoded'
+                    },
+                    success: function (res) {
+                      if (callback != null) {
+                        callback(res.data);
+                      }
+                    },
+                    fail: function (res) {
+                      console.log(res);
+                      callback(false);
+                    }
+                  })
+                };
 }
 module.exports = HelpApi;
