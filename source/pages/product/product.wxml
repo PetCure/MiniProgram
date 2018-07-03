@@ -1,0 +1,39 @@
+<!--pages/product/product.wxml-->
+<import src="../../wxParse/wxParse.wxml" />
+<view class='cover'>
+  <image src='{{uploadpath}}product/{{cover}}'></image>
+</view>
+<view class='white-block flex-row  flex-center padding-20'>
+  <view class='flex-1 '>
+    <view class='name h5'>
+      {{name}}
+    </view>
+    <view class='summary txt-gray h6'>
+      {{summary}}
+    </view>
+  </view>
+  <view class='txt-primary h4'>
+    {{price_txt}}
+  </view>
+</view>
+
+<view wx:if="{{video!=''}}" class='video margin-top'>
+  <video src='{{uploadpath}}product/{{video}}'></video>
+</view>
+
+
+<view class='white-block margin-top padding-20 text-center' wx:if="{{poster!=''}}" >
+  <image src='{{uploadpath}}product/{{poster}}' style='width:100%;' mode='widthFix'></image>
+</view>
+
+
+<view class='white-block padding-20 ' wx:if="{{content!=''}}" >
+  <template is="wxParse" data="{{wxParseData:content.nodes}}" />
+</view>
+
+<view class='block-100'></view>
+<view class='fixedbottom'>
+  <button type='primary' open-type='contact' session-from="产品咨询" send-message-title="{{name}}" >
+    联系客服
+  </button>
+</view>

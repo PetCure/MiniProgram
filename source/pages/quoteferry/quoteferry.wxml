@@ -1,0 +1,151 @@
+<!--pages/quoteferry/quoteferry.wxml-->
+<view class="fullscreen flex-row flex-center" style='z-index:200'>
+  <view style='width:5vw;height:100%;z-in'></view>
+  <view class='flex-1'>
+    <view class='padding-20'>
+      <view class='flex-row'>
+        <view class='flex-1 text-center'>
+          <view class='txt-white txt-bold'>
+            免费评估
+          </view>
+          <view class='h6 txt-white margin-top-10'>
+            提交信息秒出结果
+          </view>
+        </view>
+        <view class='flex-1 text-center'>
+          <view class='txt-white txt-bold'>
+            货真价实
+          </view>
+          <view class='h6 txt-white margin-top-10'>
+            货比三家诚信可靠
+          </view>
+        </view>
+        <view class='flex-1 text-center'>
+          <view class='txt-white txt-bold'>
+            智能评估
+          </view>
+          <view class='h6 txt-white margin-top-10'>
+            随行情动态浮动
+          </view>
+        </view>
+
+      </view>
+      <view class='form margin-top'>
+
+        <view class='padding-20 ' bindtap='openRoute'>
+          <view class='flex-row flex-center padding-20 border-bottom '>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/location1.png'></image>
+            </view>
+            <view class='flex-1' style='margin-left:10rpx;margin-right:10rpx;'>
+              <view class='txt-gray h6' wx:if="{{route==undefined}}">选择路线</view>
+              <view class='h6' wx:if="{{route!=undefined}}">
+                <block wx:for="{{route}}" wx:key="k" wx:for-index="idx">
+                  {{item.title}}
+                  <block wx:if="{{(route.length-1)!=idx}}">-></block>
+                </block>约{{distance}}, {{duration}}
+              </view>
+            </view>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/right.png'></image>
+            </view>
+          </view>
+        </view>
+        <!--
+        <view class='padding-20 '>
+          <view class='flex-row flex-center padding-20 border-bottom' style='padding-top:0rpx;'>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/calendar.png'></image>
+            </view>
+            <view class='flex-1 txt-gray h6' style='margin-left:10rpx;margin-right:10rpx;'>
+            <picker mode="date" bindchange="changeDate" value="{{date}}" start="{{startdate}}" end="{{enddate}}"  >
+            <block  wx:if="{{date==undefined}}">选择日期</block>
+            <block  wx:if="{{date!=undefined}}">{{date}}</block>
+            </picker>
+            </view>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/right.png'></image>
+            </view>
+          </view>
+        </view>-->
+        <view class='padding-20 ' bindtap='openGoods'>
+
+          <view class='flex-row flex-center padding-20 border-bottom' style='padding-top:0rpx;'>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/goods.png'></image>
+            </view>
+            <view class='flex-1 txt-gray h6' style='margin-left:10rpx;margin-right:10rpx;' wx:if="{{goods==undefined}}">选择货物
+            </view>
+            <view class='flex-1 txt-gray h6' style='margin-left:10rpx;margin-right:10rpx;' wx:if="{{goods!=undefined}}">
+              <view wx:for="{{goods}}" wx:key="k" class='flex-row'>
+                <view class='flex-1 h6'>{{item.name}} {{item.val}}{{item.unit}}</view>
+              </view>
+
+            </view>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/right.png'></image>
+            </view>
+          </view>
+        </view>
+        <view class='padding-20 '>
+
+          <view class='flex-row flex-center padding-20 border-bottom' style='padding-top:0rpx;'>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/remark.png'></image>
+            </view>
+            <view class='flex-1' style='margin-left:10rpx;margin-right:10rpx;'>
+              <textarea class='h6' style='width:100%' auto-height='{{true}}' placeholder='补充描述' maxlength='100' placeholder-style='color:#aaa' value='{{remark}}' bindinput='remarkChange'></textarea>
+            </view>
+          </view>
+        </view>
+        <view class='padding-20 '>
+
+          <view class='flex-row flex-center padding-20 border-bottom' style='padding-top:0rpx;'>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/phone2.png'></image>
+            </view>
+            <view class='flex-1' style='margin-left:10rpx;margin-right:10rpx;'>
+              <input class='h6' style='width:100%' auto-height='{{true}}' placeholder='手机号码' maxlength='11' placeholder-style='color:#aaa' value='{{mobile}}'></input>
+            </view>
+            <view>
+              <button class='h6' size='mini' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNo'>获取</button>
+            </view>
+          </view>
+        </view>
+
+        <view class='padding-20 '>
+
+          <view class='flex-row flex-center padding-20' style='padding-top:0rpx;'>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/user.png'></image>
+            </view>
+            <view class='flex-1' style='margin-left:10rpx;margin-right:10rpx;'>
+              <input class='h6' style='width:100%' auto-height='{{true}}' placeholder='真实姓名' maxlength='10' placeholder-style='color:#aaa' value='{{realname}}' bindinput='realnameChange'></input>
+            </view>
+          </view>
+        </view>
+      </view>
+      <view>
+      <form bindsubmit="confirmQuote" bindreset="formReset" report-submit="{{true}}">
+        <button type='primary' class='margin-top' form-type='submit' wx:if="{{id==undefined}}" >马上获取报价</button>
+        <button type='primary' class='margin-top' form-type='submit' wx:if="{{id!=undefined}}" >处理中，重新提交</button>
+        </form>
+      </view>
+      <view class='text-center margin-top-10 h6'>
+        <label class='txt-white '>报价服务由</label>
+        <label class='txt-primary'>{{instinfo.name}}</label>
+        <label class='txt-white '>提供</label>
+      </view>
+
+
+
+    </view>
+  </view>
+  <view style='width:5vw;height:100%;'></view>
+</view>
+
+<view class="fullscreenbgimg">
+  <image class='fullscreen' src='{{uploadpath}}inst/{{instinfo.quotebg}}'></image>
+</view>
+<view class='fullscreenbg'>
+</view>

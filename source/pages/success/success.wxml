@@ -1,0 +1,11 @@
+<!--pages/success/success.wxml-->
+<view class='text-center  padding-20  white-block'>
+  <view class='text-center margin-top'>
+    <icon size='100' type='success'></icon>
+  </view>
+  <view class='h2 txt-primary margin-top' style='margin-bottom:100rpx;'>{{title}}</view>
+</view>
+
+<view class='margin-top padding-20'>
+  <button bindtap='backtopage'>返回</button>
+</view>

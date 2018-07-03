@@ -1,0 +1,18 @@
+/* pages/product/product.wxss */
+.cover{
+  width: 100vw;
+  height: 80vw;
+}
+.cover image{
+  width: 100vw;
+  height: 80vw;
+}
+.name{
+  color:#666;
+}
+.summary{
+  margin-top: 10rpx;
+}
+video{
+  width: 100%;
+}

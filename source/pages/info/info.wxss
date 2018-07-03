@@ -1,0 +1,30 @@
+/* pages/info/info.wxss */
+.topobj{
+  width: 100vw;
+  height: 74.4vw;
+}
+.maintab{
+  height: calc( 100vh - 74.4vw - 80rpx );
+}
+
+
+.comments{
+  border-bottom: 2rpx rgba(211, 211, 211, 0.5) solid;
+
+}
+.bottomin{
+  position: fixed;
+  bottom: 0rpx;
+  width: 710rpx;
+}
+.comments .photo{
+  height:100rpx;
+  width:100rpx;
+  border-radius: 50rpx;
+}
+.comments .commentname{
+  color:#999;
+}
+.comments .commenttext{
+  margin-top: 20rpx; 
+}

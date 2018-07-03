@@ -1,0 +1,13 @@
+/* pages/findcar/findcar.wxss */
+.baozhangitem{
+  width: 33%;
+  margin-top: 40rpx;
+}
+.baozhangitem image{
+  width:60rpx;
+  height: 60rpx;
+  margin-bottom: 10rpx;
+}
+.detail view{
+  font-size: 24rpx;
+}

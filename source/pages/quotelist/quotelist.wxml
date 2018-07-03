@@ -1,0 +1,25 @@
+<!--pages/quotelist/quotelist.wxml-->
+<view class='flex-row tabs'>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext  {{currenttab==0?"active":""}}'>行程</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext {{currenttab==1?"active":""}}'>货品</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext {{currenttab==2?"active":""}}'>报价项目</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="3">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext {{currenttab==3?"active":""}}'>订单</view>
+    <view class='flex-1'></view>
+  </view>
+
+
+</view>

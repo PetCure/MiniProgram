@@ -1,52 +1,58 @@
 {
-  "pages": [
-    "pages/map/map",
-    "pages/latest/latest",
-    "pages/helpcreate/helpcreate",
-    "pages/searchlocation/searchlocation",
-    "pages/help/help",
-    "pages/mine/mine",
-    "pages/favorite/favorite",
-    "pages/main/main",
+  "pages":[
+    "pages/home/home",
+    "pages/info/info",
+    "pages/post/post",
+    "pages/success/success",
+    "pages/addressselect/addressselect",
+    "pages/product/product",
+    "pages/auth/auth",
+    "pages/signup/signup",
+    "pages/productlist/productlist",
+    "pages/news/news",
+    "pages/service/service",
+    "pages/newslist/newslist",
+    "pages/aboutuslist/aboutuslist",
+    "pages/aboutus/aboutus",
     "pages/index/index",
+    "pages/servicelist/servicelist",
+    "pages/member/member",
+    "pages/content/content",
     "pages/logs/logs"
-    
   ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "宠物救助大家帮帮忙",
-    "navigationBarTextStyle": "black"
+  "window":{
+    "backgroundTextStyle":"light",
+    "enablePullDownRefresh": true
   },
   "tabBar": {
-    "color": "#ccc",
-    "selectedColor": "#35495e",
+    "color": "#999999",
+    "selectedColor": "#F04848",
     "borderStyle": "white",
-    "backgroundColor": "#f9f9f9",
+    "backgroundColor": "#ffffff",
     "list": [
       {
-        "text": "地图",
-        "pagePath": "pages/map/map",
-        "iconPath": "images/icon/marker.png",
-        "selectedIconPath": "images/icon/marker_fill.png"
+        "text": "地图救助",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/icons/map-o.png",
+        "selectedIconPath": "images/icons/map.png"
       },
       {
-        "text": "最新",
-        "pagePath": "pages/latest/latest",
-        "iconPath": "images/icon/list.png",
-        "selectedIconPath": "images/icon/list_fill.png"
+        "text": "救助列表",
+        "pagePath": "pages/member/member",
+        "iconPath": "images/icons/list-o.png",
+        "selectedIconPath": "images/icons/list.png"
       },
       {
-        "text": "我的",
-        "pagePath": "pages/mine/mine",
-        "iconPath": "images/icon/share.png",
-        "selectedIconPath": "images/icon/share_fill.png"
+        "text": "我的发布",
+        "pagePath": "pages/member/member",
+        "iconPath": "images/icons/post-o.png",
+        "selectedIconPath": "images/icons/post.png"
       },
       {
-        "text": "收藏",
-        "pagePath": "pages/favorite/favorite",
-        "iconPath": "images/icon/favorite.png",
-        "selectedIconPath": "images/icon/favorite_fill.png"
+        "text": "我的关注",
+        "pagePath": "pages/member/member",
+        "iconPath": "images/icons/follow-o.png",
+        "selectedIconPath": "images/icons/follow.png"
       }
     ]
   }

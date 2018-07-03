@@ -1,0 +1,274 @@
+<!--pages/quoteferrydetail/quoteferrydetail.wxml-->
+<!--pages/findcar/findcar.wxml-->
+<view class='white-block'>
+  <view class='flex-row tabs'>
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+      <view class='flex-1'></view>
+      <view class='txt-light tabtext  {{currenttab==0?"active":""}}'>行程</view>
+      <view class='flex-1'></view>
+    </view>
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+      <view class='flex-1'></view>
+      <view class='txt-light tabtext {{currenttab==1?"active":""}}'>货品</view>
+      <view class='flex-1'></view>
+    </view>
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
+      <view class='flex-1'></view>
+      <view class='txt-light tabtext {{currenttab==2?"active":""}}'>报价项目</view>
+      <view class='flex-1'></view>
+    </view>
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="3">
+      <view class='flex-1'></view>
+      <view class='txt-light tabtext {{currenttab==3?"active":""}}'>订单</view>
+      <view class='flex-1'></view>
+    </view>
+
+
+  </view>
+
+
+  <swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
+    <swiper-item>
+      <scroll-view scroll-y style='height:100%'>
+        <view class='height-40'></view>
+        <view class='padding-40 white-block'>
+          <view class='flex-row flex-center'>
+            <view class='h4 txt-gray flex-1 text-center'>行程安排</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20' wx:for="{{route}}" wx:for-index="idx" wx:key="k">
+            <view class='' style='width:200rpx;'>行程{{idx+1}}</view>
+            <view class='flex-1'>
+              <view>
+                {{item.title}}
+              </view>
+              <view class='h6 txt-gray'>
+                {{item.address}}
+              </view>
+            </view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20'>
+            <view class='' style='width:200rpx;'>行驶距离</view>
+            <view class='flex-1'>约{{distance}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20'>
+            <view class='' style='width:200rpx;'>行驶时间</view>
+            <view class='flex-1'>约{{duration}}</view>
+          </view>
+        </view>
+
+
+
+
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y style='height:100%'>
+
+        <view class='height-40'></view>
+        <view class='padding-40 white-block'>
+          <view class='flex-row flex-center'>
+            <view class='h4 txt-gray flex-1 text-center'>货物清单</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20' wx:for="{{goods}}" wx:for-index="idx" wx:key="k">
+            <view class='' style='width:200rpx;'>货物{{idx+1}}</view>
+            <view class='flex-1 '>
+              {{item.name}} {{item.val}}{{item.unit}}
+            </view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20'>
+            <view class='' style='width:200rpx;'>载重</view>
+            <view class='flex-1'>约{{weight}}</view>
+          </view>
+        </view>
+
+
+
+      </scroll-view>
+    </swiper-item>
+
+    <swiper-item>
+      <scroll-view scroll-y style='height:100%'>
+
+
+        <view class='padding-40 white-block'>
+          <view class='flex-row flex-center'>
+            <view class='h4 txt-gray flex-1 text-center'>报价项目</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20' wx:for="{{priceitem}}" wx:for-index="idx" wx:key="k">
+            <view class='' style='width:200rpx;'>项目{{idx+1}} </view>
+            <view class='flex-1 '>
+              <view>
+                {{item.name}} {{item.price}}元
+              </view>
+              <view class='h6 txt-gray'>
+                {{item.remark}}
+              </view>
+            </view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20'>
+            <view class='' style='width:200rpx;'>报价说明</view>
+            <view class='flex-1'>{{quoteremark}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top padding-20'>
+            <view class='' style='width:200rpx;'>总计</view>
+            <view class='flex-1'>{{quoteamount}}元</view>
+          </view>
+        </view>
+
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y style='height:100%' class='detail' scroll-into-view="{{scrollfocus}}">
+
+        <view class='height-40'></view>
+        <view class='padding-40 white-block'>
+          <view class='flex-row flex-center'>
+            <view class='h4 txt-gray flex-1 text-center'>订单信息</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>行程</view>
+            <view class='flex-1'>
+              <view>
+                {{routestr}}
+              </view>
+            </view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>距离耗时</view>
+            <view class='flex-1'>约{{distance}} {{duration}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>货物</view>
+            <view class='flex-1'>{{goodsstr}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>载重</view>
+            <view class='flex-1'>{{weight}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>补充描述</view>
+            <view class='flex-1'>{{remark}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>报单人</view>
+            <view class='flex-1'>{{realname}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>报单电话</view>
+            <view class='flex-1'>{{mobile}}</view>
+          </view>
+        </view>
+
+
+        <view class='height-40'></view>
+        <view class='padding-40 white-block'>
+          <view class='flex-row flex-center'>
+            <view class='h4 txt-gray flex-1 text-center'>报价信息</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>报价项目</view>
+            <view class='flex-1'>{{priceitemstr}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>报价说明</view>
+            <view class='flex-1'>{{quoteremark}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>报价金额</view>
+            <view class='flex-1 txt-primary'>{{quoteamount}}元</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>报价人</view>
+            <view class='flex-1'>{{instinfo.quotepeople}}</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>报价人手机</view>
+            <view class='flex-1 flex-row flex-center' bindtap='phoneCall' id="{{instinfo.customerservicemobile}}">
+              <view class='txt-primary'>
+                {{instinfo.customerservicemobile}}
+              </view>
+              <view>
+                <image class='icon-15' style='margin-left:20rpx;' src='{{uploadpath}}resource/phone.png'></image>
+              </view>
+            </view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+            <view class='' style='width:200rpx;'>温馨提醒</view>
+            <view class='flex-1 txt-gray'>{{instinfo.quotetips}}</view>
+          </view>
+        </view>
+
+        <view class='height-40'></view>
+        <view class='padding-40 white-block'>
+          <view class='flex-row flex-center'>
+            <view class='h4 txt-gray flex-1 text-center'>确认订单</view>
+          </view>
+          <view class='flex-row border-bottom  margin-top-10 padding-20' id="dateselect">
+            <view class='' style='width:200rpx;'>日期选择</view>
+            <view class='flex-1'>
+              <picker mode="date" value="{{orderdate}}" start="{{startdate}}" end="{{enddate}}" bindchange="orderdateChange" disabled="{{status!='2'}}">
+                
+                  <block wx:if="{{orderdate==undefined}}"><view class="picker {{scrollfocus=='dateselect'?'txt-primary':'txt-gray '}}">请选择订单日期</view></block>
+                  <block wx:if="{{orderdate!=undefined}}"><view class="picker">{{orderdate}}</view></block>
+                
+              </picker>
+            </view>
+          </view>
+
+
+
+          <view class='flex-row border-bottom  margin-top-10 padding-20'>
+
+            <view class='' style='width:200rpx;'>时间说明</view>
+            <view class='flex-1'>
+              <input class=' h6' placeholder='请输入发货时间要求' maxlength='20' value='{{ordertime}}' disabled="{{status!='2'}}" bindinput='{{ordertimeChange}}' ></input>
+            </view>
+          </view>
+
+
+        </view>
+
+        <view style='height:120rpx;'></view>
+
+        <view class='fixedbottom' style='z-index:100'>
+          <block wx:if="{{status=='3'}}">
+            <view class='flex-row margin-20'>
+              <view class='flex-1 text-center'>
+                <button size='mini' bindtap='copyquote'>重新报价</button>
+              </view>
+            </view>
+          </block>
+          <block wx:if="{{status=='4'}}">
+            <view class='flex-row margin-20'>
+              <view class='flex-1 text-center'>
+                <button size='mini' bindtap='copyquote'>重新报价</button>
+              </view>
+              <view class='flex-1 text-center'>
+                  <button size='mini' type='primary' bindtap='openOrder' >打开订单</button>
+              </view>
+            </view>
+          </block>
+          <block  wx:if="{{status=='2'}}">
+            <view class='flex-row margin-20'>
+              <view class='flex-1 text-center'>
+                <button size='mini' bindtap='changequote'>修改报价</button>
+              </view>
+              <view class='flex-1 text-center'>
+                <button size='mini' bindtap='abandonquote'>放弃订单</button>
+              </view>
+              <view class='flex-1 text-center'>
+                <form bindsubmit="confirmOrder" bindreset="formReset" report-submit="{{true}}">
+                  <button size='mini' type='primary' form-type='submit'>发起订单</button>
+                </form>
+              </view>
+            </view>
+          </block>
+        </view>
+
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+
+
+</view>

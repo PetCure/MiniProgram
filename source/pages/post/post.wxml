@@ -1,0 +1,74 @@
+<!--pages/post/post.wxml-->
+<form bindsubmit="confirm" bindreset="formReset" report-submit="{{true}}">
+<view class='line-height-0'>
+  <image class='fullimg' src='{{uploadpath}}resource/postbanner2.png' mode='widthFix' ></image>
+</view>
+<view class='padding-40 white-block'>
+  <view class='flex-row flex-center'>
+    <view class='h4 txt-gray flex-1 '>救助信息</view>
+  </view>
+  <view class='flex-row  flex-center  margin-top padding-20'>
+    <view class='title'>主题</view>
+    <view class='flex-1'>
+      <input name="title" placeholder='请输入救助的主题' maxlength='50'></input>
+    </view>
+  </view>
+  <view class='flex-row flex-center margin-top-10 padding-20'>
+    <view class='title' >简介</view>
+    <view class='flex-1'>
+      <textarea name="summary" placeholder='请输入救助的详情' auto-height='true' style='width:100%;' maxlength='144'></textarea>
+    </view>
+  </view>
+  <view class='flex-row margin-top-10 padding-20'>
+    <view class='title' >位置</view>
+    <view class='flex-1' bindtap='selectaddress' >
+      <view>{{address.title}}</view>
+      <view class='h6 txt-gray'>{{address.address}}</view>
+    </view>
+  </view>
+  <view class='flex-row flex-center margin-top-10 padding-20'>
+    <view class='title' >手机</view>
+    <view class='flex-1' >
+      <input name="mobile" value="{{mobile}}" placeholder='请输入联系方式'></input>
+    </view>
+    <view  ><button class='h6' size='mini' open-type='getPhoneNumber' bindgetphonenumber='getPhoneNo'>获取</button></view>
+  </view>
+  <view class='flex-row flex-center margin-top-10 padding-20'>
+    <view class='title' >图片</view>
+  </view>
+  <view class='flex-row flex-wrap margin-top-10'>
+    <view class='imgbg' wx:for="{{images}}" wx:key="k" wx:for-index="idx">
+      <image src='{{uploadpath}}post/{{item}}' bindtap='minusImg' id="{{idx}}"></image>
+    </view>
+    <view class='imgbg_border' bindtap='uploadimg'>
+      <image class='addimg' src='{{uploadpath}}resource/add.png'></image>
+    </view>
+  </view>
+  <view class='flex-row flex-center margin-top-10 padding-20'>
+    <view class='title' >视频</view>
+  </view>
+  <view class='flex-row flex-wrap margin-top-10'>
+    <view class='imgbg'  wx:if="{{video!=''}}">
+      <video   src='{{uploadpath}}post/{{video}}'></video>
+    </view>
+    <view class='imgbg_border'  bindtap='uploadvideo'>
+      <image class='addimg' src='{{uploadpath}}resource/add.png'></image>
+    </view>
+  </view>
+<view style='height:100rpx;'></view>
+</view>
+
+<view class='fixedbottom line-height-0'>
+  <button type='primary' form-type='submit'>发布</button>
+</view>
+</form>
+
+
+<view class='noticeblackbg' wx:if="{{noticesuccess==true}}"></view>
+<view class='noticebg' style='background-image:url({{uploadpath}}resource/noticebg.png)' wx:if="{{noticesuccess==true}}">
+  <view class='h3 text-center' style='margin-top:300rpx;'>发布成功</view>
+  <view class='h6 text-center padding-20'>请尽可能的关注并转发让更多人一起帮忙</view>
+  <view class='text-center padding-20'>
+    <button size='mini' class="h6" bindtap='closenotice'>知道了</button>
+  </view>
+</view>

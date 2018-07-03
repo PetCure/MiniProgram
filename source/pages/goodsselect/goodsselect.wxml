@@ -1,0 +1,53 @@
+<!--pages/goodsselect/goodsselect.wxml-->
+<view class='padding-20'>
+<view class='txt-primary text-center h4' >
+  货物清单
+</view>
+<view class='padding-20 white-block margin-top'>
+  <view class='flex-row'>
+    <view class='flex-1 txt-gray'>#</view>
+    <view style='flex:5' class='txt-gray'>货品项</view>
+    <view class='flex-1 txt-gray text-right'>数量</view>
+    <view class='flex-1 txt-gray text-right'>单位</view>
+  </view>
+  <view class=' margin-top-10 border-bottom'></view>
+  <block wx:for="{{goods}}" wx:key="k" wx:for-index="idx">
+  <view class='flex-row flex-center margin-top-10' >
+    <view class='flex-1'>{{idx+1}}</view>
+    <view style='flex:5' class='flex-row flex-center'>
+    <view class='flex-1'>
+    <picker bindchange="goodsSelect"  id="{{idx}}"  range="{{goodslist}}" range-key="name"><view >{{item.name}}</view></picker>
+    </view>
+    <view bindtap='minus' id="{{idx}}" >
+      <image class='icon' src='{{uploadpath}}resource/minus.png'></image>
+    </view>
+    
+    </view>
+    <view class='flex-1 text-right'>
+      <input type='digit' bindinput='changeVal'  id="{{idx}}" value='{{item.val}}' focus='{{idx_focus==idx}}' ></input>
+    </view>
+    <view class='flex-1 text-right'>{{item.unit}}</view>
+  </view>
+  </block>
+  <view class='flex-row flex-center margin-top-10' >
+    <view class='flex-1'>{{goods.length+1}}</view>
+    <view style='flex:5'>
+    <picker bindchange="goodsSelect"  id="{{goods.length}}"  range="{{goodslist}}" range-key="name"><view  class='txt-gray'>请选择</view></picker>
+    </view>
+    <view class='flex-1'></view>
+    <view class='flex-1'></view>
+  </view>
+  <block wx:if="{{goods.length>0}}">
+    <view class=' margin-top-10 border-bottom'></view>
+    <view class='text-right margin-top'>约 <label class='txt-primary'>{{weight}}</label></view>
+  </block>
+</view>
+
+
+</view>
+
+<view class='margin-top '>
+    <view class='btnConfirm' bindtap='confirm'>
+      确认货物
+    </view>
+</view>

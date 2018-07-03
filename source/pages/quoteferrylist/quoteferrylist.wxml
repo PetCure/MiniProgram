@@ -1,0 +1,214 @@
+<!--pages/quotelist/quotelist.wxml-->
+<view class='flex-row tabs'>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext  {{currenttab==0?"active":""}}'>报价中</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext {{currenttab==1?"active":""}}'>已报价</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext {{currenttab==2?"active":""}}'>已放弃</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="3">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext {{currenttab==3?"active":""}}'>完成</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="4">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext {{currenttab==4?"active":""}}'>全部</view>
+    <view class='flex-1'></view>
+  </view>
+
+
+</view>
+
+
+
+<swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+      <view class='text-center' wx:if="{{list1.length==0}}">
+        <view>
+        <image class='egg' mode='widthFix' src='{{uploadpath}}resource/egg.png'></image></view>
+        <view class='txt-gray h6'>
+          暂无记录
+        </view>
+      </view>
+      <block wx:for="{{list1}}" wx:key="k">
+        <view class='padding-20 h6 txt-gray'>提交时间：{{item.submit_time_formatting}}</view>
+        <navigator url='/pages/quoteferry/quoteferry?id={{item.id}}' class=' white-block padding-20'>
+          <view class='flex-row'>
+            <view class='firstcol h6'>行程：</view>
+            <view class='h6 flex-1'>{{item.routestr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>货物：</view>
+            <view class='h6 flex-1'>{{item.goodsstr}}</view>
+          </view>
+        </navigator>
+      </block>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+      
+      <view class='text-center' wx:if="{{list2.length==0}}">
+        <view>
+        <image class='egg' mode='widthFix' src='{{uploadpath}}resource/egg.png'></image></view>
+        <view class='txt-gray h6'>
+          暂无记录
+        </view>
+      </view>
+      <block wx:for="{{list2}}" wx:key="k">
+        <view class='padding-20 h6 txt-gray'>报价时间：{{item.quote_time_formatting}}</view>
+        <navigator url='/pages/quoteferrydetail/quoteferrydetail?id={{item.id}}' class=' white-block padding-20'>
+          <view class='flex-row'>
+            <view class='firstcol h6'>行程：</view>
+            <view class='h6 flex-1'>{{item.routestr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>货物：</view>
+            <view class='h6 flex-1'>{{item.goodsstr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>报价项目：</view>
+            <view class='h6 flex-1'>{{item.priceitemstr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>报价金额：</view>
+            <view class='h6 flex-1 txt-primary'>{{item.quoteamount}}元</view>
+          </view>
+        </navigator>
+      </block>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+      
+      <view class='text-center' wx:if="{{list3.length==0}}">
+        <view>
+        <image class='egg' mode='widthFix' src='{{uploadpath}}resource/egg.png'></image></view>
+        <view class='txt-gray h6'>
+          暂无记录
+        </view>
+      </view>
+
+      <block wx:for="{{list3}}" wx:key="k">
+        <view class='padding-20 h6 txt-gray'>放弃时间：{{item.abandon_time_formatting}}</view>
+        <navigator url='/pages/quoteferrydetail/quoteferrydetail?id={{item.id}}' class=' white-block padding-20'>
+          <view class='flex-row'>
+            <view class='firstcol h6'>行程：</view>
+            <view class='h6 flex-1'>{{item.routestr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>货物：</view>
+            <view class='h6 flex-1'>{{item.goodsstr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>报价项目：</view>
+            <view class='h6 flex-1'>{{item.priceitemstr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>报价金额：</view>
+            <view class='h6 flex-1 txt-primary'>{{item.quoteamount}}元</view>
+          </view>
+        </navigator>
+      </block>
+
+
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+      
+      <view class='text-center' wx:if="{{list4.length==0}}">
+        <view>
+        <image class='egg' mode='widthFix' src='{{uploadpath}}resource/egg.png'></image></view>
+        <view class='txt-gray h6'>
+          暂无记录
+        </view>
+      </view>
+
+      <block wx:for="{{list4}}" wx:key="k">
+        <view class='padding-20 h6 txt-gray'>完成时间：{{item.confirm_time_formatting}}</view>
+        <navigator url='/pages/quoteferrydetail/quoteferrydetail?id={{item.id}}' class=' white-block padding-20'>
+          <view class='flex-row'>
+            <view class='firstcol h6'>行程：</view>
+            <view class='h6 flex-1'>{{item.routestr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>货物：</view>
+            <view class='h6 flex-1'>{{item.goodsstr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>报价项目：</view>
+            <view class='h6 flex-1'>{{item.priceitemstr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>报价金额：</view>
+            <view class='h6 flex-1 txt-primary'>{{item.quoteamount}}元</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>订单日期：</view>
+            <view class='h6 flex-1 txt-primary'>{{item.orderdate}} {{item.ordertime}}</view>
+          </view>
+        </navigator>
+      </block>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+      
+      <view class='text-center' wx:if="{{listall.length==0}}">
+        <view>
+        <image class='egg' mode='widthFix' src='{{uploadpath}}resource/egg.png'></image></view>
+        <view class='txt-gray h6'>
+          暂无记录
+        </view>
+      </view>
+
+
+
+      <block wx:for="{{listall}}" wx:key="k">
+        <navigator url='{{item.status=="1"?"/pages/quoteferrydetail/quoteferrydetail?id=":"/pages/quoteferry/quoteferry?id="}}{{item.id}}' class=' white-block padding-20 border-bottom'>
+          <view class='flex-row'>
+            <view class='firstcol h6'>订单编号：</view>
+            <view class='h6 flex-1'>{{item.orderno}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>行程：</view>
+            <view class='h6 flex-1'>{{item.routestr}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>货物：</view>
+            <view class='h6 flex-1'>{{item.goodsstr}}</view>
+          </view>
+          <view class='flex-row' wx:if="{{item.status=='2'||item.status=='3'||item.status=='4'}}">
+            <view class='firstcol h6'>报价项目：</view>
+            <view class='h6 flex-1'>{{item.priceitemstr}}</view>
+          </view>
+          <view class='flex-row' wx:if="{{item.status=='2'||item.status=='3'||item.status=='4'}}">
+            <view class='firstcol h6'>报价金额：</view>
+            <view class='h6 flex-1 txt-primary'>{{item.quoteamount}}元</view>
+          </view>
+          <view class='flex-row' wx:if="{{item.status=='4'}}">
+            <view class='firstcol h6'>订单日期：</view>
+            <view class='h6 flex-1 txt-primary'>{{item.orderdate}} {{item.ordertime}}</view>
+          </view>
+          <view class='flex-row'>
+            <view class='firstcol h6'>状态：</view>
+            <view class='h6 flex-1 txt-primary'>{{item.status_name}}</view>
+          </view>
+        </navigator>
+      </block>
+
+    </scroll-view>
+  </swiper-item>
+</swiper>

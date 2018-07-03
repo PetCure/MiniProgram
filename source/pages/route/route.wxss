@@ -1,0 +1,24 @@
+/* pages/route/route.wxss */
+.routerbox{
+  background-color: rgba(255, 2552, 255, 0.8);
+  margin:40rpx;
+}
+.dot{
+  width: 16rpx;
+  height: 16rpx;
+  background-color:black;
+  border-radius: 8rpx;
+}
+
+.btnConfirm{
+  margin:40rpx;
+  margin-left:240rpx;
+  margin-right:240rpx;
+  text-align: center;
+  background-color: #F04848;
+  padding:10rpx;
+  padding-top:14rpx;
+  font-size: 28rpx;
+  border-radius: 30rpx;
+  color:white;
+}

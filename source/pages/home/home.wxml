@@ -1,0 +1,16 @@
+<!--pages/home/home.wxml-->
+<map id="map"  scale="15" latitude='{{mylocation.ad_info.location.lat}}' markers='{{markers}}' longitude='{{mylocation.ad_info.location.lng}}' show-location style="width: 100vw; height: 100vh;" bindregionchange="bindupdated" bindmarkertap="markerclick" >
+
+<cover-view class=' padding-20'>
+<cover-view class='margin-top'>
+<cover-image src='{{uploadpath}}resource/post.png' class='btn' bindtap='createPost' ></cover-image>
+</cover-view>
+<cover-view class='margin-top'>
+<cover-image src='{{uploadpath}}resource/refresh.png' bindtap='onNewload'  class='btn' ></cover-image>
+</cover-view>
+<cover-view  class='margin-top'>
+<cover-image src='{{uploadpath}}resource/help.png'  bindtap='openContent' data-title='帮助' data-keycode='help'  class='btn' ></cover-image>
+</cover-view>
+</cover-view>
+
+</map>

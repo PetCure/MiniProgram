@@ -1,0 +1,14 @@
+/* pages/goodsselect/goodsselect.wxss */
+
+.btnConfirm{
+  margin:40rpx;
+  margin-left:240rpx;
+  margin-right:240rpx;
+  text-align: center;
+  background-color: #F04848;
+  padding:10rpx;
+  padding-top:14rpx;
+  font-size: 28rpx;
+  border-radius: 30rpx;
+  color:white;
+}

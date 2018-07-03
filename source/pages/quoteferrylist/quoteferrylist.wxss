@@ -1,0 +1,10 @@
+/* pages/quoteferrylist/quoteferrylist.wxss */
+.firstcol{
+  width: 150rpx;
+}
+
+.egg{
+  width: 300rpx;
+  margin-top:120rpx;
+  margin-bottom:60rpx;
+}

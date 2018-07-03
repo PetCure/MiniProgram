@@ -1,0 +1,44 @@
+<!--pages/route/route.wxml-->
+<map id="map" markers='{{markers}}' scale="15" latitude='{{mylocation.ad_info.location.lat}}' longitude='{{mylocation.ad_info.location.lng}}' show-location style="width: 100vw; height: 100vh;" polyline='{{polyline}}'>
+
+  <cover-view class='fixedbottom '>
+    <cover-view class='box-shadow routerbox padding-20'>
+      <cover-view wx:if="{{route[0]!=null&&route[1]!=null}}" class='padding-20 h6 text-right txt-gray'>行程大约{{distance}}，需要{{duration}}
+      </cover-view>
+      <block wx:for="{{route}}" wx:key="key" wx:for-index="idx">
+        <cover-view class='flex-row flex-center padding-20'>
+          <cover-view class='padding-20'>
+            <cover-image class='dot' style='background-color:lightblue'></cover-image>
+          </cover-view>
+          <cover-view class='flex-1 ' bindtap='selectAddress' id="{{idx}}">
+            <block wx:if="{{item!=null}}">
+              <cover-view class='h6'>{{item.title}}</cover-view>
+            </block>
+            <block wx:if="{{item==null}}">
+
+              <cover-view class='txt-gray h6' wx:if="{{idx==0}}">选择起点</cover-view>
+              <cover-view class='txt-gray h6' wx:if="{{idx>0}}">选择终点</cover-view>
+            </block>
+          </cover-view>
+          <cover-view class='padding-20' style='padding-top:0rpx;padding-bottom:0rpx;' wx:if="{{idx>1}}" bindtap='removeAddress' id="{{idx}}">
+            <cover-image class='icon' src='{{uploadpath}}resource/minus.png'></cover-image>
+          </cover-view>
+        </cover-view>
+        <cover-view class='flex-row flex-center' wx:if="{{idx!=(route.length-1)}}">
+          <cover-view class='padding-20' style='padding-top:0rpx;padding-bottom:0rpx;'>
+            <cover-image class='dot' style='background-color:white'></cover-image>
+          </cover-view>
+          <cover-view class='flex-1 txt-gray border-bottom'></cover-view>
+        </cover-view>
+      </block>
+      <cover-view wx:if="{{route[0]!=null&&route[1]!=null&&route.length<5}}" class='padding-20 h6 text-center txt-gray' bindtap='addAddress' id="{{idx}}">添加终点
+      </cover-view>
+    </cover-view>
+
+    <cover-view class='btnConfirm' bindtap='confirm'>
+      确认路线
+    </cover-view>
+
+  </cover-view>
+
+</map>

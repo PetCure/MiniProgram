@@ -1,0 +1,18 @@
+<!--pages/member/member.wxml-->
+<view class='text-center memberinfo'>
+<view>
+      <image class='avatar' src='{{UserInfo.avatarUrl}}'></image>
+    </view>
+    <view class='nickname'>
+      {{UserInfo.nickName}}
+    </view>
+</view>
+
+
+
+<view class='white-block block' style='margin-top:40rpx;'>
+<navigator  class='item item-split'><button open-type="contact" class='clear-button  '>联系客服</button></navigator>
+
+<navigator url='/pages/content/content?keycode=instruction&title=个人中心'  class='item'>关于我们</navigator>
+</view>
+

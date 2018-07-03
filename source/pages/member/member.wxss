@@ -1,0 +1,69 @@
+/* pages/member/member.wxss */
+/* pages/member/member.wxss *//* pages/member/member.wxss */
+.memberinfo{
+  padding:40rpx;
+  background: -webkit-linear-gradient(top, #F04848 , #F04848); 
+  background: -o-linear-gradient(top, #F04848 , #F04848);
+  background: -moz-linear-gradient(top, #F04848 , #F04848); 
+  background: linear-gradient(to top, #F04848 , #F04848); 
+}
+.avatar{
+  width:150rpx;
+  height:150rpx;
+  border-radius: 50%;
+  border:4rpx solid white;
+}
+.nickname{
+  color:white;
+  margin-top: 10rpx;
+}
+
+.block-tips{
+  color:#999;
+  font-size: 24rpx;
+  margin-top: 40rpx;
+  margin-bottom: 10rpx;
+}
+.block{
+  border-top:2rpx solid #f2f2f2;
+  border-bottom:2rpx solid #f2f2f2;
+}
+.item{
+  padding-top: 22rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+  padding-bottom: 22rpx;
+  font-size: 32rpx;
+}
+.item-split{
+  
+  border-bottom:2rpx solid #f2f2f2;
+}
+.righticon{
+  position: absolute;
+  right:20rpx;
+  margin-top: 10rpx;
+  width:24rpx;
+  height: 24rpx;
+}
+.contactbutton{
+  background: white;
+  text-align: left;
+  color:#666;
+  font-size: 32rpx;
+  border-radius: 0rpx;
+}
+.rightswitch{
+  position: absolute;
+  right:20rpx;
+  margin-top: -10rpx;
+}
+
+
+.caritem{
+  width: 50%;
+}
+.caritem image{
+  width: 340rpx;
+  height: 250rpx;
+}
