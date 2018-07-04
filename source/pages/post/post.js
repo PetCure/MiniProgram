@@ -13,6 +13,7 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({ images: [], video: "", mobile: "",noticesuccess:false});
+    
   }
   onMyShow() {
     var that = this;

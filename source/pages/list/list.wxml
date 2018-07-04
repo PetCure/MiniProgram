@@ -1,0 +1,27 @@
+<!--pages/list/list.wxml-->
+<view  wx:for="{{list}}" wx:key="k">
+  <navigator url='/pages/info/info?id={{item.id}}' class='white-block margin-40 item'>
+    <view class='cover'>
+      <image src='{{uploadpath}}post/{{item.cover}}' mode='aspectFill'></image>
+    </view>
+    <view class='padding-20 flex-row '>
+      <view class='memberphoto' style='margin-right:20rpx;'>
+        <image class='icon' style='border-radius:50%;' src='{{item.member_avatarUrl}}'  ></image>
+      </view>
+      <view class='flex-1'>
+        <view>{{item.title}}</view>
+        <view class='h6 txt-gray'>{{item.address}}</view>
+      </view>
+      <view>
+        <view class='h6 txt-gray text-right'>
+        {{item.mile}}
+        </view>
+        <view class='h6 txt-gray text-right' style='margin-top:6rpx;'>
+        {{item.timeduration}}
+        
+        </view>
+        
+      </view>
+    </view>
+  </navigator>
+</view>

@@ -35,6 +35,7 @@ class Content extends AppBase {
     var that = this;
     that.Base.getAddress((addressinfo) => {
       that.Base.setMyData({ mylocation: addressinfo });
+      that.reloaddata();
     });
   }
   reloaddata(){
@@ -63,8 +64,8 @@ class Content extends AppBase {
                 id: list[i].id,
                 latitude: list[i].lat,
                 longitude: list[i].lng,
-                width: 50,
-                height: 50
+                width: 40,
+                height: 40
               });
             }
 

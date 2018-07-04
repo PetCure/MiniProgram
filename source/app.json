@@ -3,6 +3,9 @@
     "pages/home/home",
     "pages/info/info",
     "pages/post/post",
+    "pages/myfollow/myfollow",
+    "pages/mypost/mypost",
+    "pages/list/list",
     "pages/success/success",
     "pages/addressselect/addressselect",
     "pages/product/product",
@@ -38,21 +41,21 @@
       },
       {
         "text": "救助列表",
-        "pagePath": "pages/member/member",
+        "pagePath": "pages/list/list",
         "iconPath": "images/icons/list-o.png",
         "selectedIconPath": "images/icons/list.png"
       },
       {
-        "text": "我的发布",
-        "pagePath": "pages/member/member",
-        "iconPath": "images/icons/post-o.png",
-        "selectedIconPath": "images/icons/post.png"
-      },
-      {
         "text": "我的关注",
-        "pagePath": "pages/member/member",
+        "pagePath": "pages/myfollow/myfollow",
         "iconPath": "images/icons/follow-o.png",
         "selectedIconPath": "images/icons/follow.png"
+      },
+      {
+        "text": "我的发布",
+        "pagePath": "pages/mypost/mypost",
+        "iconPath": "images/icons/post-o.png",
+        "selectedIconPath": "images/icons/post.png"
       }
     ]
   }

@@ -325,7 +325,8 @@ export class AppBase {
               callback(res.result);
             },
             fail: function (res) {
-              console.log("fail");
+              console.log("fail get location");
+              callback(res.result);
               console.log(res);
             },
             complete: function (res) {

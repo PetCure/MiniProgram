@@ -1,0 +1,81 @@
+<!--pages/mypost/mypost.wxml-->
+<view class='flex-row tabs'>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext  {{currenttab==0?"active":""}}'>未解救</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext  {{currenttab==1?"active":""}}'>已解救</view>
+    <view class='flex-1'></view>
+  </view>
+
+</view>
+
+  <swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
+    <swiper-item>
+      <scroll-view scroll-y style='height:100%'>
+        <view class='text-center' wx:if="{{listA.length==0}}">
+          <view>
+          <image class='egg' src='{{uploadpath}}resource/egg.png'></image>
+          </view>
+          <view class='txt-gray h6'>
+            暂未发布
+          </view>
+        </view>
+
+        <view class='white-block'>
+        <navigator url='/pages/info/info?id={{item.id}}' wx:for="{{listA}}" wx:key="k" class='flex-row rowitem'>
+          <view>
+            <image src='{{uploadpath}}post/{{item.cover}}' class='imgcover' mode='aspectFill'></image>
+          </view>
+          <view class='flex-1'>
+            <view class='headtitle'>{{item.title}}</view>
+            <view class='headdescription'>
+              {{item.address}}
+            </view>
+            <view class='headdescription'>
+              发布时间：{{item.post_time_formatting}}
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+
+      </scroll-view>
+    </swiper-item>
+    <swiper-item>
+      <scroll-view scroll-y style='height:100%'>
+
+        <view class='text-center' wx:if="{{listI.length==0}}">
+          <view>
+          <image class='egg' src='{{uploadpath}}resource/egg.png'></image>
+          </view>
+          <view class='txt-gray h6'>
+            暂未发布
+          </view>
+        </view>
+
+
+        <view class='white-block'>
+        <navigator url='/pages/info/info?id={{item.id}}' wx:for="{{listI}}" wx:key="k" class='flex-row rowitem'>
+          <view>
+            <image src='{{uploadpath}}post/{{item.cover}}' class='imgcover' mode='aspectFill'></image>
+          </view>
+          <view class='flex-1'>
+            <view class='headtitle'>{{item.title}}</view>
+            <view class='headdescription'>
+              {{item.address}}
+            </view>
+            <view class='headdescription'>
+              发布时间：{{item.post_time_formatting}}
+            </view>
+          </view>
+        </navigator>
+      </view>
+
+
+      </scroll-view>
+    </swiper-item>
+  </swiper>

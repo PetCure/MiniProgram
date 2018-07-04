@@ -5,7 +5,7 @@
     <swiper class='topobj' wx:if="{{video==''}}" indicator-dots="true" autoplay="{{true}}" interval="5000">
       <block wx:for="{{images}}" wx:key="k">
         <swiper-item>
-          <image class='topobj' src="{{uploadpath}}post/{{item}}" mode='aspectFill' />
+          <image class='topobj' src="{{uploadpath}}post/{{item}}" mode='aspectFill' bindtap='viewPhotos' id="{{item}}" ></image>
         </swiper-item>
       </block>
     </swiper>
@@ -21,7 +21,7 @@
       <view class='txt-light tabtext  {{currenttab==1?"active":""}}'>评论</view>
       <view class='flex-1'></view>
     </view>
-    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2"  wx:if="{{video!=''}}">
+    <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2" wx:if="{{video!=''}}">
       <view class='flex-1'></view>
       <view class='txt-light tabtext  {{currenttab==2?"active":""}}'>更多图片</view>
       <view class='flex-1'></view>
@@ -37,71 +37,128 @@
             <view class='h6 txt-gray margin-top'>{{summary}}</view>
             <view class='h6 txt-gray margin-top'>发布时间：{{post_time_formatting}}</view>
           </view>
-          <view >
-            <image class='icon-40' src='{{uploadpath}}resource/zhuanfa.png'></image>
+          <view class='padding-20'>
+
+            <view wx:if="{{ismy==true}}" class='txt-primary'>
+              <block  wx:if="{{status=='A'}}">
+                <button size='mini' type='primary' bindtap='fix'>已解决</button>
+              </block>
+              <block  wx:if="{{status!='A'}}">
+              {{status_name}}
+              </block>
+            </view>
+            <view wx:if="{{ismy==false}}" class='txt-primary'>
+              {{status_name}}
+            </view>
+          </view>
+        </view>
+        <view class='white-block padding-20 flex-row flex-center border-bottom text-center'>
+          <view class='flex-1'>
+            <view wx:if="{{liked==false}}" bindtap='like'>
+              <image class='icon-30' src='{{uploadpath}}resource/zan.png'></image>
+            </view>
+            <view wx:if="{{liked==true}}">
+              <image class='icon-30' src='{{uploadpath}}resource/zaned.png'></image>
+            </view>
+            <view class='txt-gray h6'>
+              {{likecount==0?"赞一下":likecount+"人"}}
+            </view>
+          </view>
+          <view class='flex-1'>
+            <view bindtap='follow'>
+              <image class='icon-30' src='{{uploadpath}}resource/follow.png' wx:if="{{followed==false}}"></image>
+              <image class='icon-30' src='{{uploadpath}}resource/followed.png' wx:if="{{followed==true}}"></image>
+            </view>
+            <view class='txt-gray h6'>
+              {{followcount==0?"收藏":followcount+"人"}}
+            </view>
+          </view>
+          <view class='flex-1'>
+            <view>
+              <image class='icon-30' src='{{uploadpath}}resource/view.png'></image>
+            </view>
+            <view class='txt-gray h6'>
+              {{viewcount}}人
+            </view>
+          </view>
+          <view class='flex-1'>
+            <view>
+              <image class='icon-30' src='{{uploadpath}}resource/friend.png'></image>
+            </view>
+            <view class='txt-gray h6'>
+              分享
+            </view>
+            <button open-type='share' class='clear-button' style='width:100rpx;height:100rpx;position:absolute;margin-top:-100rpx;margin-left:20rpx;'></button>
+          </view>
+          <view class='flex-1' bindtap='poster'>
+            <view>
+              <image class='icon-30' src='{{uploadpath}}resource/quan.png'></image>
+            </view>
+            <view class='txt-gray h6'>
+              朋友圈
+            </view>
           </view>
         </view>
         <view class='white-block padding-20 flex-row flex-center border-bottom'>
           <view style='margin-right:20rpx'>
             <image class='icon-30' style='border-radius:50%' src='{{member_avatarUrl}}'></image>
           </view>
-          <view class='flex-1'  bindtap='openMap' id="{{address}}">
-            <view >{{member_nickName}}</view>
+          <view class='flex-1' bindtap='openMap' id="{{address}}">
+            <view>{{member_nickName}}</view>
           </view>
         </view>
         <view class='white-block padding-20 flex-row border-bottom'>
           <view style='margin-right:20rpx'>
             <image class='icon' src='{{uploadpath}}resource/phone.png'></image>
           </view>
-          <view class='flex-1'  bindtap='phoneCall' id="{{mobile}}" >
-            <view >{{mobile}}</view>
+          <view class='flex-1' bindtap='phoneCall' id="{{mobile}}">
+            <view>{{mobile}}</view>
           </view>
         </view>
         <view class='white-block padding-20 flex-row flex-center'>
           <view style='margin-right:20rpx'>
             <image class='icon' src='{{uploadpath}}resource/location.png'></image>
           </view>
-          <view class='flex-1'  bindtap='openMap' id="{{address}}">
-            <view >{{addresstitle}}</view>
+          <view class='flex-1' bindtap='openMap' id="{{address}}">
+            <view>{{addresstitle}}</view>
             <view class='h6 txt-gray'>{{address}}</view>
           </view>
         </view>
-
       </scroll-view>
     </swiper-item>
     <swiper-item>
       <scroll-view scroll-y style='height:100%;'>
-          <view wx:if="{{comments.length==0}}" class='text-center'>
-            <image style='width:200rpx;height:233rpx;margin-top:50rpx;margin-bottom:40rpx;' src='{{uploadpath}}resource/egg.png'></image>
+        <view wx:if="{{comments.length==0}}" class='text-center'>
+          <image style='width:200rpx;height:233rpx;margin-top:50rpx;margin-bottom:40rpx;' src='{{uploadpath}}resource/egg.png'></image>
+        </view>
+        <view wx:if="{{comments.length==0}}" class='text-center txt-gray h6'>
+          暂无评论
+        </view>
+        <view wx:for="{{comments}}" wx:key="k" class='flex-row comments padding-20 white-block border-bottom' wx:for-index="idx">
+          <view class='padding-20' style='padding-top:0rpx;'>
+            <image class='photo' src='{{item.member_avatarUrl}}'></image>
           </view>
-          <view wx:if="{{comments.length==0}}" class='text-center txt-gray h6'>
-            暂无评论
-          </view>
-            <view wx:for="{{comments}}" wx:key="k"  class='flex-row comments padding-20 white-block border-bottom' wx:for-index="idx">
-              <view class='padding-20' style='padding-top:0rpx;'>
-                <image class='photo' src='{{item.member_avatarUrl}}'></image>
-              </view>
-              <view class='flex-1'>
-                <view class='flex-row'>
-                
-                <view class='commentname h6'>{{item.member_nickName}}</view>
-                <view  class='commentname h6 text-right flex-1'>#{{comments.length-idx}}</view>
-                </view>
-                <view class='commenttext h5'>{{item.comment}}</view>
-                <view class='commentname h6 text-right'>{{item.comment_time_formatting}}</view>
-              </view>
+          <view class='flex-1'>
+            <view class='flex-row'>
+
+              <view class='commentname h6'>{{item.member_nickName}}</view>
+              <view class='commentname h6 text-right flex-1'>#{{comments.length-idx}}</view>
             </view>
-            <view class='block-100'></view>
-            <form bindsubmit="sendComment" bindreset="formReset">
-              <view class='flex-row flex-center bottomin  white-block' style='padding:20rpx; '>
-                <view style='flex:4;font-size:28rpx;'>
-                  <input type='text' placeholder='我也要说点什么' name="comment" value='{{comment}}' maxlength='50'></input>
-                </view>
-                <view class='text-center' style='flex:1'>
-                  <button type='default' size='mini' formType="submit">发送</button>
-                </view>
-              </view>
-            </form>
+            <view class='commenttext h5'>{{item.comment}}</view>
+            <view class='commentname h6 text-right'>{{item.comment_time_formatting}}</view>
+          </view>
+        </view>
+        <view class='block-100'></view>
+        <form bindsubmit="sendComment" bindreset="formReset">
+          <view class='flex-row flex-center bottomin  white-block' style='padding:20rpx; '>
+            <view style='flex:4;font-size:28rpx;'>
+              <input type='text' placeholder='我也要说点什么' name="comment" value='{{comment}}' maxlength='50'></input>
+            </view>
+            <view class='text-center' style='flex:1'>
+              <button type='default' size='mini' formType="submit">发送</button>
+            </view>
+          </view>
+        </form>
 
 
 
@@ -110,7 +167,7 @@
     <swiper-item wx:if="{{video!=''}}">
       <scroll-view scroll-y style='height:100%'>
         <view class='white-block padding-20' wx:for="{{images}}" wx:key="k">
-          <image class='fullimg' src='{{uploadpath}}post/{{item}}' mode='widthFix'></image>
+          <image class='fullimg' src='{{uploadpath}}post/{{item}}' mode='widthFix'  bindtap='viewPhotos' id="{{item}}" ></image>
         </view>
       </scroll-view>
     </swiper-item>

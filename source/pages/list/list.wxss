@@ -1,0 +1,13 @@
+/* pages/list/list.wxss */
+.cover{
+  line-height: 0rpx;
+}
+.cover image{
+  width: 670rpx;
+  height: 433rpx;
+  border-top-right-radius: 10rpx;
+  border-top-left-radius: 10rpx;
+}
+.item{
+  border-radius: 10rpx;
+}

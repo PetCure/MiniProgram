@@ -10,9 +10,15 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
+    //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
       currenttab: 0
+    });
+
+    var api = new PostApi();
+    api.poster({post_id:options.id},(res)=>{
+      
     });
   }
   onMyShow() {
@@ -51,10 +57,86 @@ class Content extends AppBase {
   }
   sendComment(e){
     var that=this;
-    var comment = e.detail.value.comment; var api = new PostApi();
+    var comment = e.detail.value.comment; 
+    var api = new PostApi();
     api.comment({ post_id: this.Base.options.id,comment:comment }, (ret) => {
       that.loadcomment();
     });
+  }
+  onShareAppMessage(){
+    var data=this.Base.getMyData();
+    return {
+      title:data.title,
+      imageUrl: data.uploadpath+"post/"+data.images[0],
+    };
+  }
+  like(){
+    var api = new PostApi();
+    api.like({ post_id: this.Base.options.id });
+
+    var data = this.Base.getMyData();
+    this.Base.setMyData({liked:true,likecount:data.likecount+1});
+  }
+  follow(){
+
+    var api = new PostApi();
+    api.follow({ post_id: this.Base.options.id }, (ret) => {
+      var data = this.Base.getMyData();
+      if(ret.return==true){
+        console.log("???");
+        this.Base.setMyData({ followed: true, followcount: data.followcount + 1 });
+      }else{
+
+        this.Base.setMyData({ followed: false, followcount: data.followcount - 1 });
+      }
+    });
+
+  }
+  fix(){
+    var that=this;
+    wx.showModal({
+      title: '提示',
+      content: '是否确定你发布的问题已解决',
+      success:function(res){
+        if(res.confirm){
+
+          var api = new PostApi();
+          api.fix({ post_id: that.Base.options.id });
+
+          that.Base.setMyData({ status: "I", status_name: "已解决" });
+        }
+      }
+    });
+    
+  }
+  poster(){
+    var that=this;
+    wx.downloadFile({
+      url: 'http://cmsdev.app-link.org/Users/alucard263096/petfind/upload/post/'+this.Base.options.id+'.png', //仅为示例，并非真实的资源
+      success: function (res) {
+        // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
+        if (res.statusCode === 200) {
+          wx.saveImageToPhotosAlbum({
+            filePath: res.tempFilePath,
+          });
+          that.Base.viewPhoto({currentTarget:{id:res.tempFilePath}});
+          wx.showToast({
+            title: '下载分享图片成功',
+            icon: "none"
+          })
+        }else{
+          wx.showToast({
+            title: '下载分享图片失败',
+            icon:"none"
+          })
+        }
+      }
+    })
+  }
+  viewPhotos(e){
+    var current=e.currentTarget.id;
+    var images=this.Base.getMyData().images;
+    this.Base.viewGallary("post", images, current);
   }
 }
 var content = new Content();
@@ -63,6 +145,12 @@ body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.changeCurrentTab = content.changeCurrentTab;
 body.changeTab = content.changeTab;
-body.loadcomment = content.loadcomment;
+body.loadcomment = content.loadcomment; 
 body.sendComment = content.sendComment;
+body.onShareAppMessage = content.onShareAppMessage;
+body.like = content.like;
+body.follow = content.follow;
+body.fix = content.fix;
+body.poster = content.poster;
+body.viewPhotos = content.viewPhotos;
 Page(body)

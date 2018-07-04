@@ -133,6 +133,9 @@ button[disabled][type=primary] {
 .margin-20{
   margin:20rpx;
 }
+.margin-40{
+  margin:40rpx;
+}
 .margin-top{
   margin-top:40rpx;
 }
@@ -455,4 +458,11 @@ display:-webkit-box;
   width: 35rpx;
   height: 35rpx;
   margin-right: 10rpx;
+}
+
+.egg{
+  width: 200rpx;
+  height: 233rpx;
+  margin-top: 100rpx;
+  margin-bottom: 50rpx;
 }
