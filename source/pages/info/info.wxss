@@ -28,3 +28,20 @@
 .comments .commenttext{
   margin-top: 20rpx; 
 }
+
+.taplist{
+  position: fixed;
+  bottom: 30rpx;
+  right: 30rpx;
+}
+.tap{
+  background: #F04848;
+  padding:10rpx;
+  border-radius: 50%;
+  margin-bottom:10rpx;
+  line-height: 0rpx;
+}
+.tap image{
+  width: 60rpx;
+  height: 60rpx;
+}

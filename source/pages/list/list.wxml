@@ -1,6 +1,6 @@
 <!--pages/list/list.wxml-->
 <view  wx:for="{{list}}" wx:key="k">
-  <navigator url='/pages/info/info?id={{item.id}}' class='white-block margin-40 item'>
+  <navigator url='/pages/info/info?shownext=Y&id={{item.id}}' class='white-block margin-40 item'>
     <view class='cover'>
       <image src='{{uploadpath}}post/{{item.cover}}' mode='aspectFill'></image>
     </view>

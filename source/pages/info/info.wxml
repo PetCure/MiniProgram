@@ -124,6 +124,17 @@
             <view class='h6 txt-gray'>{{address}}</view>
           </view>
         </view>
+
+        <view class='taplist'>
+          <view class='tap'>
+            <image src='{{uploadpath}}resource/home-o.png' bindtap='backHome'></image>
+          </view>
+          <view class='tap' wx:if="{{options.shownext=='Y'}}">
+            <image src='{{uploadpath}}resource/right-o.png' bindtap='next'></image>
+          </view>
+        </view>
+
+
       </scroll-view>
     </swiper-item>
     <swiper-item>

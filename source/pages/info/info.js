@@ -10,16 +10,12 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=5;
+    //options.id=4;
     super.onLoad(options);
     this.Base.setMyData({
       currenttab: 0
     });
 
-    var api = new PostApi();
-    api.poster({post_id:options.id},(res)=>{
-      
-    });
   }
   onMyShow() {
     var that = this;
@@ -110,16 +106,20 @@ class Content extends AppBase {
     
   }
   poster(){
-    var that=this;
+
+    var that = this;
+    var url='https://cmsdev.app-link.org/Users/alucard263096/petfind/upload/post/'+this.Base.options.id+'.png';
+
+    that.Base.viewPhoto({ currentTarget: { id: url } });
+    return;
     wx.downloadFile({
-      url: 'http://cmsdev.app-link.org/Users/alucard263096/petfind/upload/post/'+this.Base.options.id+'.png', //仅为示例，并非真实的资源
+      url: 'https://cmsdev.app-link.org/Users/alucard263096/petfind/upload/post/'+this.Base.options.id+'.png', //仅为示例，并非真实的资源
       success: function (res) {
         // 只要服务器有响应数据，就会把响应内容写入文件并进入 success 回调，业务需要自行判断是否下载到了想要的内容
         if (res.statusCode === 200) {
           wx.saveImageToPhotosAlbum({
             filePath: res.tempFilePath,
           });
-          that.Base.viewPhoto({currentTarget:{id:res.tempFilePath}});
           wx.showToast({
             title: '下载分享图片成功',
             icon: "none"
@@ -132,11 +132,32 @@ class Content extends AppBase {
         }
       }
     })
-  }
+  } 
   viewPhotos(e){
     var current=e.currentTarget.id;
     var images=this.Base.getMyData().images;
     this.Base.viewGallary("post", images, current);
+  }
+  next(e) {
+    var that=this;
+    var mylocation = this.Base.getMyData().mylocation;
+    var api = new PostApi();
+    var json = { post_id: this.Base.options.id, center_lat: mylocation.location.lat, center_lng: mylocation.location.lng };
+    console.log(json);
+    api.next(json, (next) => {
+      if(next.return==0){
+        wx.showToast({
+          title: '没有下一条了',
+          icon:"none"
+        })
+      }else{
+        this.Base.options.id=next.return;
+        this.onMyShow();
+        //wx.navigateTo({
+        //  url: '/pages/info/info?shownext=Y&id='+next.return,
+        //})
+      }
+    });
   }
 }
 var content = new Content();
@@ -153,4 +174,5 @@ body.follow = content.follow;
 body.fix = content.fix;
 body.poster = content.poster;
 body.viewPhotos = content.viewPhotos;
+body.next = content.next;
 Page(body)

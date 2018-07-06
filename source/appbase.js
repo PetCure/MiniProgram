@@ -107,6 +107,7 @@ export class AppBase {
     console.log(options);
     console.log("onload");
     this.Base.setBasicInfo();
+    this.Base.setMyData({options:options});
 
     ApiConfig.SetUnicode(this.Base.unicode);
   }

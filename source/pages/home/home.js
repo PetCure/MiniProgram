@@ -22,6 +22,7 @@ class Content extends AppBase {
     if (mylocation == undefined) {
       that.Base.getAddress((addressinfo) => {
         that.Base.setMyData({ mylocation: addressinfo });
+        that.reloaddata();
       });
     }
   }
@@ -35,7 +36,27 @@ class Content extends AppBase {
     var that = this;
     that.Base.getAddress((addressinfo) => {
       that.Base.setMyData({ mylocation: addressinfo });
-      that.reloaddata();
+      
+      var api = new PostApi();
+      api.list({
+        mylat: addressinfo.ad_info.location.lat,
+        mylng: addressinfo.ad_info.location.lng,
+        orderby: "distance limit 0,15"
+      }, (list) => {
+        var markers = [];
+        for (var i = 0; i < list.length; i++) {
+          markers.push({
+            iconPath: "/images/icons/mark.png",
+            id: list[i].id,
+            latitude: list[i].lat,
+            longitude: list[i].lng,
+            width: 40,
+            height: 40
+          });
+        }
+
+        that.Base.setMyData({ markers });
+      });
     });
   }
   reloaddata(){
@@ -56,7 +77,9 @@ class Content extends AppBase {
           console.log(res);
           var api = new PostApi();
           var mylocation = api.list({ to_lat: res.northeast.latitude, to_lng: res.northeast.longitude, from_lat: res.southwest.latitude, from_to: res.southwest.longitude }, (list) => {
-
+            if(list.length==0){
+              return;
+            }
             var markers= [];
             for(var i=0;i<list.length;i++){
               markers.push({
@@ -70,7 +93,7 @@ class Content extends AppBase {
             }
 
             that.Base.setMyData({ markers});
-          });
+          },false);
         },
         fail: function (res) {
           console.log("console fail");
@@ -88,7 +111,7 @@ class Content extends AppBase {
     console.log(e);
     var id=e.markerId;
     wx.navigateTo({
-      url: '/pages/info/info?id='+id,
+      url: '/pages/info/info?shownext=Y&id='+id,
     })
   }
 }
