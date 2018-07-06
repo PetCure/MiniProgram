@@ -22,6 +22,14 @@ page{
 .clear-button::after {
   border: 0;
 } 
+.btn-primary-line{
+  border-color: #F04848;
+  color: #f04848;
+  background: transparent;
+}
+.btn-primary-line::after {
+  border-color: #F04848;
+} 
 view,navigator,input,text,textarea{
   font-size: 32rpx;
   font-weight: 350;
@@ -148,7 +156,9 @@ button[disabled][type=primary] {
 .margin-top-5{
   margin-top:10rpx;
 }
-
+.radius-50{
+  border-radius: 50%;
+}
 .icon-10{
   width: 20rpx;
   height: 20rpx;

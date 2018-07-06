@@ -5,7 +5,7 @@
     <swiper class='topobj' wx:if="{{video==''}}" indicator-dots="true" autoplay="{{true}}" interval="5000">
       <block wx:for="{{images}}" wx:key="k">
         <swiper-item>
-          <image class='topobj' src="{{uploadpath}}post/{{item}}" mode='aspectFill' bindtap='viewPhotos' id="{{item}}" ></image>
+          <image class='topobj' src="{{uploadpath}}post/{{item}}" mode='aspectFill' bindtap='viewPhotos' id="{{item}}"></image>
         </swiper-item>
       </block>
     </swiper>
@@ -40,11 +40,11 @@
           <view class='padding-20'>
 
             <view wx:if="{{ismy==true}}" class='txt-primary'>
-              <block  wx:if="{{status=='A'}}">
+              <block wx:if="{{status=='A'}}">
                 <button size='mini' type='primary' bindtap='fix'>已解决</button>
               </block>
-              <block  wx:if="{{status!='A'}}">
-              {{status_name}}
+              <block wx:if="{{status!='A'}}">
+                {{status_name}}
               </block>
             </view>
             <view wx:if="{{ismy==false}}" class='txt-primary'>
@@ -99,14 +99,14 @@
             </view>
           </view>
         </view>
-        <view class='white-block padding-20 flex-row flex-center border-bottom'>
+        <navigator url='/pages/memberinfo/memberinfo?id={{member_id}}' class='white-block padding-20 flex-row flex-center border-bottom'>
           <view style='margin-right:20rpx'>
             <image class='icon-30' style='border-radius:50%' src='{{member_avatarUrl}}'></image>
           </view>
-          <view class='flex-1' bindtap='openMap' id="{{address}}">
+          <view class='flex-1' >
             <view>{{member_nickName}}</view>
           </view>
-        </view>
+        </navigator>
         <view class='white-block padding-20 flex-row border-bottom'>
           <view style='margin-right:20rpx'>
             <image class='icon' src='{{uploadpath}}resource/phone.png'></image>
@@ -151,12 +151,18 @@
           </view>
           <view class='flex-1'>
             <view class='flex-row'>
-
               <view class='commentname h6'>{{item.member_nickName}}</view>
               <view class='commentname h6 text-right flex-1'>#{{comments.length-idx}}</view>
             </view>
             <view class='commenttext h5'>{{item.comment}}</view>
-            <view class='commentname h6 text-right'>{{item.comment_time_formatting}}</view>
+            <view class='commentname flex-row flex-center margin-top-10'>
+              <view>
+                <image class='icon-15' src='{{uploadpath}}resource/like-l.png' bindtap='likeComment' id="{{idx}}" wx:if="{{item.iliked=='N'}}" ></image>
+                <image class='icon-15' src='{{uploadpath}}resource/like-r.png'  wx:if="{{item.iliked=='Y'}}" ></image>
+              </view>
+              <view wx:if="{{item.likecount>0}}" style='margin-left:10rpx;margin-right:rpx;' class='h6 txt-gray'>{{item.likecount}}</view>
+              <view class='flex-1  h6 text-right txt-gray'>{{item.comment_time_formatting}}</view>
+            </view>
           </view>
         </view>
         <view class='block-100'></view>
@@ -178,7 +184,7 @@
     <swiper-item wx:if="{{video!=''}}">
       <scroll-view scroll-y style='height:100%'>
         <view class='white-block padding-20' wx:for="{{images}}" wx:key="k">
-          <image class='fullimg' src='{{uploadpath}}post/{{item}}' mode='widthFix'  bindtap='viewPhotos' id="{{item}}" ></image>
+          <image class='fullimg' src='{{uploadpath}}post/{{item}}' mode='widthFix' bindtap='viewPhotos' id="{{item}}"></image>
         </view>
       </scroll-view>
     </swiper-item>

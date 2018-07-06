@@ -20,7 +20,7 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var memberApi = new MemberApi();
-    memberApi.info({}, (memberinfo) => {
+    memberApi.info({member_id:this.Base.options.id}, (memberinfo) => {
       if (memberinfo != null) {
         this.Base.setMyData({ memberinfo: memberinfo });
       }
@@ -51,7 +51,7 @@ class Content extends AppBase {
     var seq = this.Base.getMyData().currenttab;
     switch (seq) {
       case "0":
-        api.list({ orderby: " r_main.post_time desc ",status:"A,I", "onlymy": "Y" }, (listMy) => {
+        api.list({ orderby: " r_main.post_time desc ", status: "A,I", "onlymy": "Y",member_id: this.Base.options.id  }, (listMy) => {
           for (var i = 0; i < listMy.length; i++) {
             listMy[i].cover = listMy[i].images.split(",")[0];
           }
@@ -59,7 +59,7 @@ class Content extends AppBase {
         });
         break;
       case "1":
-        api.list({ orderby: " r_main.post_time desc ", status: "A,I", "onlyfollow": "Y" }, (listFollow) => {
+        api.list({ orderby: " r_main.post_time desc ", status: "A,I", "onlyfollow": "Y", member_id: this.Base.options.id  }, (listFollow) => {
           for (var i = 0; i < listFollow.length; i++) {
             listFollow[i].cover = listFollow[i].images.split(",")[0];
           }
@@ -68,7 +68,7 @@ class Content extends AppBase {
         break;
     }
   }
-  allfollow(){
+  allfollow() {
     wx.navigateTo({
       url: '/pages/myfollow/myfollow',
     })

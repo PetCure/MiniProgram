@@ -1,7 +1,11 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/commentlikelist/commentlikelist",
     "pages/info/info",
+    "pages/message/message",
+    "pages/member/member",
+    "pages/memberinfo/memberinfo",
     "pages/post/post",
     "pages/myfollow/myfollow",
     "pages/mypost/mypost",
@@ -19,7 +23,6 @@
     "pages/aboutus/aboutus",
     "pages/index/index",
     "pages/servicelist/servicelist",
-    "pages/member/member",
     "pages/content/content",
     "pages/logs/logs"
   ],
@@ -48,14 +51,14 @@
         "selectedIconPath": "images/icons/list.png"
       },
       {
-        "text": "我的关注",
-        "pagePath": "pages/myfollow/myfollow",
-        "iconPath": "images/icons/follow-o.png",
-        "selectedIconPath": "images/icons/follow.png"
+        "text": "消息",
+        "pagePath": "pages/message/message",
+        "iconPath": "images/icons/mail-o.png",
+        "selectedIconPath": "images/icons/mail.png"
       },
       {
-        "text": "我的发布",
-        "pagePath": "pages/mypost/mypost",
+        "text": "我的",
+        "pagePath": "pages/member/member",
         "iconPath": "images/icons/post-o.png",
         "selectedIconPath": "images/icons/post.png"
       }

@@ -10,7 +10,7 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=4;
+    //options.id=6;
     super.onLoad(options);
     this.Base.setMyData({
       currenttab: 0
@@ -57,6 +57,7 @@ class Content extends AppBase {
     var api = new PostApi();
     api.comment({ post_id: this.Base.options.id,comment:comment }, (ret) => {
       that.loadcomment();
+      that.Base.setMyData({ comment:""});
     });
   }
   onShareAppMessage(){
@@ -159,6 +160,19 @@ class Content extends AppBase {
       }
     });
   }
+  likeComment(e){
+    var that=this;
+    var seq = e.currentTarget.id;
+    var comments = this.Base.getMyData().comments; 
+    var comment = comments[seq];
+    console.log(comment);
+    var api = new PostApi();
+    api.commentlike({comment_id:comment.id,post_id:comment.post_id},(ret)=>{
+      comments[seq].iliked = 'Y';
+      comments[seq].likecount = parseInt(comments[seq].likecount)+1;
+      that.Base.setMyData({ comments});
+    });
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -173,6 +187,7 @@ body.like = content.like;
 body.follow = content.follow;
 body.fix = content.fix;
 body.poster = content.poster;
-body.viewPhotos = content.viewPhotos;
+body.viewPhotos = content.viewPhotos; 
 body.next = content.next;
+body.likeComment = content.likeComment;
 Page(body)

@@ -1,0 +1,7 @@
+/* pages/commentlikelist/commentlikelist.wxss */
+.gray-block{
+  background: #eeeeee;
+  border-radius: 4rpx;
+  color:#aaa;
+  padding:10rpx;
+}

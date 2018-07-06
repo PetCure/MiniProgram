@@ -18,9 +18,9 @@
   width: 710rpx;
 }
 .comments .photo{
-  height:100rpx;
-  width:100rpx;
-  border-radius: 50rpx;
+  height:70rpx;
+  width:70rpx;
+  border-radius: 50%;
 }
 .comments .commentname{
   color:#999;

@@ -6,12 +6,6 @@
   <view class='flex-1'>
     <image class='fullimg' src='{{memberinfo.avatarUrl}}' ></image>
   </view>
-  <view>
-    <button class='btn-primary-line' size='mini' bindtap='allpost' >发布</button>
-  </view>
-  <view>
-    <button class='btn-primary-line' size='mini' bindtap='allfollow'  >收藏</button>
-  </view>
 </view>
 <view class='padding-20 white-block border-bottom'>
   <view class='h4' style='margin-top:70rpx;'>
