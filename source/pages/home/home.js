@@ -44,18 +44,13 @@ class Content extends AppBase {
         orderby: "distance limit 0,15"
       }, (list) => {
         var markers = [];
+        var uploadpath = that.Base.getMyData().uploadpath;
+        var markers = [];
         for (var i = 0; i < list.length; i++) {
-          markers.push({
-            iconPath: "/images/icons/mark.png",
-            id: list[i].id,
-            latitude: list[i].lat,
-            longitude: list[i].lng,
-            width: 40,
-            height: 40
-          });
+          var url = uploadpath + "post/" + list[i].images.split(",")[0];
+          that.addmarker(list[i].id, list[i].lat, list[i].lng, url);
         }
-
-        that.Base.setMyData({ markers });
+        //that.Base.setMyData({ markers });
       });
     });
   }
@@ -80,19 +75,22 @@ class Content extends AppBase {
             if(list.length==0){
               return;
             }
+            var uploadpath=that.Base.getMyData().uploadpath;
             var markers= [];
             for(var i=0;i<list.length;i++){
-              markers.push({
-                iconPath: "/images/icons/mark.png",
-                id: list[i].id,
-                latitude: list[i].lat,
-                longitude: list[i].lng,
-                width: 40,
-                height: 40
-              });
+              var url =uploadpath+"post/"+list[i].images.split(",")[0];
+              that.addmarker(list[i].id,list[i].lat,list[i].lng,url);
+              //markers.push({
+               // iconPath: "/images/icons/mark.png",
+              //  id: list[i].id,
+              //  latitude: list[i].lat,
+              //  longitude: list[i].lng,
+              //  width: 40,
+              //  height: 40
+              //});
             }
 
-            that.Base.setMyData({ markers});
+            //that.Base.setMyData({ markers});
           },false);
         },
         fail: function (res) {
@@ -114,8 +112,29 @@ class Content extends AppBase {
       url: '/pages/info/info?shownext=Y&id='+id,
     })
   }
+  addmarker(id,lat,lng,url){
+    var that=this;
+    if(markers[id]!=1){
+      markers[id]=1;
+      wx.downloadFile({
+        url:url,
+        success(res){
+          var c = that.Base.getMyData().markers;
+          c.push({
+            iconPath: res.tempFilePath,
+            id: id,
+            latitude: lat,
+            longitude: lng,
+            width: 40,
+            height: 40
+          });
+          that.Base.setMyData({markers:c})
+        }
+      })
+    }
+  }
 }
-
+var markers=[];
 var mapCtx = null;
 var content = new Content();
 var body = content.generateBodyJson();
@@ -127,5 +146,6 @@ body.showHelp = content.showHelp;
 body.reloaddata = content.reloaddata; 
 body.bindupdated = content.bindupdated;
 body.markerclick = content.markerclick;
+body.addmarker = content.addmarker;
 
 Page(body)
