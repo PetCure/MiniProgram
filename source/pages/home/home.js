@@ -121,7 +121,8 @@ class Content extends AppBase {
         success(res){
           var c = that.Base.getMyData().markers;
           c.push({
-            iconPath: res.tempFilePath,
+            iconPath: "/images/icons/mark.png",
+            iconPath2: res.tempFilePath,
             id: id,
             latitude: lat,
             longitude: lng,

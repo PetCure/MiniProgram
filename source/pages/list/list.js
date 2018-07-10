@@ -60,7 +60,7 @@ class Content extends AppBase {
       var lastpost = catlist[seq].postlist[0];
       json={
         cat_id: catlist[seq].id,
-        post_time_from:lastpost.post_time,
+        post_time_from:lastpost.post_time+".1",
         orderby: "post_time desc limit 0,5"
       }
     }

@@ -11,7 +11,7 @@
 
 <swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
     <swiper-item  wx:for="{{catlist}}" wx:key="k" wx:for-index="idx" >
-      <scroll-view scroll-y style='height:100%' bindscrolltolower="onReachBottom" bindscrolltoupper="onMyShow">
+      <scroll-view scroll-y style='height:100%' bindscrolltolower="onReachBottom" bindscrolltoupper="loaddata">
 
 <view  wx:for="{{item.postlist}}" wx:key="k">
   <navigator url='/pages/info/info?shownext=Y&id={{item.id}}' class='white-block margin-40 item'>
