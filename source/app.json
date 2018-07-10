@@ -1,15 +1,15 @@
 {
   "pages":[
+    "pages/list/list",
+    "pages/post/post",
     "pages/home/home",
     "pages/commentlikelist/commentlikelist",
     "pages/info/info",
     "pages/message/message",
     "pages/member/member",
     "pages/memberinfo/memberinfo",
-    "pages/post/post",
     "pages/myfollow/myfollow",
     "pages/mypost/mypost",
-    "pages/list/list",
     "pages/success/success",
     "pages/addressselect/addressselect",
     "pages/product/product",
@@ -39,16 +39,16 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
-        "text": "地图救助",
-        "pagePath": "pages/home/home",
-        "iconPath": "images/icons/map-o.png",
-        "selectedIconPath": "images/icons/map.png"
-      },
-      {
-        "text": "救助列表",
+        "text": "动态",
         "pagePath": "pages/list/list",
         "iconPath": "images/icons/list-o.png",
         "selectedIconPath": "images/icons/list.png"
+      },
+      {
+        "text": "附近",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/icons/map-o.png",
+        "selectedIconPath": "images/icons/map.png"
       },
       {
         "text": "消息",

@@ -11,3 +11,9 @@
 .item{
   border-radius: 10rpx;
 }
+.lab{
+  background: #eee;
+  color:#aaa;
+  padding:14rpx;
+  border-radius: 60rpx;
+}

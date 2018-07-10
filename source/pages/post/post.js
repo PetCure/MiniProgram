@@ -13,7 +13,10 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({ images: [], video: "", mobile: "",noticesuccess:false});
-    
+    var api = new PostApi();
+    api.catlist({}, (catlist)=>{
+      this.Base.setMyData({ catlist, catindex:0 });
+    });
   }
   onMyShow() {
     var that = this;
@@ -25,7 +28,7 @@ class Content extends AppBase {
         that.Base.setMyData({ mylocation: addressinfo, address: address });
       });
     }
-
+    
   }
   selectaddress(){
     wx.navigateTo({
@@ -66,7 +69,9 @@ class Content extends AppBase {
     var mobile = e.detail.value.mobile;
     var images=this.Base.getMyData().images;
     var video = this.Base.getMyData().video;
-    var address=this.Base.getMyData().address;
+    var address = this.Base.getMyData().address;
+    var catlist = this.Base.getMyData().catlist;
+    var catindex = this.Base.getMyData().catindex;
     if(title.trim()==""){
       this.Base.info("请输入主题");
       return;
@@ -77,6 +82,7 @@ class Content extends AppBase {
     }
     var api = new PostApi();
     api.create({
+      cat_id: catlist[catindex].id,
       title:title,
       summary:summary,
       addresstitle:address.title,
@@ -113,6 +119,10 @@ class Content extends AppBase {
       }
     }
     that.Base.setMyData({ images: imgs});
+  } 
+  catchange(e){
+    var catindex=e.detail.value;
+    this.Base.setMyData({ catindex: catindex });
   }
 }
 var content = new Content();
@@ -127,4 +137,5 @@ body.uploadvideo = content.uploadvideo;
 body.confirm = content.confirm;
 body.closenotice = content.closenotice; 
 body.minusImg = content.minusImg;
+body.catchange = content.catchange;
 Page(body)
