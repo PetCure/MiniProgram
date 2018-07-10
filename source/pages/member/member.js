@@ -78,7 +78,12 @@ class Content extends AppBase {
       url: '/pages/mypost/mypost',
     })
   }
-}
+  post() {
+    wx.navigateTo({
+      url: '/pages/post/post',
+    })
+  }
+} 
 var content = new Content();
 var body = content.generateBodyJson();
 body.onLoad = content.onLoad;
@@ -86,6 +91,7 @@ body.onMyShow = content.onMyShow;
 body.changeCurrentTab = content.changeCurrentTab;
 body.changeTab = content.changeTab;
 body.loaddata = content.loaddata;
-body.allpost = content.allpost;
+body.allpost = content.allpost; 
 body.allfollow = content.allfollow;
+body.post = content.post;
 Page(body)

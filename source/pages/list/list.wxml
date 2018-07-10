@@ -1,5 +1,19 @@
 <!--pages/list/list.wxml-->
-<view  wx:for="{{list}}" wx:key="k">
+
+<view class='flex-row tabs'>
+  <view class='flex-1 tab  flex-row' wx:for="{{catlist}}" wx:key="k" wx:for-index="idx" bindtap='changeTab' id="{{idx}}">
+    <view class='flex-1'></view>
+    <view class='txt-light tabtext  {{currenttab==idx?"active":""}}'>{{item.name}}</view>
+    <view class='flex-1'></view>
+  </view>
+</view>
+
+
+<swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
+    <swiper-item  wx:for="{{catlist}}" wx:key="k" wx:for-index="idx" >
+      <scroll-view scroll-y style='height:100%' bindscrolltolower="onReachBottom" bindscrolltoupper="onMyShow">
+
+<view  wx:for="{{item.postlist}}" wx:key="k">
   <navigator url='/pages/info/info?shownext=Y&id={{item.id}}' class='white-block margin-40 item'>
     <view class='cover'>
       <image src='{{uploadpath}}post/{{item.cover}}' mode='aspectFill'></image>
@@ -10,18 +24,22 @@
       </view>
       <view class='flex-1'>
         <view>{{item.title}}</view>
-        <view class='h6 txt-gray'>{{item.address}}</view>
+        <view class='h6 txt-gray'>{{item.summary}}</view>
+        <view class='h6 txt-gray' style='margin-top:10rpx;'>{{item.mile}} {{item.timeduration}}</view>
       </view>
       <view>
         <view class='h6 txt-gray text-right'>
-        {{item.mile}}
+          <view class='h6 lab'>{{item.cat_id_name}}</view>
         </view>
-        <view class='h6 txt-gray text-right' style='margin-top:6rpx;'>
-        {{item.timeduration}}
-        
-        </view>
-        
       </view>
     </view>
   </navigator>
 </view>
+
+
+      </scroll-view>
+    </swiper-item>
+  </swiper>
+
+
+

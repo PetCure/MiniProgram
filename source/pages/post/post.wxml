@@ -4,19 +4,26 @@
   <image class='fullimg' src='{{uploadpath}}resource/postbanner2.png' mode='widthFix' ></image>
 </view>
 <view class='padding-40 white-block'>
-  <view class='flex-row flex-center'>
-    <view class='h4 txt-gray flex-1 '>救助信息</view>
+  <view class='flex-row  flex-center  margin-top padding-20'>
+    <view class='title'>分类</view>
+    <view class='flex-1'>
+       <picker bindchange="catchange" value="{{catindex}}" range="{{catlist}}" range-key="name">
+      <view class="picker">
+        {{catlist[catindex].name}}
+      </view>
+  </picker>
+    </view>
   </view>
   <view class='flex-row  flex-center  margin-top padding-20'>
     <view class='title'>主题</view>
     <view class='flex-1'>
-      <input hidden='{{noticesuccess==true}}' name="title" placeholder='请输入救助的主题' maxlength='50'></input>
+      <input hidden='{{noticesuccess==true}}' name="title" placeholder='请输入的主题' maxlength='50'></input>
     </view>
   </view>
   <view class='flex-row flex-center margin-top-10 padding-20'>
-    <view class='title' >简介</view>
+    <view class='title' >简介</view>
     <view class='flex-1'>
-      <textarea hidden='{{noticesuccess==true}}' name="summary" placeholder='请输入救助的详情' auto-height='true' style='width:100%;' maxlength='144'></textarea>
+      <textarea hidden='{{noticesuccess==true}}' name="summary" placeholder='请输入的内容' auto-height='true' style='width:100%;' maxlength='144'></textarea>
     </view>
   </view>
   <view class='flex-row margin-top-10 padding-20'>
