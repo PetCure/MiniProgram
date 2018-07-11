@@ -1,7 +1,7 @@
 <!--pages/post/post.wxml-->
 <form bindsubmit="confirm" bindreset="formReset" report-submit="{{true}}">
 <view class='line-height-0'>
-  <image class='fullimg' src='{{uploadpath}}resource/postbanner2.png' mode='widthFix' ></image>
+  <image class='fullimg' src='{{uploadpath}}resource/posttopbanner.png' mode='widthFix' ></image>
 </view>
 <view class='padding-40 white-block'>
   <view class='flex-row  flex-center  margin-top padding-20'>

@@ -1,6 +1,9 @@
 <!--pages/memberfans/memberfans.wxml-->
-<view wx:for="{{list}}" wx:key="k" class='white-block flex-row flex-center'>
+<navigator url='/pages/memberinfo/memberinfo?id={{item.member_id}}' wx:for="{{list}}" wx:key="k" class='white-block flex-row flex-center border-bottom padding-20'>
   <view>
-    <image class='icon' src='{{item.member_avatarUrl}}'></image>
+    <image class='icon-40' style='border-radius:50%' src='{{item.member_avatarUrl}}'></image>
   </view>
-</view>
+  <view class='flex-1' style='margin-left:10rpx;'>
+    {{item.member_nickName}}
+  </view>
+</navigator>

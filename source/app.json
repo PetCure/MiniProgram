@@ -1,12 +1,15 @@
 {
   "pages":[
     "pages/list/list",
+    "pages/times/times",
+    "pages/member/member",
+    "pages/memberfollow/memberfollow",
+    "pages/memberfans/memberfans",
     "pages/post/post",
     "pages/home/home",
     "pages/commentlikelist/commentlikelist",
     "pages/info/info",
     "pages/message/message",
-    "pages/member/member",
     "pages/memberinfo/memberinfo",
     "pages/myfollow/myfollow",
     "pages/mypost/mypost",
@@ -49,6 +52,12 @@
         "pagePath": "pages/home/home",
         "iconPath": "images/icons/map-o.png",
         "selectedIconPath": "images/icons/map.png"
+      },
+      {
+        "text": "萌友圈",
+        "pagePath": "pages/times/times",
+        "iconPath": "images/icons/times-o.png",
+        "selectedIconPath": "images/icons/times.png"
       },
       {
         "text": "消息",

@@ -15,7 +15,7 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var api = new MemberApi();
-    api.friendlist({},(list)=>{
+    api.fanslist({},(list)=>{
       this.Base.setMyData({ list});
     })
   }

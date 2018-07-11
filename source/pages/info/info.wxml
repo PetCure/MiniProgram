@@ -37,7 +37,7 @@
             <view class='h6 txt-gray margin-top'>{{summary}}</view>
             <view class='h6 txt-gray margin-top'>发布时间：{{post_time_formatting}}</view>
           </view>
-          <view class='padding-20'>
+          <view class='padding-20' wx:if="{{false}}">
 
             <view wx:if="{{ismy==true}}" class='txt-primary'>
               <block wx:if="{{status=='A'}}">

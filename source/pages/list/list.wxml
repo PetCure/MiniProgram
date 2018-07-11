@@ -13,15 +13,20 @@
     <swiper-item  wx:for="{{catlist}}" wx:key="k" wx:for-index="idx" >
       <scroll-view scroll-y style='height:100%' bindscrolltolower="onReachBottom" bindscrolltoupper="loaddata">
 
-<view  wx:for="{{item.postlist}}" wx:key="k">
-  <navigator url='/pages/info/info?shownext=Y&id={{item.id}}' class='white-block margin-40 item'>
-    <view class='cover'>
-      <image src='{{uploadpath}}post/{{item.cover}}' mode='aspectFill'></image>
-    </view>
-    <view class='padding-20 flex-row '>
+<view  wx:for="{{item.postlist}}" wx:key="k" class='white-block border-bottom'>
+  <view url='/pages/info/info?shownext=Y&id={{item.id}}' class='margin-40 item' style='margin-top:0rpx;margin-bottom:0rpx;'>
+    <navigator url='/pages/memberinfo/memberinfo?id={{item.member_id}}' class='padding-20 flex-row '>
       <view class='memberphoto' style='margin-right:20rpx;'>
         <image class='icon' style='border-radius:50%;' src='{{item.member_avatarUrl}}'  ></image>
       </view>
+      <view class='h6'>
+        {{item.member_nickName}}
+      </view>
+    </navigator>
+    <navigator url='/pages/info/info?shownext=Y&id={{item.id}}'  class='cover'>
+      <image src='{{uploadpath}}post/{{item.cover}}' mode='aspectFill'></image>
+    </navigator>
+    <navigator url='/pages/info/info?shownext=Y&id={{item.id}}'   class='padding-20 flex-row '>
       <view class='flex-1'>
         <view>{{item.title}}</view>
         <view class='h6 txt-gray'>{{item.summary}}</view>
@@ -32,8 +37,8 @@
           <view class='h6 lab'>{{item.cat_id_name}}</view>
         </view>
       </view>
-    </view>
-  </navigator>
+    </navigator>
+  </view>
 </view>
 
 

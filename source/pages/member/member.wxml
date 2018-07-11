@@ -1,6 +1,6 @@
 <!--pages/member/member.wxml-->
 <view class='line-height-0'>
-  <image class='fullimg' src='{{uploadpath}}resource/postbanner2.png' style='height:200rpx;' ></image>
+  <image class='fullimg' src='{{uploadpath}}resource/membertopbanner.png' style='height:200rpx;' ></image>
 </view>
 <view class='photo flex-row'>
   <view class='flex-1'>
@@ -19,10 +19,14 @@
     {{memberinfo.nickName}}
   </view>
   <view class='margin-top-10 flex-row' >
+    <navigator url='/pages/memberfollow/memberfollow' class='flex-row'>
     <view  style='margin-right:10rpx;'>{{memberinfo.followcount}} </view>
     <view class='txt-gray'>关注</view>
+    </navigator>
+    <navigator url='/pages/memberfans/memberfans' class='flex-row'>
     <view style='margin-left:40rpx;margin-right:10rpx;'>{{memberinfo.fanscount}} </view>
     <view class='txt-gray'>粉丝</view>
+    </navigator>
   </view>
 </view>
 

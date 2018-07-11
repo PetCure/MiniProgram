@@ -12,68 +12,47 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=5;
     super.onLoad(options);
-    this.Base.setMyData({  currenttab: 0 });
+    this.Base.setMyData({list:[]});
   }
   onMyShow() {
-    var that = this; 
+    var that = this;
     var mylocation = this.Base.getMyData().mylocation;
     that.Base.getAddress((addressinfo) => {
       that.Base.setMyData({ mylocation: addressinfo });
-      var api = new PostApi();
-      api.catlist({}, (catlist) => {
-        for (var i = 0; i < catlist.length; i++) {
-          catlist[i].postlist = [];
-        }
-        this.Base.setMyData({ catlist });
-        this.loaddata();
-      });
+      this.loaddata();
     });
   }
-  changeCurrentTab(e) {
-    console.log(e);
-    this.Base.setMyData({
-      currenttab: e.detail.current
-    });
-    this.loaddata();
-  }
-  changeTab(e) {
-    console.log(e);
-    this.Base.setMyData({
-      currenttab: e.currentTarget.id
-    });
-  }
-  loaddata(){
-    var that=this;
+  
+  loaddata() {
+    var that = this;
     var api = new PostApi();
     var that = this;
-    var seq = this.Base.getMyData().currenttab;
-    var catlist = this.Base.getMyData().catlist;
+    var list = this.Base.getMyData().list;
     var api = new PostApi();
-    var json={};
-    if (catlist[seq].postlist.length==0){
-      json={
-        cat_id:catlist[seq].id,
+    var json = {};
+    if (list.length == 0) {
+      json = {
+        intimes:"Y",
         orderby: "post_time desc limit 0,15"
       };
-    }else{
-      var lastpost = catlist[seq].postlist[0];
-      json={
-        cat_id: catlist[seq].id,
-        post_time_from:lastpost.post_time+".99",
-        orderby: "post_time desc limit 0,5"
+    } else {
+      var lastpost = list[0];
+      json = {
+        intimes: "Y",
+        post_time_from: lastpost.post_time + ".99"
       }
     }
-    api.list(json,(list)=>{
+    api.list(json, (nlist) => {
       var mylocation = this.Base.getMyData().mylocation;
-      if(list.length==0){
+      if (nlist.length == 0) {
         return;
       }
       wx.showToast({
-        title: '发现' + list.length+"条记录",
-        icon:"none"
+        title: '发现' + nlist.length + "条记录",
+        icon: "none"
       })
-      for(var i=0;i<list.length;i++){
-        var mile = GetDistance(mylocation.ad_info.location.lat, mylocation.ad_info.location.lng, list[i].lat, list[i].lng);
+      for (var i = 0; i < nlist.length; i++) {
+        var mile = GetDistance(mylocation.ad_info.location.lat, mylocation.ad_info.location.lng, nlist[i].lat, nlist[i].lng);
         if (mile > 1000) {
           mile = "约" + (mile / 1000.0).toFixed(1) + "千米";
         } else if (mile < 100) {
@@ -82,51 +61,47 @@ class Content extends AppBase {
         } else {
           mile = "约" + (mile).toString() + "米";
         }
-        list[i].cover = list[i].images.split(",")[0];
-        list[i].mile = mile;
-        list[i].timeduration = time_ago(list[i].post_time_timespan);
+        nlist[i].images = nlist[i].images.split(",");
+        nlist[i].mile = mile;
+        nlist[i].timeduration = time_ago(nlist[i].post_time_timespan);
 
       }
-      for (var i = 0; i < catlist[seq].postlist.length; i++) {
-        list.push(catlist[seq].postlist[i]);
+      for (var i = 0; i < list.length; i++) {
+        nlist.push(list.postlist[i]);
       }
-      catlist[seq].postlist=list;;
-
-      that.Base.setMyData({ catlist });
+      that.Base.setMyData({ list:nlist });
     });
-    
-      
+
+
 
 
   }
-  onReachBottom(){
+  onReachBottom() {
 
     var that = this;
     var api = new PostApi();
     var that = this;
-    var seq = this.Base.getMyData().currenttab;
-    var catlist = this.Base.getMyData().catlist;
+    var list = this.Base.getMyData().list;
     var api = new PostApi();
-    var lastpost = catlist[seq].postlist[catlist[seq].postlist.length - 1];
-    console.log(lastpost.post_time_timespan );
+    var lastpost = list[list.length - 1];
+    console.log(lastpost.post_time_timespan);
     var lasttimespan = lastpost.post_time_timespan - 1;
-    var lasttimespan_str=this.Base.util.FormatDateTime(new Date(lasttimespan*1000))+".99";
+    var lasttimespan_str = this.Base.util.FormatDateTime(new Date(lasttimespan * 1000)) + ".99";
     var json = {
-      cat_id: catlist[seq].id,
       post_time_to: lasttimespan_str,
-      orderby: "post_time desc limit 0,5"
+      orderby: "post_time desc limit 0,10"
     }
-    api.list(json, (list) => {
-      if (list.length == 0) {
+    api.list(json, (nlist) => {
+      if (nlist.length == 0) {
         wx.showToast({
           title: '没有更多了',
-          icon:"none"
+          icon: "none"
         })
         return;
       }
       var mylocation = this.Base.getMyData().mylocation;
-      for (var i = 0; i < list.length; i++) {
-        var mile = GetDistance(mylocation.ad_info.location.lat, mylocation.ad_info.location.lng, list[i].lat, list[i].lng);
+      for (var i = 0; i < nlist.length; i++) {
+        var mile = GetDistance(mylocation.ad_info.location.lat, mylocation.ad_info.location.lng, nlist[i].lat, nlist[i].lng);
         if (mile > 1000) {
           mile = "约" + (mile / 1000.0).toFixed(1) + "千米";
         } else if (mile < 100) {
@@ -135,13 +110,13 @@ class Content extends AppBase {
         } else {
           mile = "约" + (mile).toString() + "米";
         }
-        list[i].cover = list[i].images.split(",")[0];
-        list[i].mile = mile;
-        list[i].timeduration = time_ago(list[i].post_time_timespan);
+        nlist[i].images = nlist[i].images.split(",");
+        nlist[i].mile = mile;
+        nlist[i].timeduration = time_ago(nlist[i].post_time_timespan);
 
-        catlist[seq].postlist.push(list[i]);
+        list.push(nlist[i]);
       }
-      that.Base.setMyData({ catlist });
+      that.Base.setMyData({ list: list });
     });
 
 
@@ -149,7 +124,7 @@ class Content extends AppBase {
 
   }
 }
-var count=0;
+var count = 0;
 function Rad(d) {
   return d * Math.PI / 180.0; //经纬度转换成三角函数中度分表形式。
 }
@@ -170,35 +145,35 @@ function GetDistance(lat1, lng1, lat2, lng2) {
 function time_ago(agoTime) {
 
   // 计算出当前日期时间到之前的日期时间的毫秒数，以便进行下一步的计算
-  var time = (new Date()).getTime()/1000 - agoTime; 
+  var time = (new Date()).getTime() / 1000 - agoTime;
 
-  var num=0;
+  var num = 0;
   if (time >= 31104000) { // N年前
     num = parseInt(time / 31104000);
-    return num+'年前';
+    return num + '年前';
   }
   if (time >= 2592000) { // N月前
     num = parseInt(time / 2592000);
-    return num+'月前';
+    return num + '月前';
   }
   if (time >= 86400) { // N天前
     num = parseInt(time / 86400);
-    return num+'天前';
+    return num + '天前';
   }
   if (time >= 3600) { // N小时前
     num = parseInt(time / 3600);
-    return num+'小时前';
+    return num + '小时前';
   }
   if (time > 60) { // N分钟前
     num = parseInt(time / 60);
-    return num+'分钟前';
+    return num + '分钟前';
   }
   return '1分钟前';
 }
 
 var content = new Content();
 var body = content.generateBodyJson();
-body.onLoad = content.onLoad; 
+body.onLoad = content.onLoad;
 body.onMyShow = content.onMyShow;
 body.onReachBottom = content.onReachBottom;
 
