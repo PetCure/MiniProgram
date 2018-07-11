@@ -16,6 +16,15 @@
     <navigator url='/pages/info/info?id=shownext=Y&id={{item.id}}'>
     <view class='margin-top-10'>{{item.title}}</view>
     <view class='margin-top-10 h6 txt-gray'>{{item.summary}}</view>
+    </navigator>
+    <block wx:if="{{item.video!=''}}">
+    <view  class='margin-top-10' >
+      <video src='{{uploadpath}}post/{{item.video}}'></video>
+    </view>
+
+    </block>
+    <block wx:if="{{item.video==''}}">
+    <navigator url='/pages/info/info?id=shownext=Y&id={{item.id}}'>
     <view class='margin-top-10' wx:if="{{item.images.length==1}}">
         <image class='icon-40' src='{{uploadpath}}post/{{item.images[0]}}' style='width:300rpx;' mode='widthFix' ></image>
     </view>
@@ -25,6 +34,7 @@
       </view>
     </view>
     </navigator>
+    </block>
     <view class='h6 margin-top-10' style='color:#3c78d8'  bindtap='openMap' id="{{item.address}}">
       {{item.addresstitle}} {{item.mile}}
     </view>

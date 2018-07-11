@@ -89,6 +89,7 @@ class Content extends AppBase {
     var lasttimespan_str = this.Base.util.FormatDateTime(new Date(lasttimespan * 1000)) + ".99";
     var json = {
       post_time_to: lasttimespan_str,
+      intimes: "Y",
       orderby: "post_time desc limit 0,10"
     }
     api.list(json, (nlist) => {

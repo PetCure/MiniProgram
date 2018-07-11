@@ -12,14 +12,14 @@
   </view>
 </view>
 <view class='padding-20 white-block border-bottom'>
-  <view class='h4' style='margin-top:70rpx;'>
+  <view class='h5' style='margin-top:70rpx;'>
     {{memberinfo.nickName}}
   </view>
   <view class='margin-top-10 flex-row' >
-    <view  style='margin-right:10rpx;'>{{memberinfo.followcount}} </view>
-    <view class='txt-gray'>关注</view>
-    <view style='margin-left:40rpx;margin-right:10rpx;'>{{memberinfo.fanscount}} </view>
-    <view class='txt-gray'>粉丝</view>
+    <view class='h6' style='margin-right:10rpx;'>{{memberinfo.followcount}} </view>
+    <view class='txt-gray h6'>关注</view>
+    <view class='h6' style='margin-left:40rpx;margin-right:10rpx;'>{{memberinfo.fanscount}} </view>
+    <view class='txt-gray h6'>粉丝</view>
   </view>
 </view>
 
