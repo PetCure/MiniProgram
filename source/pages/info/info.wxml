@@ -101,7 +101,7 @@
         </view>
         <navigator url='/pages/memberinfo/memberinfo?id={{member_id}}' class='white-block padding-20 flex-row flex-center border-bottom'>
           <view style='margin-right:20rpx'>
-            <image class='icon-30' style='border-radius:50%' src='{{member_avatarUrl}}'></image>
+            <image class='icon' style='border-radius:50%' src='{{member_avatarUrl}}'></image>
           </view>
           <view class='flex-1' >
             <view>{{member_nickName}}</view>

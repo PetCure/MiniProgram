@@ -12,9 +12,17 @@ class Content extends AppBase {
     this.Base.Page = this;
     //options.id=6;
     super.onLoad(options);
-    this.Base.setMyData({
-      currenttab: 0
-    });
+    if (options.showcomment=="Y"){
+
+      this.Base.setMyData({
+        currenttab: 1
+      });
+    }else{
+
+      this.Base.setMyData({
+        currenttab: 0
+      });
+    }
 
   }
   onMyShow() {

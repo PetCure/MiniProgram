@@ -132,6 +132,9 @@ button[disabled][type=primary] {
   padding-bottom:20rpx;
 }
 
+.padding-10{
+  padding:10rpx;
+}
 .padding-20{
   padding:20rpx;
 }

@@ -41,5 +41,10 @@
     <view class='h6 margin-top-10 txt-gray'>
       {{item.timeduration}}
     </view>
+    <navigator url='/pages/info/info?id=shownext=Y&showcomment=Y&id={{item.id}}' class='margin-top padding-10' wx:if="{{item.commentlist.length>0}}" style="background-color:#eee;border-radius:4rpx;">
+      <view wx:for="{{item.commentlist}}" wx:key="ke" class='' >
+        <text  class='h6 line-height-0' style='color:#3c78d8'>{{item.nickName}}：</text><text class='h6 line-height-0'>{{item.comment}}</text>
+      </view>
+    </navigator>
   </view>
 </view>
