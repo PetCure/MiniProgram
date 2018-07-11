@@ -3,6 +3,9 @@
   width: 100vw;
   height: 74.4vw;
 }
+.maintab{
+  height: calc( 100vh - 74.4vw - 80rpx );
+}
 
 
 .comments{

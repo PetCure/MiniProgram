@@ -124,6 +124,10 @@ class Content extends AppBase {
 
 
   }
+  onPullDownRefresh(){
+    this.Base.setMyData({list:[]});
+    this.onMyShow();
+  }
 }
 var count = 0;
 function Rad(d) {
@@ -174,8 +178,10 @@ function time_ago(agoTime) {
 
 var content = new Content();
 var body = content.generateBodyJson();
-body.onLoad = content.onLoad;
+body.onLoad = content.onLoad; 
 body.onMyShow = content.onMyShow;
+body.onPullDownRefresh = content.onPullDownRefresh;
+body.onReachBottom = content.onReachBottom;
 body.onReachBottom = content.onReachBottom;
 
 body.changeCurrentTab = content.changeCurrentTab;
