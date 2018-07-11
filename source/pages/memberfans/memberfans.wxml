@@ -1,0 +1,6 @@
+<!--pages/memberfans/memberfans.wxml-->
+<view wx:for="{{list}}" wx:key="k" class='white-block flex-row flex-center'>
+  <view>
+    <image class='icon' src='{{item.member_avatarUrl}}'></image>
+  </view>
+</view>

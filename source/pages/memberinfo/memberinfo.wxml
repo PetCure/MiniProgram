@@ -6,15 +6,19 @@
   <view class='flex-1'>
     <image class='fullimg' src='{{memberinfo.avatarUrl}}' ></image>
   </view>
+  <view>
+    <button type='primary' size='mini' bindtap='addfriend' wx:if="{{memberinfo.followed==false}}"  >加关注</button>
+    <button type='primary' size='mini' wx:if="{{memberinfo.followed==true}}" bindtap='removefriend' >取消关注</button>
+  </view>
 </view>
 <view class='padding-20 white-block border-bottom'>
   <view class='h4' style='margin-top:70rpx;'>
     {{memberinfo.nickName}}
   </view>
   <view class='margin-top-10 flex-row' >
-    <view  style='margin-right:10rpx;'>0 </view>
+    <view  style='margin-right:10rpx;'>{{memberinfo.followcount}} </view>
     <view class='txt-gray'>关注</view>
-    <view style='margin-left:40rpx;margin-right:10rpx;'>0 </view>
+    <view style='margin-left:40rpx;margin-right:10rpx;'>{{memberinfo.fanscount}} </view>
     <view class='txt-gray'>粉丝</view>
   </view>
 </view>

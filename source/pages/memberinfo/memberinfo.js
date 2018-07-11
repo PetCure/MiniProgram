@@ -20,7 +20,7 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
     var memberApi = new MemberApi();
-    memberApi.info({member_id:this.Base.options.id}, (memberinfo) => {
+    memberApi.info({fmember_id:this.Base.options.id}, (memberinfo) => {
       if (memberinfo != null) {
         this.Base.setMyData({ memberinfo: memberinfo });
       }
@@ -78,6 +78,38 @@ class Content extends AppBase {
       url: '/pages/mypost/mypost',
     })
   }
+  addfriend(){
+
+    var api = new MemberApi();
+    var that = this;
+
+    api.addfriend({follow_member_id:this.Base.options.id},(ret)=>{
+      wx.showToast({
+        title: '关注成功',
+        icon:"none"
+      });
+      var memberinfo=that.Base.getMyData().memberinfo;
+      memberinfo.followed=true;
+      memberinfo.fanscount = memberinfo.fanscount+1;
+      that.Base.setMyData({memberinfo:memberinfo});
+    });
+  }
+  removefriend() {
+
+    var api = new MemberApi();
+    var that = this;
+
+    api.removefriend({ follow_member_id: this.Base.options.id }, (ret) => {
+      wx.showToast({
+        title: '已取消关注',
+        icon: "none"
+      });
+      var memberinfo = that.Base.getMyData().memberinfo;
+      memberinfo.followed = false;
+      memberinfo.fanscount = memberinfo.fanscount - 1;
+      that.Base.setMyData({ memberinfo: memberinfo });
+    });
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -88,4 +120,6 @@ body.changeTab = content.changeTab;
 body.loaddata = content.loaddata;
 body.allpost = content.allpost;
 body.allfollow = content.allfollow;
+body.addfriend = content.addfriend;
+body.removefriend = content.removefriend;
 Page(body)
