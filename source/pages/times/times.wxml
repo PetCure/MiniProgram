@@ -26,7 +26,7 @@
     <block wx:if="{{item.video==''}}">
     <navigator url='/pages/info/info?id=shownext=Y&id={{item.id}}'>
     <view class='margin-top-10' wx:if="{{item.images.length==1}}">
-        <image class='icon-40' src='{{uploadpath}}post/{{item.images[0]}}' style='width:300rpx;' mode='widthFix' ></image>
+        <image  src='{{uploadpath}}post/{{item.images[0]}}' style='max-width:400rpx;' mode='widthFix' ></image>
     </view>
     <view class='flex-row flex-wrap' wx:if="{{item.images.length>1}}">
       <view wx:for="{{item.images}}" wx:key="k">
