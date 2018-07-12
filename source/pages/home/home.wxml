@@ -1,16 +1,84 @@
 <!--pages/home/home.wxml-->
-<map id="map"  scale="15" latitude='{{mylocation.ad_info.location.lat}}' markers='{{markers}}' longitude='{{mylocation.ad_info.location.lng}}' show-location style="width: 100vw; height: 100vh;" bindregionchange="bindupdated" bindmarkertap="markerclick" >
+<view class='white-block'>
+  <view class='padding-20'>
 
-<cover-view class=' padding-20'>
-<cover-view class='margin-top'>
-<cover-image src='{{uploadpath}}resource/post.png' class='btn' bindtap='createPost' ></cover-image>
-</cover-view>
-<cover-view class='margin-top'>
-<cover-image src='{{uploadpath}}resource/refresh.png' bindtap='onNewload'  class='btn' ></cover-image>
-</cover-view>
-<cover-view  class='margin-top'>
-<cover-image src='{{uploadpath}}resource/help.png'  bindtap='openContent' data-title='帮助' data-keycode='help'  class='btn' ></cover-image>
-</cover-view>
-</cover-view>
+    <swiper indicator-dots="false" autoplay="{{true}}" interval="5000" duration="1000">
+      <block wx:for="{{indexbanner}}" wx:key="k">
+        <swiper-item>
+          <image class='indexbanner' src="{{uploadpath}}indexbanner/{{item.img}}" />
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
 
-</map>
+  <view class='padding-20 flex-row'>
+    <view class='flex-1 text-center' bindtap='comingsoon'>
+      <view>
+          <image  class='icon-40' src="{{uploadpath}}resource/dog.png" />
+      </view>
+      <view class='h5'>
+        选伙伴
+      </view>
+    </view>
+    <view class='flex-1 text-center' bindtap='comingsoon'>
+      <view>
+          <image  class='icon-40' src="{{uploadpath}}resource/dogfood.png" />
+      </view>
+      <view class='h5'>
+        找伙食
+      </view>
+    </view>
+    <view class='flex-1 text-center' bindtap='comingsoon'>
+      <view>
+          <image  class='icon-40' src="{{uploadpath}}resource/char.png" />
+      </view>
+      <view class='h5'>
+        性格
+      </view>
+    </view>
+    <view class='flex-1 text-center' bindtap='comingsoon'>
+      <view>
+          <image  class='icon-40' src="{{uploadpath}}resource/toy.png" />
+      </view>
+      <view class='h5'>
+        道具
+      </view>
+    </view>
+  
+  </view>
+
+  <view class='padding-20'></view>
+
+</view>
+
+
+<view class='margin-top white-block padding-20' wx:for="{{catlist}}" wx:key="l">
+  <view class='flex-row flex-center'>
+    <view class='line-height-0' style='margin-right:15rpx;'>
+          <image  class='icon' src="{{uploadpath}}postcat/{{item.icon}}" />
+    </view>
+    <view class='flex-1'>
+      {{item.name}}
+    </view>
+    <view class='h6 txt-gray' id="{{item.id}}" bindtap='randomload'>
+      换一换
+    </view>
+    <view class='line-height-0' style='margin-left:10rpx;'  id="{{item.id}}" bindtap='randomload'>
+    <image  class='icon-15' src="{{uploadpath}}resource/random.png"  />
+    </view>
+  </view>
+  <view class='flex-row flex-wrap'>
+     <navigator url='/pages/info/info?shownext=Y&id={{item.id}}'  class='item margin-top-10 item-{{idx%2}}' wx:for="{{item.postlist}}" wx:key="k" wx:for-index="idx">
+      <view>
+    <image  src="{{uploadpath}}post/{{item.cover}}" mode='aspectFill' />
+      </view>
+      <view class='h5'>
+        {{item.title}}
+      </view>
+    </navigator>
+  </view>
+</view>
+
+<view  class='txt-gray padding-20 text-center h6'>
+云易创版权所有
+</view>

@@ -5,3 +5,23 @@
   border-radius: 50%;
 
 }
+
+.indexbanner{
+  width: 710rpx;
+  height: 300rpx;
+  border-radius: 10rpx;
+}
+.item{
+  width: 345rpx;
+}
+.item-0{
+  margin-right:10rpx;
+}
+.item-1{
+  margin-left:10rpx;
+}
+.item image{
+  width: 345rpx;
+  height: 210rpx;
+  border-radius: 10rpx;
+}

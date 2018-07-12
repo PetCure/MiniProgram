@@ -7,7 +7,10 @@
     <image class='fullimg' src='{{memberinfo.avatarUrl}}' ></image>
   </view>
   <view>
-    <button type='primary' size='mini' bindtap='post' >我要发布</button>
+    <button class='btn-primary-line'  size='mini' bindtap='message' >消息</button>
+  </view>
+  <view>
+    <button type='primary' size='mini' bindtap='post' >发布</button>
   </view>
   <!--
   <view>

@@ -83,6 +83,12 @@ class Content extends AppBase {
       url: '/pages/post/post',
     })
   }
+  message(){
+
+    wx.navigateTo({
+      url: '/pages/message/message',
+    })
+  }
 } 
 var content = new Content();
 var body = content.generateBodyJson();
@@ -94,4 +100,5 @@ body.loaddata = content.loaddata;
 body.allpost = content.allpost; 
 body.allfollow = content.allfollow;
 body.post = content.post;
+body.message = content.message;
 Page(body)

@@ -31,7 +31,7 @@
   <swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
     <swiper-item>
       <scroll-view scroll-y style='height:100%'>
-        <view class='white-block padding-20 flex-row border-bottom'>
+        <view class='white-block padding-20 flex-row'>
           <view class='flex-1'>
             <view class='h4'>{{title}}</view>
             <view class='h6 txt-gray margin-top'>{{summary}}</view>

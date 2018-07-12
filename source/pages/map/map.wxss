@@ -1,0 +1,7 @@
+.btn{
+  width: 80rpx;
+  height: 80rpx;
+  background: white;
+  border-radius: 50%;
+
+}

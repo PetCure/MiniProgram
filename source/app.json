@@ -1,12 +1,13 @@
 {
   "pages":[
+    "pages/home/home",
     "pages/list/list",
     "pages/times/times",
     "pages/member/member",
     "pages/memberfollow/memberfollow",
     "pages/memberfans/memberfans",
     "pages/post/post",
-    "pages/home/home",
+    "pages/map/map",
     "pages/commentlikelist/commentlikelist",
     "pages/info/info",
     "pages/message/message",
@@ -42,6 +43,12 @@
     "backgroundColor": "#ffffff",
     "list": [
       {
+        "text": "首页",
+        "pagePath": "pages/home/home",
+        "iconPath": "images/icons/home-o.png",
+        "selectedIconPath": "images/icons/home.png"
+      },
+      {
         "text": "动态",
         "pagePath": "pages/list/list",
         "iconPath": "images/icons/list-o.png",
@@ -49,7 +56,7 @@
       },
       {
         "text": "附近",
-        "pagePath": "pages/home/home",
+        "pagePath": "pages/map/map",
         "iconPath": "images/icons/map-o.png",
         "selectedIconPath": "images/icons/map.png"
       },
@@ -58,12 +65,6 @@
         "pagePath": "pages/times/times",
         "iconPath": "images/icons/times-o.png",
         "selectedIconPath": "images/icons/times.png"
-      },
-      {
-        "text": "消息",
-        "pagePath": "pages/message/message",
-        "iconPath": "images/icons/mail-o.png",
-        "selectedIconPath": "images/icons/mail.png"
       },
       {
         "text": "我的",
