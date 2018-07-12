@@ -15,9 +15,6 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
   }
-  loaddata(){
-
-  }
 }
 var content = new Content();
 var body = content.generateBodyJson();

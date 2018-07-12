@@ -1,0 +1,300 @@
+<!--pages/dogtest/dogtest.wxml-->
+<view wx:if='{{pg==1}}'>
+
+<view class='line-height-0'>
+  <image src='{{uploadpath}}resource/dogtestbanner.png' class='fullimg' style='height:402rpx;'></image>
+</view>
+
+<view style='background:#5aa9f0' class='text-center txt-white padding-20 h4'>
+第一步 请选择您的性格
+</view>
+
+<view class='padding-20 '>
+  <view class='padding-20 border' bindtap='character' id="1">
+    <view class='h3 txt-blue' >
+      成熟豁达型滴~
+    </view>
+    <view class='txt-blue margin-top-10 h5'>您的性格，成熟沉稳，豁达豪爽。思维缜密，让人信赖敬仰。</view>
+  </view>
+  <view class='padding-20 border margin-top-10' bindtap='character' id="2">
+    <view class='h3 txt-blue' >
+      阳光活力型滴~
+    </view>
+    <view class='txt-blue margin-top-10 h5'>您具有阳光活力的性格，乐观开朗，积极健康，内心充满活力。</view>
+  </view>
+  <view class='padding-20 border margin-top-10' bindtap='character' id="3">
+    <view class='h3 txt-blue' >
+      安静体贴型滴~
+    </view>
+    <view class='txt-blue margin-top-10 h5'>您的性格偏向安静，体贴细心，感性，您能发现生活中细微的细节。</view>
+  </view>
+  <view class='padding-20 border margin-top-10' bindtap='character' id="4">
+    <view class='h3 txt-blue' >
+      彪悍威严型滴~
+    </view>
+    <view class='txt-blue margin-top-10 h5'>威严高大，稳重大气，彪悍勇敢。在众人心中您是高大威严的形象。</view>
+  </view>
+</view>
+
+</view>
+
+<view wx:if='{{pg==2}}'>
+  <view style='background:#5aa9f0' class='text-center txt-white padding-20 h4'>
+  第二步 请选择您喜欢的类型
+  </view>
+  <view class='padding-20 text-center' style='background:#eef6fd'>
+    <image style='width:186rpx;height:130rpx;' src='{{uploadpath}}resource/dogtestmasterbanner.png'></image>
+  </view>
+  <view class='text-center txt-blue padding-20 margin-top-10 h4'>
+  每日搭理宠物时长(小时)
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{time=="1"?"selected":""}}' bindtap='time' id="1">
+      0~1小时
+    </view>
+    <view class='unselected  text-center  {{time=="2"?"selected":""}}' bindtap='time' id="2">
+      1~3小时
+    </view>
+    <view class='unselected  text-center  {{time=="3"?"selected":""}}' bindtap='time' id="3">
+      3小时以上
+    </view>
+  </view>
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  照顾宠物空闲时段
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{period_1=="1"?"selected":""}}' bindtap='period_1' >
+      清晨
+    </view>
+    <view class='unselected  text-center  {{period_2=="1"?"selected":""}}' bindtap='period_2' >
+      白天
+    </view>
+    <view class='unselected  text-center  {{period_3=="1"?"selected":""}}' bindtap='period_3' >
+      晚上
+    </view>
+  </view>
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  是否有Baby
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{baby=="1"?"selected":""}}' bindtap='baby' id="1">
+      有
+    </view>
+    <view class='unselected  text-center  {{baby=="2"?"selected":""}}' bindtap='baby' id="2">
+      计划中
+    </view>
+    <view class='unselected  text-center  {{baby=="0"?"selected":""}}' bindtap='baby' id="0">
+      没有
+    </view>
+  </view>
+
+
+
+  <view class='padding-20 text-center margin-top' style='background:#eef6fd'>
+    <image style='width:186rpx;height:130rpx;' src='{{uploadpath}}resource/dogtestenvbanner.png'></image>
+  </view>
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  养宠环境大小
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{area=="1"?"selected":""}}' bindtap='area' id="1">
+      0~20平
+    </view>
+    <view class='unselected  text-center  {{area=="2"?"selected":""}}' bindtap='area' id="2">
+      20～70平
+    </view>
+    <view class='unselected  text-center  {{area=="3"?"selected":""}}' bindtap='area' id="3">
+      70平以上
+    </view>
+  </view>
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  阳光条件
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{sunshine=="1"?"selected":""}}' bindtap='sunshine' id="1">
+      缺少
+    </view>
+    <view class='unselected  text-center  {{sunshine=="2"?"selected":""}}' bindtap='sunshine' id="2">
+      一般
+    </view>
+    <view class='unselected  text-center  {{sunshine=="3"?"selected":""}}' bindtap='sunshine' id="3">
+      充足
+    </view>
+  </view>
+
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  养宠月预算
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{budget=="1"?"selected":""}}' bindtap='budget' id="1">
+      0～200
+    </view>
+    <view class='unselected  text-center  {{budget=="2"?"selected":""}}' bindtap='budget' id="2">
+      200～1000
+    </view>
+    <view class='unselected  text-center  {{budget=="3"?"selected":""}}' bindtap='budget' id="3">
+      1000以上
+    </view>
+  </view>
+
+
+
+
+  <view class='padding-20 text-center margin-top' style='background:#eef6fd'>
+    <image style='width:186rpx;height:130rpx;' src='{{uploadpath}}resource/dogtestfevbanner.png'></image>
+  </view>
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  体型
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{body_type=="1"?"selected":""}}' bindtap='body_type' id="1">
+      小型
+    </view>
+    <view class='unselected  text-center  {{body_type=="2"?"selected":""}}' bindtap='body_type' id="2">
+      中型
+    </view>
+    <view class='unselected  text-center  {{body_type=="3"?"selected":""}}' bindtap='body_type' id="3">
+      大型
+    </view>
+  </view>
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  毛长
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{hair=="1"?"selected":""}}' bindtap='hair' id="1">
+      短毛
+    </view>
+    <view class='unselected  text-center  {{hair=="2"?"selected":""}}' bindtap='hair' id="2">
+      长毛
+    </view>
+  </view>
+
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  活泼程度
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{lively=="1"?"selected":""}}' bindtap='lively' id="1">
+      安静
+    </view>
+    <view class='unselected  text-center  {{lively=="2"?"selected":""}}' bindtap='lively' id="2">
+      一般
+    </view>
+    <view class='unselected  text-center  {{lively=="3"?"selected":""}}' bindtap='lively' id="3">
+      活泼
+    </view>
+  </view>
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  友好度
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{kindly=="1"?"selected":""}}' bindtap='kindly' id="1">
+      温顺
+    </view>
+    <view class='unselected  text-center  {{kindly=="2"?"selected":""}}' bindtap='kindly' id="2">
+      一般
+    </view>
+    <view class='unselected  text-center  {{kindly=="3"?"selected":""}}' bindtap='kindly' id="3">
+      刚烈
+    </view>
+  </view>
+
+  <view class='text-center txt-blue padding-20 margin-top h4'>
+  战斗力
+  </view>
+  <view class='padding-20  flex-row'>
+    <view class='unselected  text-center  {{combat=="1"?"selected":""}}' bindtap='combat' id="1">
+      弱
+    </view>
+    <view class='unselected  text-center  {{combat=="2"?"selected":""}}' bindtap='combat' id="2">
+      中
+    </view>
+    <view class='unselected  text-center  {{combat=="3"?"selected":""}}' bindtap='combat' id="3">
+      强
+    </view>
+    <view class='unselected  text-center  {{combat=="4"?"selected":""}}' bindtap='combat' id="4">
+      极强
+    </view>
+  </view>
+
+  <view class='padding-20'>
+  <view style='margin-top:50rpx;margin-bottom:40rpx;'>
+    <button class='btn-orange' bindtap='anwser'>生成答案</button>
+  </view>
+  </view>
+
+</view>
+
+<view wx:if="{{pg==3}}">
+  <view  wx:if="{{anwser.noitem==true}}" class='padding-20 txt-gray' style='background:#eef6fd;'>
+    没有找到完全符合您要求的犬种，其他您可能感兴趣的犬种推荐。
+  </view>
+  <view wx:for="{{anwser.dog}}" wx:key="k" >
+    <view>
+    <image class='fullimg' mode="widthFix" src='{{item.image}}'></image>
+    </view>
+    <view style='position:absolute;margin-top:-80rpx;margin-left:30rpx;' class='txt-white h4'>
+      {{item.breed}}
+    </view>
+    <view class='flex-row flex-wrap padding-20'>
+      <view style='width:40%;' class='padding-10'>体型：{{item.body_type}}</view>
+      <view style='width:40%;' class='padding-10'>毛长：{{item.hair}}</view>
+      <view style='width:40%;' class='padding-10'>活泼度：{{item.lively}}</view>
+      <view style='width:40%;' class='padding-10'>友好度：{{item.kindly}}</view>
+      <view style='width:40%;' class='padding-10'>攻击力：{{item.combat}}</view>
+    </view>
+  </view>
+  <view class='padding-20'>
+    <view class='border-bottom'></view>
+  </view>
+  <view class='padding-20'>
+    <view class='h4'>您的私人建议</view>
+    <block wx:if="{{anwser.master.character!='null'}}">
+    <view class='margin-top'>主人性格分析：</view>
+    <view class='h5 margin-top-10'>{{anwser.master.character}}</view>
+    </block>
+
+    <block wx:if="{{anwser.master.time!='null'}}">
+    <view class='margin-top'>搭理宠物时长分析：</view>
+    <view class='h5 margin-top-10'>{{anwser.master.time}}</view>
+    </block>
+
+    <block wx:if="{{anwser.master.time!='null'}}">
+    <view class='margin-top'>照顾宠物时间段剖析：</view>
+    <view class='h5 margin-top-10'>{{anwser.master.period}}</view>
+    </block>
+
+    <block wx:if="{{anwser.master.baby!='null'}}">
+    <view class='margin-top'>养宠家庭思考分析：</view>
+    <view class='h5 margin-top-10'>{{anwser.master.baby}}</view>
+    </block>
+
+    <block wx:if="{{anwser.master.area!='null'}}">
+    <view class='margin-top'>养宠环境大小分析：</view>
+    <view class='h5 margin-top-10'>{{anwser.master.area}}</view>
+    </block>
+
+    <block wx:if="{{anwser.master.sunshine!='null'}}">
+    <view class='margin-top'>阳光条件建议：</view>
+    <view class='h5 margin-top-10'>{{anwser.master.sunshine}}</view>
+    </block>
+
+    <block wx:if="{{anwser.master.budget!='null'}}">
+    <view class='margin-top'>养宠预算分析：</view>
+    <view class='h5 margin-top-10'>{{anwser.master.budget}}</view>
+    </block>
+  </view>
+
+  <view class='padding-20'>
+  <view style='margin-top:50rpx;margin-bottom:40rpx;'>
+    <button class='btn-orange' bindtap='pg1'>重新测试</button>
+  </view>
+  </view>
+</view>
+

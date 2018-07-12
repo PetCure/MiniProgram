@@ -199,7 +199,12 @@ button[disabled][type=primary] {
 .box-shadow{
   box-shadow: 2rpx 2rpx 2rpx #888888;
 }
-
+.border{
+  border:2rpx solid #dcdcdc;
+}
+.border-radius-10{
+  border-radius: 10%;
+}
 
 .fixedbottom{
   position: fixed;
