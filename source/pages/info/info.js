@@ -60,10 +60,11 @@ class Content extends AppBase {
     });
   }
   sendComment(e){
+    console.log(e);
     var that=this;
     var comment = e.detail.value.comment; 
     var api = new PostApi();
-    api.comment({ post_id: this.Base.options.id,comment:comment }, (ret) => {
+    api.comment({ post_id: this.Base.options.id, comment: comment, formid: e.detail.formId }, (ret) => {
       that.loadcomment();
       that.Base.setMyData({ comment:""});
     });
@@ -101,14 +102,14 @@ class Content extends AppBase {
     var that=this;
     wx.showModal({
       title: '提示',
-      content: '是否确定你发布的问题已解决',
+      content: '删除后就再也找不回了，你确定吗？',
       success:function(res){
         if(res.confirm){
 
           var api = new PostApi();
           api.fix({ post_id: that.Base.options.id });
 
-          that.Base.setMyData({ status: "I", status_name: "已解决" });
+          wx.showToast("删除成功～最后再看一眼吧");
         }
       }
     });

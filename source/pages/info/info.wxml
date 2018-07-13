@@ -37,19 +37,8 @@
             <view class='h6 txt-gray margin-top'>{{summary}}</view>
             <view class='h6 txt-gray margin-top'>发布时间：{{post_time_formatting}}</view>
           </view>
-          <view class='padding-20' wx:if="{{false}}">
-
-            <view wx:if="{{ismy==true}}" class='txt-primary'>
-              <block wx:if="{{status=='A'}}">
-                <button size='mini' type='primary' bindtap='fix'>已解决</button>
-              </block>
-              <block wx:if="{{status!='A'}}">
-                {{status_name}}
-              </block>
-            </view>
-            <view wx:if="{{ismy==false}}" class='txt-primary'>
-              {{status_name}}
-            </view>
+          <view class='padding-20' wx:if="{{status=='A'&&ismy==true}}">
+              <button size='mini' class='btn-primary-line' bindtap='fix'>删除</button>
           </view>
         </view>
         <view class='white-block padding-20 flex-row flex-center border-bottom text-center'>
@@ -107,7 +96,7 @@
             <view>{{member_nickName}}</view>
           </view>
         </navigator>
-        <view class='white-block padding-20 flex-row border-bottom'>
+        <view class='white-block padding-20 flex-row border-bottom'  wx:if="{{cat_id!=5}}">
           <view style='margin-right:20rpx'>
             <image class='icon' src='{{uploadpath}}resource/phone.png'></image>
           </view>
@@ -115,7 +104,7 @@
             <view>{{mobile}}</view>
           </view>
         </view>
-        <view class='white-block padding-20 flex-row flex-center'>
+        <view class='white-block padding-20 flex-row flex-center' wx:if="{{cat_id!=5}}">
           <view style='margin-right:20rpx'>
             <image class='icon' src='{{uploadpath}}resource/location.png'></image>
           </view>
@@ -166,7 +155,7 @@
           </view>
         </view>
         <view class='block-100'></view>
-        <form bindsubmit="sendComment" bindreset="formReset">
+        <form bindsubmit="sendComment" bindreset="formReset" report-submit="{{true}}">
           <view class='flex-row flex-center bottomin  white-block' style='padding:20rpx; '>
             <view style='flex:4;font-size:28rpx;'>
               <input type='text' placeholder='我也要说点什么' name="comment" value='{{comment}}' maxlength='50'></input>

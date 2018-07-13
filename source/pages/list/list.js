@@ -75,7 +75,7 @@ class Content extends AppBase {
       for(var i=0;i<list.length;i++){
         var mile = GetDistance(mylocation.ad_info.location.lat, mylocation.ad_info.location.lng, list[i].lat, list[i].lng);
         if (mile > 1000) {
-          mile = "约" + (mile / 1000.0).toFixed(1) + "千米";
+          mile = "约" + (mile / 1000.0).toFixed(0) + "千米";
         } else if (mile < 100) {
 
           mile = "100米内";

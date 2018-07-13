@@ -12,14 +12,14 @@
   </view>
 
   <view class='padding-20 flex-row'>
-    <view class='flex-1 text-center' bindtap='comingsoon'>
+    <navigator url='/pages/dogtest/dogtest' class='flex-1 text-center' >
       <view>
           <image  class='icon-40' src="{{uploadpath}}resource/dog.png" />
       </view>
       <view class='h5'>
         选伙伴
       </view>
-    </view>
+    </navigator>
     <view class='flex-1 text-center' bindtap='comingsoon'>
       <view>
           <image  class='icon-40' src="{{uploadpath}}resource/dogfood.png" />

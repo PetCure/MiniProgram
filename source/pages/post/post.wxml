@@ -26,14 +26,14 @@
       <textarea hidden='{{noticesuccess==true}}' name="summary" placeholder='请输入的内容' auto-height='true' style='width:100%;' maxlength='144'></textarea>
     </view>
   </view>
-  <view class='flex-row margin-top-10 padding-20'>
+  <view class='flex-row margin-top-10 padding-20' wx:if="{{catlist[catindex].id!=5}}">
     <view class='title' >位置</view>
     <view class='flex-1' bindtap='selectaddress' >
       <view>{{address.title}}</view>
       <view class='h6 txt-gray'>{{address.address}}</view>
     </view>
   </view>
-  <view class='flex-row flex-center margin-top-10 padding-20'>
+  <view class='flex-row flex-center margin-top-10 padding-20' wx:if="{{catlist[catindex].id!=5}}">
     <view class='title' >手机</view>
     <view class='flex-1' >
       <input hidden='{{noticesuccess==true}}' name="mobile" value="{{mobile}}" placeholder='请输入联系方式'></input>

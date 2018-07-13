@@ -1,13 +1,8 @@
 // pages/content/content.js
-import {
-  AppBase
-} from "../../appbase";
-import {
-  ApiConfig
-} from "../../apis/apiconfig";
-import {
-  InstApi
-} from "../../apis/inst.api.js";
+import {AppBase} from "../../appbase";
+import {ApiConfig} from "../../apis/apiconfig";
+import { InstApi } from "../../apis/inst.api.js";
+import { TestApi } from "../../apis/test.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -18,30 +13,7 @@ class Content extends AppBase {
     //options.id=5;
     super.onLoad(options);
     this.Base.setMyData({
-      pg: 1,
-      anwser: {
-        noitem: true,
-        dog: [{
-          body_type: "中型犬",
-          breed: "比利时牧羊犬",
-          combat: "一般",
-          hair: "长毛",
-          image: "http://pic2.58.com/m58/shaixuan/比利时牧羊犬.png",
-          kindly: "一般",
-          link: "bmuyangquan",
-          lively: "一般"
-        }],
-        master: {
-          area: "根据您的饲养宠物环境大小，建议您饲养小型、或中型犬种。",
-          baby: "null",
-          budget: "您选择中小型犬，该范围宠物吃喝应该基本保障，但是如果宠物需要修毛，美容，洗澡，护理，预算就略微紧张啦。",
-          character: "您是成熟、稳重、豁达、豪爽、精明干练的人。有一种以不变应万变的淡定，喜欢向困难发起挑战，有着誓死拼搏的雄心和霸气。您的性格适合养中大型，忠诚听话的犬种。",
-          period: "可照顾狗狗时段分析，您在清晨较无时间。狗狗一般醒的比人要早，并且呆了一夜，狗狗在清晨时最好可以遛弯，以进行大小便排解。并且清晨空气更加清新，为了您狗狗的健康，建议您清晨可以至少带狗狗出门方便。↵根据您可照顾狗狗时段分析，您可以增加晚上遛狗时间。让您的狗狗，在晚上遛弯方便后再回家入睡。避免第二天早上狗狗在家中因为方便而被憋难受。↵",
-          sunshine: "您养宠阳光条件良好，建议您可以经常带宠物户外活动，以补充更多的阳光。",
-          time: "您可投入照顾犬的时间是0-1小时，您选择的是中型犬。↵您的照顾时间，较为不足。中型犬建议您每天至少两次遛狗，每次遛狗时间不少于30分钟，请您适度增加照顾犬的时间，以保证您狗狗的身心健康。"
-        }
-      }
-      
+      pg: 1
     });
   }
   onMyShow() {
@@ -213,10 +185,37 @@ class Content extends AppBase {
       });
       return;
     }
-    this.Base.setMyData({ pg: 3 });
+    var master = { character: data.character,
+      time: data.time,
+      period: { "1": data.period_1, "2": data.period_2, "3": data.period_3},
+      baby: data.baby,
+      area: data.area,
+      sunshine: data.sunshine,
+      budget: data.budget
+    };
+    var dog = {
+      body_type: data.body_type,
+      hair: data.hair,
+      lively: data.lively,
+      kindly: data.kindly,
+      combat: data.combat,
+    };
+    var url = "http://3g.ganji.com/pet/util.php?f=petDogRecommend&master=" + JSON.stringify(master) + "&dog=" + JSON.stringify(dog);
+
+    data.url=url;
+    var api = new TestApi();
+    api.dogtest(data,(ret)=>{
+      this.Base.setMyData({anwser:ret,pg:3});
+    });
+
+    this.Base.setMyData({
+      pg: 3
+    });
   }
-  pg1(){
-    this.Base.setMyData({pg:1});
+  pg1() {
+    this.Base.setMyData({
+      pg: 1
+    });
   }
 }
 
@@ -245,7 +244,7 @@ body.body_type = content.body_type;
 body.hair = content.hair;
 body.lively = content.lively;
 body.kindly = content.kindly;
-body.combat = content.combat; 
+body.combat = content.combat;
 body.anwser = content.anwser;
 body.pg1 = content.pg1;
 

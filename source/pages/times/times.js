@@ -21,6 +21,9 @@ class Content extends AppBase {
       that.Base.setMyData({ mylocation: addressinfo });
       this.loaddata();
     });
+    wx.hideTabBarRedDot({
+      index: 3,
+    })
   }
   
   loaddata() {
@@ -104,7 +107,7 @@ class Content extends AppBase {
       for (var i = 0; i < nlist.length; i++) {
         var mile = GetDistance(mylocation.ad_info.location.lat, mylocation.ad_info.location.lng, nlist[i].lat, nlist[i].lng);
         if (mile > 1000) {
-          mile = "约" + (mile / 1000.0).toFixed(1) + "千米";
+          mile = "约" + (mile / 1000.0).toFixed(0) + "千米";
         } else if (mile < 100) {
 
           mile = "100米内";

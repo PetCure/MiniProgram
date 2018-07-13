@@ -19,9 +19,8 @@
     </navigator>
     <block wx:if="{{item.video!=''}}">
     <view  class='margin-top-10' >
-      <video src='{{uploadpath}}post/{{item.video}}'></video>
+      <video src='{{uploadpath}}post/{{item.video}}' poster='{{uploadpath}}/poster/{{item.cover}}'></video>
     </view>
-
     </block>
     <block wx:if="{{item.video==''}}">
     <navigator url='/pages/info/info?id=shownext=Y&id={{item.id}}'>

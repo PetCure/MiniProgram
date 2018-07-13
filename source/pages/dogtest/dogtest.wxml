@@ -265,7 +265,7 @@
     <view class='h5 margin-top-10'>{{anwser.master.time}}</view>
     </block>
 
-    <block wx:if="{{anwser.master.time!='null'}}">
+    <block wx:if="{{anwser.master.period!='null'}}">
     <view class='margin-top'>照顾宠物时间段剖析：</view>
     <view class='h5 margin-top-10'>{{anwser.master.period}}</view>
     </block>
@@ -290,7 +290,7 @@
     <view class='h5 margin-top-10'>{{anwser.master.budget}}</view>
     </block>
   </view>
-
+  
   <view class='padding-20'>
   <view style='margin-top:50rpx;margin-bottom:40rpx;'>
     <button class='btn-orange' bindtap='pg1'>重新测试</button>

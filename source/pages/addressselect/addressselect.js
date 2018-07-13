@@ -60,11 +60,16 @@ class Content extends AppBase {
     console.log(data);
     var inputVal = this.Base.getMyData().inputVal;
     var mylocation = this.Base.getMyData().mylocation;
+    var region = mylocation.address_component.province + mylocation.address_component.city;
+    var UserInfo=this.Base.getMyData().UserInfo;
 
+    if (this.UserInfo.nickName=="宠物救助客服"){
+      region="中国";
+    }
     console.log(inputVal);
     QQMAP.getSuggestion({
       keyword: inputVal,
-      region: mylocation.address_component.province + mylocation.address_component.city,
+      region: region,
       region_fix: 1,
       //policy:1,
       success: function (res) {

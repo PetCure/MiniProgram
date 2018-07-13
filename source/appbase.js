@@ -180,7 +180,16 @@ export class AppBase {
                 console.log(AppBase.UserInfo);
                 ApiConfig.SetToken(data.openid);
                 console.log("goto update info");
-                memberapi.update(AppBase.UserInfo);
+                memberapi.update(AppBase.UserInfo,()=>{
+                  memberapi.info({},(ret)=>{
+                    console.log("~~~~");
+                    if (ret.timesupdated=='Y'){
+                      wx.showTabBarRedDot({
+                        index: 2,
+                      })
+                    }
+                  });
+                });
 
 
                 console.log(AppBase.UserInfo);
@@ -211,7 +220,16 @@ export class AppBase {
         that.setMyData({ UserInfo: AppBase.UserInfo });
       } else {
         that.Base.setMyData({ UserInfo: AppBase.UserInfo });
-      }
+      } 
+      var memberapi = new MemberApi();
+      memberapi.info({}, (ret) => {
+        console.log("~~~~");
+        if (ret.timesupdated == 'Y') {
+          wx.showTabBarRedDot({
+            index: 3,
+          })
+        }
+      });
       that.onMyShow();
     }
 

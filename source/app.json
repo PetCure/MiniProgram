@@ -1,10 +1,10 @@
 {
   "pages":[
-    "pages/dogtest/dogtest",
     "pages/home/home",
+    "pages/dogtest/dogtest",
+    "pages/member/member",
     "pages/list/list",
     "pages/times/times",
-    "pages/member/member",
     "pages/memberfollow/memberfollow",
     "pages/memberfans/memberfans",
     "pages/post/post",
