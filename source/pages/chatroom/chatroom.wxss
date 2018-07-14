@@ -1,0 +1,27 @@
+/* pages/chatroom/chatroom.wxss */
+
+.bottomin{
+  position: fixed;
+  bottom: 0rpx;
+  width: 710rpx;
+}
+.sentbox{
+  background: #CCFFFF;
+  color: #33CCFF;
+  border-radius: 20rpx;
+  border-top-right-radius: 0rpx;
+  box-shadow: 2px 2px 1px #888888;
+}
+.sentbox{
+  background: #CCFFFF;
+  color: #33CCFF;
+  border-radius: 20rpx;
+  border-top-right-radius: 0rpx;
+  box-shadow: 2px 2px 1px #888888;
+}
+.receivebox{
+  background: white;
+  border-radius: 20rpx;
+  border-top-left-radius: 0rpx;
+  box-shadow: 2px 2px 1px #888888;
+}

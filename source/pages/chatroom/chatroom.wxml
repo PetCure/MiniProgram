@@ -1,0 +1,70 @@
+<!--pages/chatroom/chatroom.wxml-->
+<scroll-view style='height:calc( 100vh - 106rpx );' scroll-y scroll-into-view="chat_{{intoid}}">
+<view wx:for="{{chatlist}}" wx:key="k" wx:for-index="idx" class='padding-20'  id="chat_{{item.id}}">
+  <view wx:if="{{item.sent_member_id!=chatmember_id}}" class='flex-row'>
+    <view class='padding-20'>
+      <image class='icon-50'></image>
+    </view>
+    <view class='flex-1'>
+      <view class='h6 txt-gray text-right margin-top-10'>
+        {{item.sent_time_formatting}}
+      </view>
+      <view class='flex-row margin-top-10'>
+        <view class='flex-1'></view>
+        <view >
+          <view class='padding-20 sentbox h5'>
+          <block wx:if="{{item.photo==''}}">
+            {{item.msg}}
+            </block>
+            <block wx:if="{{item.photo!=''}}">
+            <image mode='widthFix' style='width:300rpx;' src='{{uploadpath}}memberchat/{{item.photo}}' bindtap='viewPhoto' id="{{uploadpath}}memberchat/{{item.photo}}"></image>
+            </block>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class='padding-20'>
+      <image class='icon-50 border-raidus-50'  src='{{item.sent_member_avatarUrl}}'></image>
+    </view>
+  </view>
+  <view wx:if="{{item.sent_member_id==chatmember_id}}" class='flex-row' >
+    <view class='padding-20'>
+      <image class='icon-50 border-radius'  src='{{item.sent_member_avatarUrl}}'></image>
+    </view>
+    <view class='flex-1'>
+      <view class='h6 txt-gray margin-top-10'>
+        {{item.sent_time_formatting}}
+      </view>
+      <view class='flex-row margin-top-10'>
+        <view >
+          <view class='padding-20 receivebox  h5'>
+            <block wx:if="{{item.photo==''}}">
+            {{item.msg}}
+            </block>
+            <block wx:if="{{item.photo!=''}}">
+            <image mode='widthFix' style='width:300rpx;' src='{{uploadpath}}memberchat/{{item.photo}}' bindtap='viewPhoto' id="{{uploadpath}}memberchat/{{item.photo}}"></image>
+            </block>
+          </view>
+        </view>
+        <view class='flex-1'></view>
+      </view>
+    </view>
+    <view class='padding-20'>
+      <image class='icon-50 border-raidus-50' ></image>
+    </view>
+  </view>
+</view>
+</scroll-view>
+<form bindsubmit="send" bindreset="formReset" report-submit="{{true}}">
+          <view class='flex-row flex-center bottomin  white-block' style='padding:20rpx; '>
+            <view>
+              <image class='icon' src='{{uploadpath}}resource/image.png' style='margin-right:10rpx;' bindtap='sendPhoto'></image>
+            </view>
+            <view style='flex:4;font-size:28rpx;'>
+              <input type='text' placeholder='说点啥好呢' name="msg" value='{{msg}}' maxlength='50' auto-focus='trueaaaa'></input>
+            </view>
+            <view class='text-center' style='flex:1'>
+              <button  class='btn-primary-line'  size='mini' formType="submit">发送</button>
+            </view>
+          </view>
+        </form>

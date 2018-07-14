@@ -186,6 +186,13 @@ button[disabled][type=primary] {
   width: 80rpx;
   height: 80rpx;
 }
+.icon-50{
+  width: 100rpx;
+  height: 100rpx;
+}
+.border-raidus-50{
+  border-radius: 50%;
+}
 .line-height-0{
   line-height: 0rpx;
 }

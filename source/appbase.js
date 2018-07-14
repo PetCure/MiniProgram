@@ -93,7 +93,8 @@ export class AppBase {
       openContent: base.openContent,
       getPhoneNo: base.getPhoneNo,
       dataReturn: base.dataReturn,
-      dataReturnCallback: base.dataReturnCallback
+      dataReturnCallback: base.dataReturnCallback,
+      loadtabtype: base.loadtabtype
 
 
       
@@ -180,16 +181,7 @@ export class AppBase {
                 console.log(AppBase.UserInfo);
                 ApiConfig.SetToken(data.openid);
                 console.log("goto update info");
-                memberapi.update(AppBase.UserInfo,()=>{
-                  memberapi.info({},(ret)=>{
-                    console.log("~~~~");
-                    if (ret.timesupdated=='Y'){
-                      wx.showTabBarRedDot({
-                        index: 2,
-                      })
-                    }
-                  });
-                });
+                this.loadtabtype();
 
 
                 console.log(AppBase.UserInfo);
@@ -220,19 +212,45 @@ export class AppBase {
         that.setMyData({ UserInfo: AppBase.UserInfo });
       } else {
         that.Base.setMyData({ UserInfo: AppBase.UserInfo });
-      } 
-      var memberapi = new MemberApi();
+      }
+      this.loadtabtype();
+      that.onMyShow();
+    }
+
+  }
+  loadtabtype(){
+    console.log("loadtabtype");
+    var memberapi = new MemberApi();
+    memberapi.update(AppBase.UserInfo, () => {
       memberapi.info({}, (ret) => {
         console.log("~~~~");
         if (ret.timesupdated == 'Y') {
           wx.showTabBarRedDot({
+            index: 2,
+          })
+        } else {
+          wx.hideTabBarRedDot({
+            index: 2,
+          })
+        }
+        var unreadcount = parseInt(ret.commentunreadcount) + parseInt(ret.likeunreadcount) + parseInt(ret.chatunreadcount);
+        if (unreadcount > 99) {
+          wx.setTabBarBadge({
+            index: 3,
+            text: '99+',
+          })
+        } else if (unreadcount > 0) {
+          wx.setTabBarBadge({
+            index: 3,
+            text: unreadcount.toString(),
+          })
+        } else {
+          wx.removeTabBarBadge({
             index: 3,
           })
         }
       });
-      that.onMyShow();
-    }
-
+    });
   }
 
   onMyShow() {
@@ -444,6 +462,54 @@ export class AppBase {
     wx.chooseImage({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        console.log(res.tempFilePaths);
+        //that.setData({
+        //  photos: that.data.photos.concat(res.tempFilePaths)
+        //});
+        var tempFilePaths = res.tempFilePaths
+        for (var i = 0; i < tempFilePaths.length; i++) {
+
+          wx.uploadFile({
+            url: ApiConfig.GetFileUploadAPI(), //仅为示例，非真实的接口地址
+            filePath: tempFilePaths[i],
+            name: 'file',
+            formData: {
+              'module': modul,
+              "field": "file"
+            },
+            success: function (res) {
+              console.log(res);
+              var data = res.data
+              if (data.substr(0, 7) == "success") {
+                data = data.split("|");
+                var photo = data[2];
+                callback(photo);
+              } else {
+                console.error(res.data);
+                wx.showToast({
+                  title: '上传失败，请重试',
+                  icon: 'warn',
+                  duration: 2000
+                })
+              }
+              //do something
+            }
+          });
+        }
+        if (completecallback != undefined) {
+          completecallback();
+        }
+      }
+    })
+  }
+
+  uploadOneImage(modul, callback, completecallback) {
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      count:1,
       success: function (res) {
         // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
         console.log(res.tempFilePaths);

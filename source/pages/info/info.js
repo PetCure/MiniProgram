@@ -43,7 +43,18 @@ class Content extends AppBase {
   loadcomment(){
     var api = new PostApi();
     api.commentlist({ post_id: this.Base.options.id }, (commentlist) => {
-      this.Base.setMyData({ comments:commentlist });
+      if(this.Base.options.comment_id!=undefined){
+        this.Base.setMyData({
+          comments: commentlist,
+          into_comment_id: "comment_" + this.Base.options.comment_id
+        });
+        this.Base.options.comment_id = undefined;
+      }else{
+
+        this.Base.setMyData({
+          comments: commentlist
+        });
+      }
     });
   }
 

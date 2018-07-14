@@ -1,13 +1,14 @@
 <!--pages/message/message.wxml-->
 <view class='flex-row padding-20 white-block text-center'>
-  <view class='flex-1 '>
+  <navigator url='/pages/mycommentlist/mycommentlist'  class='flex-1 '>
+    <view class='reddot' wx:if="{{memberinfo.commentunreadcount>0}}"></view>
     <view>
       <image class='icon-40' src='{{uploadpath}}resource/msg.png'></image>
     </view>
     <view class='txt-gray h6'>
       回复我的
     </view>
-  </view>
+  </navigator>
   <view class='flex-1 '>
     <view>
       <image class='icon-40' src='{{uploadpath}}resource/at.png'></image>
@@ -17,6 +18,7 @@
     </view>
   </view>
   <navigator url='/pages/commentlikelist/commentlikelist' class='flex-1 '>
+    <view class='reddot'  wx:if="{{memberinfo.likeunreadcount>0}}"></view>
     <view style='height:90rpx;'>
       <image class='icon-30' style='margin-top:10rpx;' src='{{uploadpath}}resource/msglike.png'></image>
     </view>
@@ -25,7 +27,7 @@
     </view>
   </navigator>
 </view>
-<view class='text-center' >
+<view class='text-center' wx:if="{{chatmember.length==0}}" >
           <view>
           <image class='egg' src='{{uploadpath}}resource/egg.png'></image>
           </view>
@@ -33,3 +35,22 @@
             暂无好友聊天记录
           </view>
         </view>
+<view class='margin-top white-block' wx:if="{{chatmember.length>0}}" >
+  <view class='padding-20 border-bottom'>聊天列表 ({{chatmember.length}})</view>
+  <navigator url='/pages/chatroom/chatroom?member_id={{item.id}}' wx:for="{{chatmember}}" wx:key='k' class='padding-20 flex-row border-bottom'>
+    <view>
+      <image class='icon-40 border-radius' style='margin-right:20rpx;' src='{{item.avatarUrl}}'></image>
+    </view>
+    <view class='flex-1'>
+      <view class='h5'>{{item.nickName}}</view>
+      <view class='h6 txt-gray' style='margin-top:6rpx;'>
+        <block wx:if="{{item.chat.photo==''}}">{{item.chat.msg}}</block>
+        <block wx:if="{{item.chat.photo!=''}}">图片消息</block>
+      </view>
+    </view>
+    <view>
+        <block wx:if="{{item.chat.ismysent==true||item.chat.isread=='Y'}}"><view class='txt-gray h6'>{{item.chat.timeduration}}</view></block>
+        <block wx:if="{{(item.chat.ismysent==true||item.chat.isread=='Y')==false}}"><view class='txt-primary h6'>未读</view></block>
+    </view>
+  </navigator>
+</view>

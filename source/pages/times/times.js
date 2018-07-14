@@ -21,9 +21,6 @@ class Content extends AppBase {
       that.Base.setMyData({ mylocation: addressinfo });
       this.loaddata();
     });
-    wx.hideTabBarRedDot({
-      index: 3,
-    })
   }
   
   loaddata() {
@@ -72,7 +69,10 @@ class Content extends AppBase {
       for (var i = 0; i < list.length; i++) {
         nlist.push(list.postlist[i]);
       }
-      that.Base.setMyData({ list:nlist });
+      wx.hideTabBarRedDot({
+        index: 2,
+      })
+      that.Base.setMyData({ list: nlist });
     });
 
 

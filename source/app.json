@@ -1,6 +1,8 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/message/message",
+    "pages/chatroom/chatroom",
     "pages/dogtest/dogtest",
     "pages/member/member",
     "pages/list/list",
@@ -9,9 +11,9 @@
     "pages/memberfans/memberfans",
     "pages/post/post",
     "pages/map/map",
+    "pages/mycommentlist/mycommentlist",
     "pages/commentlikelist/commentlikelist",
     "pages/info/info",
-    "pages/message/message",
     "pages/memberinfo/memberinfo",
     "pages/myfollow/myfollow",
     "pages/mypost/mypost",
@@ -56,16 +58,16 @@
         "selectedIconPath": "images/icons/list.png"
       },
       {
-        "text": "附近",
-        "pagePath": "pages/map/map",
-        "iconPath": "images/icons/map-o.png",
-        "selectedIconPath": "images/icons/map.png"
-      },
-      {
         "text": "萌友圈",
         "pagePath": "pages/times/times",
         "iconPath": "images/icons/times-o.png",
         "selectedIconPath": "images/icons/times.png"
+      },
+      {
+        "text": "消息",
+        "pagePath": "pages/message/message",
+        "iconPath": "images/icons/mail-o.png",
+        "selectedIconPath": "images/icons/mail.png"
       },
       {
         "text": "我的",

@@ -6,8 +6,8 @@
   <view class='flex-1' style='margin-left:20rpx;'>
     <view bindtap='openmember' id="{{item.member_id}}">{{item.member_nickName}}</view>
     <view class='h6 txt-gray'>{{item.timeduration}}</view>
-    <view class='margin-top' bindtap='openpost' id="{{item.post_id}}_{{item.comment_id}}">赞了你的回复</view>
-    <view class='gray-block margin-top-10 h6' bindtap='openpost' id="{{item.post_id}}_{{item.comment_id}}">{{item.comment_id_name}}</view>
+    <view class='margin-top' bindtap='openpost' id="{{item.post_id}}_{{item.id}}">回复：{{item.comment}}</view>
+    <view class='gray-block margin-top-10 h6' bindtap='openpost' id="{{item.post_id}}_{{item.id}}">{{item.post_title}}</view>
   </view>
 </view>
 <view class='text-center' wx:if="{{list.length==0}}">

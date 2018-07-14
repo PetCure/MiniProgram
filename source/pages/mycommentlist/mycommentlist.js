@@ -16,15 +16,15 @@ class Content extends AppBase {
   }
   onMyShow() {
     var that = this;
-    count=0;
+    count = 0;
     var api = new PostApi();
-    api.commentlikelist({
-      orderby: "r_main.like_time desc limit 0,15"
+    api.mycommentlist({
+      orderby: "r_main.comment_time desc limit 0,15"
     }, (list) => {
       for (var i = 0; i < list.length; i++) {
         list[i].timeduration = time_ago(list[i].like_time_timespan);
       }
-      count=0;
+      count = 0;
       that.Base.setMyData({ list: list });
 
     });
@@ -34,7 +34,7 @@ class Content extends AppBase {
     var that = this;
     var api = new PostApi();
     api.commentlikelist({
-      orderby: "r_main.like_time desc limit " + (15 + count * 5).toString() + ",5"
+      orderby: "r_main.comment_time desc limit " + (15 + count * 5).toString() + ",5"
     }, (list) => {
       var newslist = that.Base.getMyData().list;
       for (var i = 0; i < list.length; i++) {
@@ -51,21 +51,27 @@ class Content extends AppBase {
       url: '/pages/memberinfo/memberinfo?id=' + id,
     })
   }
+  openmember(e) {
+    var id = e.currentTarget.id;
+    wx.navigateTo({
+      url: '/pages/memberinfo/memberinfo?id=' + id,
+    })
+  }
   openpost(e) {
     console.log(e);
     //return;
     var id = e.currentTarget.id;
-    id=id.split("_");
-    var post_id=id[0];
-    var comment_id=id[1];
+    id = id.split("_");
+    var post_id = id[0];
+    var comment_id = id[1];
     wx.navigateTo({
       url: '/pages/info/info?showcomment=Y&comment_id=' + comment_id + '&id=' + post_id,
     })
   }
-} 
+}
 
 
-var count=0;
+var count = 0;
 
 function time_ago(agoTime) {
 
@@ -99,8 +105,8 @@ function time_ago(agoTime) {
 
 var content = new Content();
 var body = content.generateBodyJson();
-body.onLoad = content.onLoad; 
-body.onMyShow = content.onMyShow; 
+body.onLoad = content.onLoad;
+body.onMyShow = content.onMyShow;
 body.openmember = content.openmember;
 body.openpost = content.openpost;
 Page(body)

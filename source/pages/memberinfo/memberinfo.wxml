@@ -7,6 +7,9 @@
     <image class='fullimg' src='{{memberinfo.avatarUrl}}' ></image>
   </view>
   <view>
+    <button class='btn-primary-line' size='mini' bindtap='gotochatroom' >发消息</button>
+  </view>
+  <view>
     <button type='primary' size='mini' bindtap='addfriend' wx:if="{{memberinfo.followed==false}}"  >加关注</button>
     <button type='primary' size='mini' wx:if="{{memberinfo.followed==true}}" bindtap='removefriend' >取消关注</button>
   </view>

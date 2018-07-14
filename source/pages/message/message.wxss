@@ -1,1 +1,9 @@
 /* pages/message/message.wxss */
+.reddot{
+  background: red;
+  border-radius: 50%;
+  height:16rpx;
+  width:16rpx;
+  position: absolute;
+  margin-left:150rpx;
+}
