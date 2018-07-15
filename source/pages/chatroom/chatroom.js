@@ -14,6 +14,12 @@ class Content extends AppBase {
     //options.member_id=18;
     super.onLoad(options);
     this.Base.setMyData({ chatlist:[]});
+    try{
+      clearInterval(timer);
+    }catch(e){
+
+    }
+    timer=null;
   }
   onMyShow() {
     var that = this;
@@ -29,6 +35,7 @@ class Content extends AppBase {
       
     });
 
+    console.log("timer");
     if(timer==null){
     timer=setInterval(function(){
       var api = new MemberApi();
@@ -38,6 +45,7 @@ class Content extends AppBase {
         console.log(chatlist[chatlist.length - 1].sent_time + ".99");
         json.sent_time_from = chatlist[chatlist.length-1].sent_time+".99";
       }
+      console.log(json);
       api.chatlist(json, (list) => {
         if(list.length==0){
           return;
@@ -49,7 +57,7 @@ class Content extends AppBase {
 
         that.Base.setMyData({ chatlist: chatlist, intoid: chatlist[chatlist.length - 1].id  });
       }, false);
-    },2000);
+    },1000);
   }
   }
   onUnload(){

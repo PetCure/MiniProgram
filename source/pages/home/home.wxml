@@ -28,22 +28,22 @@
         附近救助
       </view>
     </navigator>
-    <view class='flex-1 text-center' bindtap='comingsoon'>
+    <navigator url='/pages/post/post'  class='flex-1 text-center'>
       <view>
           <image  class='icon-40' src="{{uploadpath}}resource/dogfood.png" />
       </view>
       <view class='h5'>
-        找伙食
+        我要发布
       </view>
-    </view>
-    <view class='flex-1 text-center' bindtap='comingsoon'>
+    </navigator>
+    <navigator url='/pages/content/content?keycode=joinus&title=加入我们'  class='flex-1 text-center' >
       <view>
           <image  class='icon-40' src="{{uploadpath}}resource/char.png" />
       </view>
       <view class='h5'>
-        性格
+        加入我们
       </view>
-    </view>
+    </navigator>
   
   </view>
 

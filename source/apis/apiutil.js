@@ -12,7 +12,7 @@ export class ApiUtil {
     s = s.replace(/&#39;/g, "\'");
     s = s.replace(/&quot;/g, "\"");
 
-    s = s.replace("\"/alucard263096/miniprogram/upload/", "\"" + "https://cmsdev.app-link.org/alucard263096/miniprogram/upload/");
+    s = s.replace("\"/alucard263096/petfind/upload/", "\"" + "https://cmsdev.app-link.org/alucard263096/petfind/upload/");
     return s;
   }
 
