@@ -10,17 +10,19 @@ class Content extends AppBase {
   }
   onLoad(options) {
     this.Base.Page = this;
-    //options.id=6;
+    //options.showcomment='Y';
     super.onLoad(options);
     if (options.showcomment=="Y"){
 
       this.Base.setMyData({
-        currenttab: 1
+        currenttab: 1,
+        reply:null
       });
     }else{
 
       this.Base.setMyData({
-        currenttab: 0
+        currenttab: 0,
+        reply: null
       });
     }
 
@@ -63,6 +65,9 @@ class Content extends AppBase {
     this.Base.setMyData({
       currenttab: e.detail.current
     });
+    if (e.detail.current == 1) {
+      this.loadcomment();
+    }
   }
   changeTab(e) {
     console.log(e);
@@ -73,11 +78,18 @@ class Content extends AppBase {
   sendComment(e){
     console.log(e);
     var that=this;
-    var comment = e.detail.value.comment; 
+    var comment = e.detail.value.comment;
+    var reply = this.Base.getMyData().reply; 
+    var reply_member_id = 0;
+    var reply_comment_id = 0;
+    if(reply!=null){
+      reply_member_id = reply.member_id;
+      reply_comment_id = reply.id;
+    }
     var api = new PostApi();
-    api.comment({ post_id: this.Base.options.id, comment: comment, formid: e.detail.formId }, (ret) => {
+    api.comment({ post_id: this.Base.options.id, comment: comment, formid: e.detail.formId, reply_member_id: reply_member_id, reply_comment_id: reply_comment_id }, (ret) => {
       that.loadcomment();
-      that.Base.setMyData({ comment:""});
+      that.Base.setMyData({ comment:"",reply:null});
     });
   }
   onShareAppMessage(e){
@@ -190,6 +202,7 @@ class Content extends AppBase {
     });
   }
   likeComment(e){
+    console.log("like?");
     var that=this;
     var seq = e.currentTarget.id;
     var comments = this.Base.getMyData().comments; 
@@ -201,6 +214,41 @@ class Content extends AppBase {
       comments[seq].likecount = parseInt(comments[seq].likecount)+1;
       that.Base.setMyData({ comments});
     });
+  }
+  likeSubComment(e) {
+    console.log("sublike?");
+    var that = this;
+    var seq = e.currentTarget.id.split("_");
+    var seq_1 = seq[0];
+    var seq_2 = seq[1];
+    var comments = this.Base.getMyData().comments;
+    var comment = comments[seq_1].subcomments[seq_2];
+    console.log(comment);
+    var api = new PostApi();
+    api.commentlike({ comment_id: comment.id, post_id: comment.post_id }, (ret) => {
+      comments[seq_1].subcomments[seq_2].iliked = 'Y';
+      comments[seq_1].subcomments[seq_2].likecount = parseInt(comments[seq_1].subcomments[seq_2].likecount) + 1;
+      that.Base.setMyData({ comments });
+    });
+  } 
+  reply(e) {
+    var seq = e.currentTarget.id;
+    var comments = this.Base.getMyData().comments;
+    var comment = comments[seq];
+    this.Base.setMyData({reply:comment});
+  }
+  subreply(e) {
+    var seq = e.currentTarget.id.split("_");
+    var seq_1 = seq[0];
+    var seq_2 = seq[1];
+    
+    var comments = this.Base.getMyData().comments;
+    var comment = comments[seq_1].subcomments[seq_2];
+    comment.id = comments[seq_1].id;
+    this.Base.setMyData({ reply: comment });
+  } 
+  clearReply(){
+    this.Base.setMyData({reply:null});
   }
 }
 var content = new Content();
@@ -217,6 +265,10 @@ body.follow = content.follow;
 body.fix = content.fix;
 body.poster = content.poster;
 body.viewPhotos = content.viewPhotos; 
-body.next = content.next;
+body.next = content.next; 
 body.likeComment = content.likeComment;
+body.reply = content.reply;
+body.clearReply = content.clearReply; 
+body.likeSubComment = content.likeSubComment;
+body.subreply = content.subreply;
 Page(body)

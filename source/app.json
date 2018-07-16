@@ -1,6 +1,9 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/atmecommentlist/atmecommentlist",
+    "pages/info/info",
+    "pages/post/post",
     "pages/message/message",
     "pages/chatroom/chatroom",
     "pages/dogtest/dogtest",
@@ -9,11 +12,9 @@
     "pages/times/times",
     "pages/memberfollow/memberfollow",
     "pages/memberfans/memberfans",
-    "pages/post/post",
     "pages/map/map",
     "pages/mycommentlist/mycommentlist",
     "pages/commentlikelist/commentlikelist",
-    "pages/info/info",
     "pages/memberinfo/memberinfo",
     "pages/myfollow/myfollow",
     "pages/mypost/mypost",

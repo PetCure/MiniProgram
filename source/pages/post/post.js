@@ -94,15 +94,16 @@ class Content extends AppBase {
       video:video
     },(ret)=>{
       if(ret.code==0){
-        this.Base.setMyData({ noticesuccess:true});
+        this.Base.setMyData({ noticesuccess:true,post_id:ret.return});
       }else{
         this.Base.info(ret.result);
       }
     });
   }
   closenotice(){
+    var post_id=this.Base.getMyData().post_id;
     wx.switchTab({
-      url: '/pages/home/home',
+      url: '/pages/info/info?id=' + post_id,
       success: function(res) {},
       fail: function(res) {},
       complete: function(res) {},

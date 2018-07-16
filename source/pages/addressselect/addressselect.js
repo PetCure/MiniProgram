@@ -63,7 +63,7 @@ class Content extends AppBase {
     var region = mylocation.address_component.province + mylocation.address_component.city;
     var UserInfo=this.Base.getMyData().UserInfo;
 
-    if (this.UserInfo.nickName=="宠物救助客服"){
+    if (UserInfo.nickName=="宠物救助客服"){
       region="中国";
     }
     console.log(inputVal);

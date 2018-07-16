@@ -78,6 +78,9 @@ view,navigator,input,text,textarea{
 .txt-gray{
   color:#aaa;
 }
+.txt-blue{
+  color:#3c78d8;
+}
 .txt-light{
   color: #fcfcfc;
   font-weight: 350;

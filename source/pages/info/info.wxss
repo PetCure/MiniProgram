@@ -15,7 +15,7 @@
 .bottomin{
   position: fixed;
   bottom: 0rpx;
-  width: 710rpx;
+  width: 750rpx;
 }
 .comments .photo{
   height:70rpx;

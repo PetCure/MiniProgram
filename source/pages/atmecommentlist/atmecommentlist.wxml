@@ -1,0 +1,20 @@
+<!--pages/commentlikelist/commentlikelist.wxml-->
+<view class='margin-top-10 padding-20 flex-row white-block' wx:for="{{list}}" wx:key="k" wx:for-index="idx">
+  <view bindtap='openmember' id="{{item.member_id}}">
+    <image class='icon-30 radius-50' src='{{item.member_avatarUrl}}'></image>
+  </view>
+  <view class='flex-1' style='margin-left:20rpx;'>
+    <view bindtap='openmember' id="{{item.member_id}}">{{item.member_nickName}}</view>
+    <view class='h6 txt-gray'>{{item.timeduration}}</view>
+    <view class='margin-top' bindtap='openpost' id="{{item.post_id}}_{{item.id}}">回复：{{item.comment}}</view>
+    <view class='gray-block margin-top-10 h6' bindtap='openpost' id="{{item.post_id}}_{{item.id}}">{{item.replycomment_comment}}</view>
+  </view>
+</view>
+<view class='text-center' wx:if="{{list.length==0}}">
+  <view>
+    <image class='egg' src='{{uploadpath}}resource/egg.png'></image>
+  </view>
+  <view class='txt-gray h6'>
+    暂无人点赞
+  </view>
+</view>

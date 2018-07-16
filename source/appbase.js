@@ -233,7 +233,7 @@ export class AppBase {
             index: 2,
           })
         }
-        var unreadcount = parseInt(ret.commentunreadcount) + parseInt(ret.likeunreadcount) + parseInt(ret.chatunreadcount);
+        var unreadcount = parseInt(ret.commentunreadcount) + parseInt(ret.likeunreadcount) + parseInt(ret.chatunreadcount) + parseInt(ret.atmeunreadcount);
         if (unreadcount > 99) {
           wx.setTabBarBadge({
             index: 3,
