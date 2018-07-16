@@ -2,7 +2,7 @@
 <view class='white-block'>
   <view class='padding-20'>
 
-    <swiper indicator-dots="false" autoplay="{{true}}" interval="5000" duration="1000">
+    <swiper indicator-dots="false" autoplay="{{true}}" interval="5000" duration="1000" style='height:300rpx;'>
       <block wx:for="{{indexbanner}}" wx:key="k">
         <swiper-item>
           <image class='indexbanner' src="{{uploadpath}}indexbanner/{{item.img}}" />

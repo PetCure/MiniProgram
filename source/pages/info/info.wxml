@@ -149,6 +149,10 @@
                 <image class='icon-15' src='{{uploadpath}}resource/like-l.png' bindtap='likeComment' id="{{idx}}" wx:if="{{item.iliked=='N'}}" ></image>
                 <image class='icon-15' src='{{uploadpath}}resource/like-r.png'  wx:if="{{item.iliked=='Y'}}" ></image>
               </view>
+              <view style='margin-left:20rpx;'>
+                <image class='icon-15' src='{{uploadpath}}resource/zhuan.png' id="{{idx}}"  ></image>
+                <button class='clear-button' style='height:30rpx;width:30rpx;position:absolute;margin-top:-35rpx;' open-type='share' data-comment="{{item.comment}}" ></button>
+              </view>
               <view wx:if="{{item.likecount>0}}" style='margin-left:10rpx;margin-right:rpx;' class='h6 txt-gray'>{{item.likecount}}</view>
               <view class='flex-1  h6 text-right txt-gray'>{{item.comment_time_formatting}}</view>
             </view>

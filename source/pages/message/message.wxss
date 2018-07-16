@@ -2,8 +2,8 @@
 .reddot{
   background: red;
   border-radius: 50%;
-  height:16rpx;
-  width:16rpx;
+  height:24rpx;
+  width:24rpx;
   position: absolute;
   margin-left:150rpx;
 }

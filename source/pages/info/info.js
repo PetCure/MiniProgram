@@ -80,10 +80,19 @@ class Content extends AppBase {
       that.Base.setMyData({ comment:""});
     });
   }
-  onShareAppMessage(){
+  onShareAppMessage(e){
+    console.log(e);
     var data=this.Base.getMyData();
+    var title=data.title;
+    try{
+
+      if (e.target.dataset.comment != undefined) {
+        title = e.target.dataset.comment;
+      }
+    }catch(e){
+    }
     return {
-      title:data.title,
+      title:title,
       imageUrl: data.uploadpath+"post/"+data.images[0],
     };
   }
