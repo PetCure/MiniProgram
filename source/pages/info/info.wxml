@@ -50,7 +50,7 @@
               <image class='icon-30' src='{{uploadpath}}resource/zaned.png'></image>
             </view>
             <view class='txt-gray h6'>
-              {{likecount==0?"赞一下":likecount+"人"}}
+              {{likelist.length==0?"赞一下":likelist.length+"人"}}
             </view>
           </view>
           <view class='flex-1'>
@@ -87,6 +87,9 @@
               朋友圈
             </view>
           </view>
+        </view>
+        <view class='padding-20 white-block border-bottom' wx:if="{{likelist.length>0}}">
+          <image wx:for="{{likelist}}" wx:key="k" src='{{item.member_avatarUrl}}' class='icon border-raidus-50' ></image>
         </view>
         <navigator url='/pages/memberinfo/memberinfo?id={{member_id}}' class='white-block padding-20 flex-row flex-center border-bottom'>
           <view style='margin-right:20rpx'>

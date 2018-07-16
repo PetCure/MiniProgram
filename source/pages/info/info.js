@@ -16,13 +16,15 @@ class Content extends AppBase {
 
       this.Base.setMyData({
         currenttab: 1,
-        reply:null
+        reply:null,
+        likelist:[]
       });
     }else{
 
       this.Base.setMyData({
         currenttab: 0,
-        reply: null
+        reply: null,
+        likelist: []
       });
     }
 
@@ -41,6 +43,7 @@ class Content extends AppBase {
       this.Base.setMyData(info);
     });
     this.loadcomment();
+    this.loadlikelist();
   }
   loadcomment(){
     var api = new PostApi();
@@ -67,6 +70,8 @@ class Content extends AppBase {
     });
     if (e.detail.current == 1) {
       this.loadcomment();
+    }else{
+      this.loadlikelist();
     }
   }
   changeTab(e) {
@@ -106,6 +111,7 @@ class Content extends AppBase {
     return {
       title:title,
       imageUrl: data.uploadpath+"post/"+data.images[0],
+      path:"/pages/info/info?id="+this.Base.options.id
     };
   }
   like(){
@@ -113,7 +119,8 @@ class Content extends AppBase {
     api.like({ post_id: this.Base.options.id });
 
     var data = this.Base.getMyData();
-    this.Base.setMyData({liked:true,likecount:data.likecount+1});
+    this.Base.setMyData({liked:true});
+    this.loadlikelist();
   }
   follow(){
 
@@ -250,6 +257,12 @@ class Content extends AppBase {
   clearReply(){
     this.Base.setMyData({reply:null});
   }
+  loadlikelist(){
+    var api=new PostApi();
+    api.likelist({post_id:this.Base.options.id},(likelist)=>{
+      this.Base.setMyData({ likelist});
+    });
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -269,6 +282,7 @@ body.next = content.next;
 body.likeComment = content.likeComment;
 body.reply = content.reply;
 body.clearReply = content.clearReply; 
-body.likeSubComment = content.likeSubComment;
+body.likeSubComment = content.likeSubComment; 
 body.subreply = content.subreply;
+body.loadlikelist = content.loadlikelist;
 Page(body)
