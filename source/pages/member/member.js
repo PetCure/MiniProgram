@@ -85,7 +85,7 @@ class Content extends AppBase {
   }
   message(){
 
-    wx.navigateTo({
+    wx.switchTab({
       url: '/pages/message/message',
     })
   }
