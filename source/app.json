@@ -1,14 +1,15 @@
 {
   "pages":[
     "pages/home/home",
+    "pages/member/member",
+    "pages/infoupdate/infoupdate",
+    "pages/list/list",
     "pages/atmecommentlist/atmecommentlist",
     "pages/info/info",
     "pages/post/post",
     "pages/message/message",
     "pages/chatroom/chatroom",
     "pages/dogtest/dogtest",
-    "pages/member/member",
-    "pages/list/list",
     "pages/times/times",
     "pages/memberfollow/memberfollow",
     "pages/memberfans/memberfans",

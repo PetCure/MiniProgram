@@ -15,14 +15,25 @@
 
 <view  wx:for="{{item.postlist}}" wx:key="k" class='white-block border-bottom'>
   <view url='/pages/info/info?shownext=Y&id={{item.id}}' class='margin-40 item' style='margin-top:0rpx;margin-bottom:0rpx;'>
-    <navigator url='/pages/memberinfo/memberinfo?id={{item.member_id}}' class='padding-20 flex-row '>
-      <view class='memberphoto' style='margin-right:20rpx;'>
+    <view url='/pages/memberinfo/memberinfo?id={{item.member_id}}' class='padding-20 flex-row ' style='padding-right:0rpx;padding-left:0rpx;'>
+      <navigator url='/pages/memberinfo/memberinfo?id={{item.member_id}}'  class='memberphoto' style='margin-right:20rpx;'>
         <image class='icon' style='border-radius:50%;' src='{{item.member_avatarUrl}}'  ></image>
-      </view>
-      <view class='h6'>
+      </navigator>
+      <navigator url='/pages/memberinfo/memberinfo?id={{item.member_id}}'  class='h6 flex-1'>
         {{item.member_nickName}}
+      </navigator>
+      <view class='margin-right-10'  wx:if="{{item.member_id!=memberinfo.id}}">
+        <view class='h6 padding-5 gray-block border-radius-40 txt-white' wx:if="{{item.viewed==0}}">未读</view>
+        <view class='h6 padding-5 bg-blue border-radius-40 txt-white' wx:if="{{item.viewed>0}}">已读</view>
       </view>
-    </navigator>
+      <view  class='margin-right-10'  wx:if="{{item.member_id!=memberinfo.id&&false}}">
+        <navigator url='/pages/chatroom/chatroom?member_id={{item.member_id}}' class='h6 padding-5 bg-primary border-radius-40 txt-white' >发消息</navigator>
+      </view>
+      <navigator url='/pages/memberinfo/memberinfo?id={{item.member_id}}'    wx:if="{{item.member_id!=memberinfo.id}}">
+        <view class='h6 padding-5 bg-orange border-radius-40 txt-white' wx:if="{{item.followed_member_id==0}}">加关注</view>
+        <view class='h6 padding-5 gray-block border-radius-40 txt-white' wx:if="{{item.followed_member_id>0}}">已关注</view>
+      </navigator>
+    </view>
     <navigator url='/pages/info/info?shownext=Y&id={{item.id}}'  class='cover'>
       <image src='{{uploadpath}}post/{{item.cover}}' mode='aspectFill'></image>
     </navigator>

@@ -233,6 +233,20 @@ export class AppBase {
             index: 2,
           })
         }
+        console.log("postunreadcount" + ret.postunreadcount.toString());
+        if (ret.postunreadcount>0){
+          wx.setTabBarBadge({
+            index: 1,
+            text: ret.postunreadcount
+          })
+        }else{
+
+          wx.removeTabBarBadge({
+            index: 1
+          })
+        }
+
+          
         var unreadcount = parseInt(ret.commentunreadcount) + parseInt(ret.likeunreadcount) + parseInt(ret.chatunreadcount) + parseInt(ret.atmeunreadcount);
         if (unreadcount > 99) {
           wx.setTabBarBadge({

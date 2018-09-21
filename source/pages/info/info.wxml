@@ -99,7 +99,7 @@
             <view>{{member_nickName}}</view>
           </view>
         </navigator>
-        <view class='white-block padding-20 flex-row border-bottom'  wx:if="{{cat_id!=5}}">
+        <view class='white-block padding-20 flex-row border-bottom'  wx:if="{{post_cat_needinfo=='Y'}}">
           <view style='margin-right:20rpx'>
             <image class='icon' src='{{uploadpath}}resource/phone.png'></image>
           </view>
@@ -107,7 +107,7 @@
             <view>{{mobile}}</view>
           </view>
         </view>
-        <view class='white-block padding-20 flex-row flex-center' wx:if="{{cat_id!=5}}">
+        <view class='white-block padding-20 flex-row flex-center' wx:if="{{post_cat_needinfo=='Y'}}">
           <view style='margin-right:20rpx'>
             <image class='icon' src='{{uploadpath}}resource/location.png'></image>
           </view>

@@ -1,0 +1,52 @@
+<!--pages/infoupdate/infoupdate.wxml-->
+<form bindsubmit='confirm'>
+
+<view class='padding-20 white-block border-bottom'>
+
+  <view class='flex-row flex-row'  bindtap='choosePhoto'>
+    <view class='flex-1 padding-20'>
+      头像
+    </view>
+    <view class='line-height-0' >
+      <image class='icon-40 radius-50'  src='{{photo}}'></image>
+    <input name="photo" value='{{photo}}' class='fullimg' hidden='true'></input>
+    </view>
+  </view>
+</view>
+<view class='padding-20 white-block border-bottom'>
+
+  <view class='flex-row flex-row'>
+    <view class=' padding-20'>
+        昵称
+    </view>
+    <view class='padding-20 text-right line-height-0 flex-1'>
+      <input  placeholder='请输入昵称' class='h5' name="name" value='{{name}}'></input>
+    </view>
+  </view>
+</view>
+<view class='padding-20 white-block border-bottom'>
+
+  <view class='flex-row flex-row'>
+    <view class='padding-20'>
+      个人介绍
+    </view>
+    <view class='padding-20 text-right line-height-0 flex-1'>
+      <textarea class='fullimg' style='max-width:500rpx;' auto-height='{{1==1}}' maxlength='120' placeholder='请输入介绍' class='h5' name="introduce" value='{{introduce}}'></textarea>
+    </view>
+  </view>
+</view>
+
+<view class='margin-top '>
+  <view class='margin-top '>
+    <view class='flex-row flex-center'>
+      <view class='padding-20 flex-1'>
+  <button bindtap='reset'  >重置</button>
+      </view>
+      <view class='padding-20 flex-1'>
+  <button form-type='submit' type='primary' >确认修改</button>
+      </view>
+    </view>
+  </view>
+</view>
+
+</form>

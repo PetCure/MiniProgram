@@ -102,7 +102,7 @@ class Content extends AppBase {
   }
   closenotice(){
     var post_id=this.Base.getMyData().post_id;
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/info/info?id=' + post_id,
       success: function(res) {},
       fail: function(res) {},

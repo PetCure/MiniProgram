@@ -54,7 +54,7 @@ class Content extends AppBase {
     var api = new PostApi();
     api.list({
       cat_id:cat_id,
-      orderby:" likecount desc limit 0,6 "
+      orderby:" post_time desc limit 0,6 "
     }, (postlist) => {
       for (var i = 0; i < postlist.length; i++) {
         postlist[i].cover = postlist[i].images.split(",")[0];

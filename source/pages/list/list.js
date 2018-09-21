@@ -3,6 +3,7 @@ import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
 import { PostApi } from "../../apis/post.api.js";
+import { MemberApi } from "../../apis/member.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -27,6 +28,10 @@ class Content extends AppBase {
         this.Base.setMyData({ catlist });
         this.loaddata();
       });
+    });
+    var memberapi=new MemberApi();
+    memberapi.info({},(info)=>{
+      this.Base.setMyData({memberinfo:info});
     });
   }
   changeCurrentTab(e) {

@@ -20,7 +20,7 @@
 .item-1{
   margin-left:10rpx;
 }
-.item image{
+.item .cover{
   width: 345rpx;
   height: 210rpx;
   border-radius: 10rpx;

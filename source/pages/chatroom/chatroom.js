@@ -9,17 +9,18 @@ class Content extends AppBase {
   constructor() {
     super();
   }
+  timer = null;
   onLoad(options) {
     this.Base.Page = this;
     //options.member_id=18;
     super.onLoad(options);
     this.Base.setMyData({ chatlist:[]});
     try{
-      clearInterval(timer);
+      clearInterval(this.Base.timer);
     }catch(e){
 
     }
-    timer=null;
+    this.Base.timer=null;
   }
   onMyShow() {
     var that = this;
@@ -36,8 +37,8 @@ class Content extends AppBase {
     });
 
     console.log("timer");
-    if(timer==null){
-    timer=setInterval(function(){
+    if (this.Base.timer==null){
+      this.Base.timer=setInterval(function(){
       var api = new MemberApi();
       var chatlist = that.Base.getMyData().chatlist;
       var json={f_id:that.Base.options.member_id};
@@ -61,7 +62,7 @@ class Content extends AppBase {
   }
   }
   onUnload(){
-    clearInterval(timer);
+    clearInterval(this.Base.timer);
   }
 
   openmember(e) {
@@ -101,7 +102,6 @@ class Content extends AppBase {
 
 
 var count = 0;
-var timer=null;
 function time_ago(agoTime) {
 
   // 计算出当前日期时间到之前的日期时间的毫秒数，以便进行下一步的计算

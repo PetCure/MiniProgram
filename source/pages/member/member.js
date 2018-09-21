@@ -89,6 +89,11 @@ class Content extends AppBase {
       url: '/pages/message/message',
     })
   }
+  infoupdate(){
+    wx.navigateTo({
+      url: '/pages/infoupdate/infoupdate',
+    })
+  }
 } 
 var content = new Content();
 var body = content.generateBodyJson();
@@ -101,4 +106,5 @@ body.allpost = content.allpost;
 body.allfollow = content.allfollow;
 body.post = content.post;
 body.message = content.message;
+body.infoupdate = content.infoupdate;
 Page(body)

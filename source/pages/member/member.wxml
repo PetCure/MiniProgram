@@ -1,16 +1,16 @@
 <!--pages/member/member.wxml-->
 <view class='line-height-0'>
-  <image class='fullimg' src='{{uploadpath}}resource/membertopbanner.png' style='height:200rpx;' ></image>
+  <image class='fullimg' src='{{uploadpath}}resource/membertopbanner.png' style='height:200rpx;'></image>
 </view>
 <view class='photo flex-row'>
-  <view class='flex-1'>
-    <image class='fullimg' src='{{memberinfo.avatarUrl}}' ></image>
+  <view class='flex-1' bindtap='infoupdate'>
+    <image class='fullimg' src='{{memberinfo.avatarUrl}}'></image>
   </view>
   <view>
-    <button class='btn-primary-line'  size='mini' bindtap='message' >消息</button>
+    <button class='btn-primary-line' size='mini' bindtap='message'>消息</button>
   </view>
   <view>
-    <button type='primary' size='mini' bindtap='post' >发布</button>
+    <button type='primary' size='mini' bindtap='post'>发布</button>
   </view>
   <!--
   <view>
@@ -21,15 +21,18 @@
   <view class='h5' style='margin-top:70rpx;'>
     {{memberinfo.nickName}}
   </view>
-  <view class='margin-top-10 flex-row' >
+  <view class='margin-top-10 flex-row'>
     <navigator url='/pages/memberfollow/memberfollow' class='flex-row'>
-    <view class='h6' style='margin-right:10rpx;'>{{memberinfo.followcount}} </view>
-    <view class='txt-gray h6'>关注</view>
+      <view class='h6' style='margin-right:10rpx;'>{{memberinfo.followcount}} </view>
+      <view class='txt-gray h6'>关注</view>
     </navigator>
     <navigator url='/pages/memberfans/memberfans' class='flex-row'>
-    <view class='h6' style='margin-left:40rpx;margin-right:10rpx;'>{{memberinfo.fanscount}} </view>
-    <view class='txt-gray h6'>粉丝</view>
+      <view class='h6' style='margin-left:40rpx;margin-right:10rpx;'>{{memberinfo.fanscount}} </view>
+      <view class='txt-gray h6'>粉丝</view>
     </navigator>
+  </view>
+  <view class='margin-top' >
+    <text class='h6 txt-gray '>{{memberinfo.introduce==''?"这个人好懒，介绍都不肯写一下":memberinfo.introduce}}</text>
   </view>
 </view>
 
@@ -46,19 +49,19 @@
   </view>
 </view>
 
-  <swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
-    <swiper-item>
-      <scroll-view scroll-y style='height:100%'>
-        <view class='text-center' wx:if="{{listMy.length==0}}">
-          <view>
+<swiper indicator-dots="{{false}}" class='bottomtabs ' current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+      <view class='text-center' wx:if="{{listMy.length==0}}">
+        <view>
           <image class='egg' src='{{uploadpath}}resource/egg.png'></image>
-          </view>
-          <view class='txt-gray h6'>
-            暂未发布
-          </view>
         </view>
+        <view class='txt-gray h6'>
+          暂未发布
+        </view>
+      </view>
 
-        <view class='white-block'>
+      <view class='white-block'>
         <navigator url='/pages/info/info?id={{item.id}}' wx:for="{{listMy}}" wx:key="k" class='flex-row rowitem'>
           <view>
             <image src='{{uploadpath}}post/{{item.cover}}' class='imgcover' mode='aspectFill'></image>
@@ -76,22 +79,22 @@
       </view>
 
 
-      </scroll-view>
-    </swiper-item>
-    <swiper-item>
-      <scroll-view scroll-y style='height:100%'>
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
 
-        <view class='text-center' wx:if="{{listFollow.length==0}}">
-          <view>
+      <view class='text-center' wx:if="{{listFollow.length==0}}">
+        <view>
           <image class='egg' src='{{uploadpath}}resource/egg.png'></image>
-          </view>
-          <view class='txt-gray h6'>
-            暂未发布
-          </view>
         </view>
+        <view class='txt-gray h6'>
+          暂未发布
+        </view>
+      </view>
 
 
-        <view class='white-block'>
+      <view class='white-block'>
         <navigator url='/pages/info/info?id={{item.id}}' wx:for="{{listFollow}}" wx:key="k" class='flex-row rowitem'>
           <view>
             <image src='{{uploadpath}}post/{{item.cover}}' class='imgcover' mode='aspectFill'></image>
@@ -109,6 +112,6 @@
       </view>
 
 
-      </scroll-view>
-    </swiper-item>
-  </swiper>
+    </scroll-view>
+  </swiper-item>
+</swiper>

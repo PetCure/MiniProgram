@@ -70,10 +70,15 @@
   <view class='flex-row flex-wrap'>
      <navigator url='/pages/info/info?shownext=Y&id={{item.id}}'  class='item margin-top-10 item-{{idx%2}}' wx:for="{{item.postlist}}" wx:key="k" wx:for-index="idx">
       <view>
-    <image  src="{{uploadpath}}post/{{item.cover}}" mode='aspectFill' />
+    <image class='cover' src="{{uploadpath}}post/{{item.cover}}" mode='aspectFill' />
       </view>
-      <view class='h5'>
+      <view class='flex-row padding-10'>
+      <view class='line-height-0'>
+        <image src='{{item.member_avatarUrl}}' class='icon' style='margin-right:10rpx;border-radius:50%' ></image>
+      </view>
+      <view class='h5 flex-1'>
         {{item.title}}
+      </view>
       </view>
     </navigator>
   </view>
