@@ -83,7 +83,10 @@
     </navigator>
   </view>
 </view>
-
+<view style='height:200rpx;'></view>
+<view class='.official.aa'>
+  <official-account></official-account>
+</view>
 <view  class='txt-gray padding-20 text-center h6'>
 云易创版权所有
 </view>

@@ -25,3 +25,9 @@
   height: 210rpx;
   border-radius: 10rpx;
 }
+.official{
+  position: fixed;
+  bottom: 80rpx;
+  width: 750rpx;
+  left: 0rpx;
+}
